@@ -1,0 +1,109 @@
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-main\cs-nea-new-main\prototype11 - Copy\prototype11\bin\Debug\prototype11.exe.config
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-main\cs-nea-new-main\prototype11 - Copy\prototype11\bin\Debug\prototype11.exe
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-main\cs-nea-new-main\prototype11 - Copy\prototype11\bin\Debug\prototype11.pdb
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-main\cs-nea-new-main\prototype11 - Copy\prototype11\bin\Debug\prototype11.xml
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-main\cs-nea-new-main\prototype11 - Copy\prototype11\obj\Debug\prototype11.vbprojAssemblyReference.cache
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-main\cs-nea-new-main\prototype11 - Copy\prototype11\obj\Debug\prototype11.addPlayer.resources
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-main\cs-nea-new-main\prototype11 - Copy\prototype11\obj\Debug\prototype11.login.resources
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-main\cs-nea-new-main\prototype11 - Copy\prototype11\obj\Debug\prototype11.viewEvents.resources
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-main\cs-nea-new-main\prototype11 - Copy\prototype11\obj\Debug\prototype11.Form1.resources
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-main\cs-nea-new-main\prototype11 - Copy\prototype11\obj\Debug\prototype11.group.resources
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-main\cs-nea-new-main\prototype11 - Copy\prototype11\obj\Debug\prototype11.Resources.resources
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-main\cs-nea-new-main\prototype11 - Copy\prototype11\obj\Debug\prototype11.playerDetails.resources
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-main\cs-nea-new-main\prototype11 - Copy\prototype11\obj\Debug\prototype11.players.resources
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-main\cs-nea-new-main\prototype11 - Copy\prototype11\obj\Debug\prototype11.viewInstrument.resources
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-main\cs-nea-new-main\prototype11 - Copy\prototype11\obj\Debug\prototype11.viewMusic.resources
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-main\cs-nea-new-main\prototype11 - Copy\prototype11\obj\Debug\prototype11.vbproj.GenerateResource.cache
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-main\cs-nea-new-main\prototype11 - Copy\prototype11\obj\Debug\prototype11.vbproj.CoreCompileInputs.cache
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-main\cs-nea-new-main\prototype11 - Copy\prototype11\obj\Debug\prototype11.exe
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-main\cs-nea-new-main\prototype11 - Copy\prototype11\obj\Debug\prototype11.xml
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-main\cs-nea-new-main\prototype11 - Copy\prototype11\obj\Debug\prototype11.pdb
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-new-nyhawk-patch-1-27-09\cs-nea-new-main\prototype11 - Copy\prototype11\bin\Debug\prototype11.exe.config
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-new-nyhawk-patch-1-27-09\cs-nea-new-main\prototype11 - Copy\prototype11\bin\Debug\prototype11.exe
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-new-nyhawk-patch-1-27-09\cs-nea-new-main\prototype11 - Copy\prototype11\bin\Debug\prototype11.pdb
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-new-nyhawk-patch-1-27-09\cs-nea-new-main\prototype11 - Copy\prototype11\bin\Debug\prototype11.xml
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-new-nyhawk-patch-1-27-09\cs-nea-new-main\prototype11 - Copy\prototype11\obj\Debug\prototype11.vbproj.AssemblyReference.cache
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-new-nyhawk-patch-1-27-09\cs-nea-new-main\prototype11 - Copy\prototype11\obj\Debug\prototype11.login.resources
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-new-nyhawk-patch-1-27-09\cs-nea-new-main\prototype11 - Copy\prototype11\obj\Debug\prototype11.viewEvents.resources
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-new-nyhawk-patch-1-27-09\cs-nea-new-main\prototype11 - Copy\prototype11\obj\Debug\prototype11.Form1.resources
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-new-nyhawk-patch-1-27-09\cs-nea-new-main\prototype11 - Copy\prototype11\obj\Debug\prototype11.group.resources
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-new-nyhawk-patch-1-27-09\cs-nea-new-main\prototype11 - Copy\prototype11\obj\Debug\prototype11.Resources.resources
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-new-nyhawk-patch-1-27-09\cs-nea-new-main\prototype11 - Copy\prototype11\obj\Debug\prototype11.playerDetails.resources
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-new-nyhawk-patch-1-27-09\cs-nea-new-main\prototype11 - Copy\prototype11\obj\Debug\prototype11.players.resources
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-new-nyhawk-patch-1-27-09\cs-nea-new-main\prototype11 - Copy\prototype11\obj\Debug\prototype11.viewInstrument.resources
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-new-nyhawk-patch-1-27-09\cs-nea-new-main\prototype11 - Copy\prototype11\obj\Debug\prototype11.viewMusic.resources
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-new-nyhawk-patch-1-27-09\cs-nea-new-main\prototype11 - Copy\prototype11\obj\Debug\prototype11.vbproj.GenerateResource.cache
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-new-nyhawk-patch-1-27-09\cs-nea-new-main\prototype11 - Copy\prototype11\obj\Debug\prototype11.vbproj.CoreCompileInputs.cache
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-new-nyhawk-patch-1-27-09\cs-nea-new-main\prototype11 - Copy\prototype11\obj\Debug\prototype11.exe
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-new-nyhawk-patch-1-27-09\cs-nea-new-main\prototype11 - Copy\prototype11\obj\Debug\prototype11.xml
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-new-nyhawk-patch-1-27-09\cs-nea-new-main\prototype11 - Copy\prototype11\obj\Debug\prototype11.pdb
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-04-10-changes\cs-nea-new-04-10-changes\prototype04.10\prototype11 - Copy\prototype11\bin\Debug\prototype11.exe.config
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-04-10-changes\cs-nea-new-04-10-changes\prototype04.10\prototype11 - Copy\prototype11\bin\Debug\prototype11.exe
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-04-10-changes\cs-nea-new-04-10-changes\prototype04.10\prototype11 - Copy\prototype11\bin\Debug\prototype11.pdb
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-04-10-changes\cs-nea-new-04-10-changes\prototype04.10\prototype11 - Copy\prototype11\bin\Debug\prototype11.xml
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-04-10-changes\cs-nea-new-04-10-changes\prototype04.10\prototype11 - Copy\prototype11\obj\Debug\prototype11.vbprojAssemblyReference.cache
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-04-10-changes\cs-nea-new-04-10-changes\prototype04.10\prototype11 - Copy\prototype11\obj\Debug\prototype11.viewEvents.resources
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-04-10-changes\cs-nea-new-04-10-changes\prototype04.10\prototype11 - Copy\prototype11\obj\Debug\prototype11.Form1.resources
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-04-10-changes\cs-nea-new-04-10-changes\prototype04.10\prototype11 - Copy\prototype11\obj\Debug\prototype11.group.resources
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-04-10-changes\cs-nea-new-04-10-changes\prototype04.10\prototype11 - Copy\prototype11\obj\Debug\prototype11.Resources.resources
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-04-10-changes\cs-nea-new-04-10-changes\prototype04.10\prototype11 - Copy\prototype11\obj\Debug\prototype11.players.resources
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-04-10-changes\cs-nea-new-04-10-changes\prototype04.10\prototype11 - Copy\prototype11\obj\Debug\prototype11.viewInstrument.resources
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-04-10-changes\cs-nea-new-04-10-changes\prototype04.10\prototype11 - Copy\prototype11\obj\Debug\prototype11.viewMusic.resources
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-04-10-changes\cs-nea-new-04-10-changes\prototype04.10\prototype11 - Copy\prototype11\obj\Debug\prototype11.vbproj.GenerateResource.cache
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-04-10-changes\cs-nea-new-04-10-changes\prototype04.10\prototype11 - Copy\prototype11\obj\Debug\prototype11.vbproj.CoreCompileInputs.cache
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-04-10-changes\cs-nea-new-04-10-changes\prototype04.10\prototype11 - Copy\prototype11\obj\Debug\prototype11.exe
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-04-10-changes\cs-nea-new-04-10-changes\prototype04.10\prototype11 - Copy\prototype11\obj\Debug\prototype11.xml
+\\6S-File1\students$\16nhawkins\Documents\cs-nea-new-04-10-changes\cs-nea-new-04-10-changes\prototype04.10\prototype11 - Copy\prototype11\obj\Debug\prototype11.pdb
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal\prototype11\obj\Debug\prototype11.vbprojAssemblyReference.cache
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal\prototype11\obj\Debug\prototype11.viewEvents.resources
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal\prototype11\obj\Debug\prototype11.Form1.resources
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal\prototype11\obj\Debug\prototype11.group.resources
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal\prototype11\obj\Debug\prototype11.Resources.resources
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal\prototype11\obj\Debug\prototype11.players.resources
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal\prototype11\obj\Debug\prototype11.viewInstrument.resources
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal\prototype11\obj\Debug\prototype11.viewMusic.resources
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal\prototype11\obj\Debug\prototype11.vbproj.GenerateResource.cache
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal\prototype11\obj\Debug\prototype11.vbproj.CoreCompileInputs.cache
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal\prototype11\obj\Debug\prototype11.exe
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal\prototype11\obj\Debug\prototype11.xml
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal\prototype11\obj\Debug\prototype11.pdb
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal\prototype11\bin\Debug\prototype11.exe.config
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal\prototype11\bin\Debug\prototype11.exe
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal\prototype11\bin\Debug\prototype11.pdb
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal\prototype11\bin\Debug\prototype11.xml
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal1\prototype11\obj\Debug\prototype11.vbprojAssemblyReference.cache
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal1\prototype11\obj\Debug\prototype11.viewEvents.resources
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal1\prototype11\obj\Debug\prototype11.Form1.resources
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal1\prototype11\obj\Debug\prototype11.group.resources
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal1\prototype11\obj\Debug\prototype11.Resources.resources
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal1\prototype11\obj\Debug\prototype11.players.resources
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal1\prototype11\obj\Debug\prototype11.viewInstrument.resources
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal1\prototype11\obj\Debug\prototype11.viewMusic.resources
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal1\prototype11\obj\Debug\prototype11.vbproj.GenerateResource.cache
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal1\prototype11\obj\Debug\prototype11.vbproj.CoreCompileInputs.cache
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal1\prototype11\obj\Debug\prototype11.exe
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal1\prototype11\obj\Debug\prototype11.xml
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal1\prototype11\obj\Debug\prototype11.pdb
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal1\prototype11\bin\Debug\prototype11.exe.config
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal1\prototype11\bin\Debug\prototype11.exe
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal1\prototype11\bin\Debug\prototype11.pdb
+\\6S-File1\students$\16nhawkins\Documents\nea prototype final\cs-nea-new-04-10-changes\prototypeFinal\prototypeFinal1\prototype11\bin\Debug\prototype11.xml
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-post-prototype-nyhawk-29-11\prototypeFinal1\prototype11\bin\Debug\prototype11.exe.config
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-post-prototype-nyhawk-29-11\prototypeFinal1\prototype11\bin\Debug\prototype11.exe
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-post-prototype-nyhawk-29-11\prototypeFinal1\prototype11\bin\Debug\prototype11.pdb
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-post-prototype-nyhawk-29-11\prototypeFinal1\prototype11\bin\Debug\prototype11.xml
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-post-prototype-nyhawk-29-11\prototypeFinal1\prototype11\obj\Debug\prototype11.vbproj.AssemblyReference.cache
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-post-prototype-nyhawk-29-11\prototypeFinal1\prototype11\obj\Debug\prototype11.viewEvents.resources
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-post-prototype-nyhawk-29-11\prototypeFinal1\prototype11\obj\Debug\prototype11.Form1.resources
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-post-prototype-nyhawk-29-11\prototypeFinal1\prototype11\obj\Debug\prototype11.group.resources
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-post-prototype-nyhawk-29-11\prototypeFinal1\prototype11\obj\Debug\prototype11.Resources.resources
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-post-prototype-nyhawk-29-11\prototypeFinal1\prototype11\obj\Debug\prototype11.players.resources
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-post-prototype-nyhawk-29-11\prototypeFinal1\prototype11\obj\Debug\prototype11.viewInstrument.resources
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-post-prototype-nyhawk-29-11\prototypeFinal1\prototype11\obj\Debug\prototype11.viewMusic.resources
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-post-prototype-nyhawk-29-11\prototypeFinal1\prototype11\obj\Debug\prototype11.vbproj.GenerateResource.cache
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-post-prototype-nyhawk-29-11\prototypeFinal1\prototype11\obj\Debug\prototype11.vbproj.CoreCompileInputs.cache
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-post-prototype-nyhawk-29-11\prototypeFinal1\prototype11\obj\Debug\prototype11.exe
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-post-prototype-nyhawk-29-11\prototypeFinal1\prototype11\obj\Debug\prototype11.xml
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-post-prototype-nyhawk-29-11\prototypeFinal1\prototype11\obj\Debug\prototype11.pdb
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-post-prototype-nyhawk-29-11\prototypeFinal1\prototype11\obj\Debug\prototype11.login.resources
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-post-prototype-nyhawk-29-11\prototypeFinal1\prototype11\obj\Debug\prototype11.playerEventsResponse.resources
