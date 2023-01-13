@@ -57,16 +57,6 @@ Partial Class viewEvents
 		Me.btnUpdate = New System.Windows.Forms.Button()
 		Me.btnClear = New System.Windows.Forms.Button()
 		Me.btnShowAll = New System.Windows.Forms.Button()
-		Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
-		Me.HomeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-		Me.PlayersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-		Me.GroupToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-		Me.EventsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-		Me.MusicToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-		Me.InstrumentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-		Me.UserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-		Me.UserDetailsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-		Me.LogoutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.btnPlayers = New System.Windows.Forms.Button()
 		Me.btnSaveResponse = New System.Windows.Forms.Button()
 		Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
@@ -78,6 +68,16 @@ Partial Class viewEvents
 		Me.txtPostcode = New System.Windows.Forms.TextBox()
 		Me.lblArrivalTime = New System.Windows.Forms.Label()
 		Me.txtArrivalTime = New System.Windows.Forms.TextBox()
+		Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+		Me.HomeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+		Me.PlayersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+		Me.GroupToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+		Me.EventsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+		Me.MusicToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+		Me.InstrumentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+		Me.UserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+		Me.LogoutToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+		Me.btnUndo = New System.Windows.Forms.Button()
 		CType(Me.dgvDay, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.MenuStrip1.SuspendLayout()
 		Me.SuspendLayout()
@@ -91,6 +91,7 @@ Partial Class viewEvents
 		'dgvDay
 		'
 		Me.dgvDay.AllowUserToAddRows = False
+		Me.dgvDay.BackgroundColor = System.Drawing.Color.White
 		Me.dgvDay.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
 		Me.dgvDay.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colID, Me.colAddress, Me.colDate, Me.colTime, Me.colGroup, Me.colMusic, Me.colPlaying})
 		Me.dgvDay.Location = New System.Drawing.Point(18, 207)
@@ -320,130 +321,94 @@ Partial Class viewEvents
 		'
 		'btnDelete
 		'
-		Me.btnDelete.Location = New System.Drawing.Point(404, 105)
+		Me.btnDelete.BackColor = System.Drawing.Color.Firebrick
+		Me.btnDelete.FlatAppearance.BorderColor = System.Drawing.Color.Black
+		Me.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+		Me.btnDelete.ForeColor = System.Drawing.Color.White
+		Me.btnDelete.Location = New System.Drawing.Point(377, 102)
 		Me.btnDelete.Name = "btnDelete"
 		Me.btnDelete.Size = New System.Drawing.Size(75, 23)
 		Me.btnDelete.TabIndex = 97
 		Me.btnDelete.Text = "Delete"
-		Me.btnDelete.UseVisualStyleBackColor = True
+		Me.btnDelete.UseVisualStyleBackColor = False
 		'
 		'btnAdd
 		'
-		Me.btnAdd.Location = New System.Drawing.Point(404, 48)
+		Me.btnAdd.BackColor = System.Drawing.Color.Firebrick
+		Me.btnAdd.FlatAppearance.BorderColor = System.Drawing.Color.Black
+		Me.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+		Me.btnAdd.ForeColor = System.Drawing.Color.White
+		Me.btnAdd.Location = New System.Drawing.Point(377, 45)
 		Me.btnAdd.Name = "btnAdd"
 		Me.btnAdd.Size = New System.Drawing.Size(75, 23)
 		Me.btnAdd.TabIndex = 96
 		Me.btnAdd.Text = "Add"
-		Me.btnAdd.UseVisualStyleBackColor = True
+		Me.btnAdd.UseVisualStyleBackColor = False
 		'
 		'btnUpdate
 		'
-		Me.btnUpdate.Location = New System.Drawing.Point(404, 76)
+		Me.btnUpdate.BackColor = System.Drawing.Color.Firebrick
+		Me.btnUpdate.FlatAppearance.BorderColor = System.Drawing.Color.Black
+		Me.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+		Me.btnUpdate.ForeColor = System.Drawing.Color.White
+		Me.btnUpdate.Location = New System.Drawing.Point(377, 73)
 		Me.btnUpdate.Name = "btnUpdate"
 		Me.btnUpdate.Size = New System.Drawing.Size(75, 23)
 		Me.btnUpdate.TabIndex = 98
 		Me.btnUpdate.Text = "Update"
-		Me.btnUpdate.UseVisualStyleBackColor = True
+		Me.btnUpdate.UseVisualStyleBackColor = False
 		'
 		'btnClear
 		'
-		Me.btnClear.Location = New System.Drawing.Point(404, 135)
+		Me.btnClear.BackColor = System.Drawing.Color.Firebrick
+		Me.btnClear.FlatAppearance.BorderColor = System.Drawing.Color.Black
+		Me.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+		Me.btnClear.ForeColor = System.Drawing.Color.White
+		Me.btnClear.Location = New System.Drawing.Point(469, 45)
 		Me.btnClear.Name = "btnClear"
 		Me.btnClear.Size = New System.Drawing.Size(75, 23)
 		Me.btnClear.TabIndex = 99
 		Me.btnClear.Text = "Clear"
-		Me.btnClear.UseVisualStyleBackColor = True
+		Me.btnClear.UseVisualStyleBackColor = False
 		'
 		'btnShowAll
 		'
+		Me.btnShowAll.BackColor = System.Drawing.Color.Firebrick
+		Me.btnShowAll.FlatAppearance.BorderColor = System.Drawing.Color.Black
+		Me.btnShowAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+		Me.btnShowAll.ForeColor = System.Drawing.Color.White
 		Me.btnShowAll.Location = New System.Drawing.Point(287, 45)
 		Me.btnShowAll.Name = "btnShowAll"
 		Me.btnShowAll.Size = New System.Drawing.Size(75, 48)
 		Me.btnShowAll.TabIndex = 100
 		Me.btnShowAll.Text = "Show all events"
-		Me.btnShowAll.UseVisualStyleBackColor = True
-		'
-		'MenuStrip1
-		'
-		Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HomeToolStripMenuItem, Me.PlayersToolStripMenuItem, Me.GroupToolStripMenuItem, Me.EventsToolStripMenuItem, Me.MusicToolStripMenuItem, Me.InstrumentsToolStripMenuItem, Me.UserToolStripMenuItem})
-		Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
-		Me.MenuStrip1.Name = "MenuStrip1"
-		Me.MenuStrip1.Size = New System.Drawing.Size(1023, 24)
-		Me.MenuStrip1.TabIndex = 101
-		Me.MenuStrip1.Text = "MenuStrip1"
-		'
-		'HomeToolStripMenuItem
-		'
-		Me.HomeToolStripMenuItem.Name = "HomeToolStripMenuItem"
-		Me.HomeToolStripMenuItem.Size = New System.Drawing.Size(52, 20)
-		Me.HomeToolStripMenuItem.Text = "Home"
-		'
-		'PlayersToolStripMenuItem
-		'
-		Me.PlayersToolStripMenuItem.Name = "PlayersToolStripMenuItem"
-		Me.PlayersToolStripMenuItem.Size = New System.Drawing.Size(56, 20)
-		Me.PlayersToolStripMenuItem.Text = "Players"
-		'
-		'GroupToolStripMenuItem
-		'
-		Me.GroupToolStripMenuItem.Name = "GroupToolStripMenuItem"
-		Me.GroupToolStripMenuItem.Size = New System.Drawing.Size(52, 20)
-		Me.GroupToolStripMenuItem.Text = "Group"
-		'
-		'EventsToolStripMenuItem
-		'
-		Me.EventsToolStripMenuItem.Name = "EventsToolStripMenuItem"
-		Me.EventsToolStripMenuItem.Size = New System.Drawing.Size(53, 20)
-		Me.EventsToolStripMenuItem.Text = "Events"
-		'
-		'MusicToolStripMenuItem
-		'
-		Me.MusicToolStripMenuItem.Name = "MusicToolStripMenuItem"
-		Me.MusicToolStripMenuItem.Size = New System.Drawing.Size(51, 20)
-		Me.MusicToolStripMenuItem.Text = "Music"
-		'
-		'InstrumentsToolStripMenuItem
-		'
-		Me.InstrumentsToolStripMenuItem.Name = "InstrumentsToolStripMenuItem"
-		Me.InstrumentsToolStripMenuItem.Size = New System.Drawing.Size(82, 20)
-		Me.InstrumentsToolStripMenuItem.Text = "Instruments"
-		'
-		'UserToolStripMenuItem
-		'
-		Me.UserToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UserDetailsToolStripMenuItem, Me.LogoutToolStripMenuItem})
-		Me.UserToolStripMenuItem.Name = "UserToolStripMenuItem"
-		Me.UserToolStripMenuItem.Size = New System.Drawing.Size(42, 20)
-		Me.UserToolStripMenuItem.Text = "User"
-		'
-		'UserDetailsToolStripMenuItem
-		'
-		Me.UserDetailsToolStripMenuItem.Name = "UserDetailsToolStripMenuItem"
-		Me.UserDetailsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-		Me.UserDetailsToolStripMenuItem.Text = "User details"
-		'
-		'LogoutToolStripMenuItem
-		'
-		Me.LogoutToolStripMenuItem.Name = "LogoutToolStripMenuItem"
-		Me.LogoutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-		Me.LogoutToolStripMenuItem.Text = "Logout"
+		Me.btnShowAll.UseVisualStyleBackColor = False
 		'
 		'btnPlayers
 		'
-		Me.btnPlayers.Location = New System.Drawing.Point(514, 80)
+		Me.btnPlayers.BackColor = System.Drawing.Color.Firebrick
+		Me.btnPlayers.FlatAppearance.BorderColor = System.Drawing.Color.Black
+		Me.btnPlayers.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+		Me.btnPlayers.ForeColor = System.Drawing.Color.White
+		Me.btnPlayers.Location = New System.Drawing.Point(287, 107)
 		Me.btnPlayers.Name = "btnPlayers"
 		Me.btnPlayers.Size = New System.Drawing.Size(75, 48)
 		Me.btnPlayers.TabIndex = 102
 		Me.btnPlayers.Text = "Manage players"
-		Me.btnPlayers.UseVisualStyleBackColor = True
+		Me.btnPlayers.UseVisualStyleBackColor = False
 		'
 		'btnSaveResponse
 		'
-		Me.btnSaveResponse.Location = New System.Drawing.Point(287, 133)
+		Me.btnSaveResponse.BackColor = System.Drawing.Color.Firebrick
+		Me.btnSaveResponse.FlatAppearance.BorderColor = System.Drawing.Color.Black
+		Me.btnSaveResponse.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+		Me.btnSaveResponse.ForeColor = System.Drawing.Color.White
+		Me.btnSaveResponse.Location = New System.Drawing.Point(469, 107)
 		Me.btnSaveResponse.Name = "btnSaveResponse"
 		Me.btnSaveResponse.Size = New System.Drawing.Size(75, 48)
 		Me.btnSaveResponse.TabIndex = 103
 		Me.btnSaveResponse.Text = "Save event responses"
-		Me.btnSaveResponse.UseVisualStyleBackColor = True
+		Me.btnSaveResponse.UseVisualStyleBackColor = False
 		'
 		'PrintDocument1
 		'
@@ -461,12 +426,16 @@ Partial Class viewEvents
 		'
 		'btnPrint
 		'
-		Me.btnPrint.Location = New System.Drawing.Point(514, 135)
+		Me.btnPrint.BackColor = System.Drawing.Color.Firebrick
+		Me.btnPrint.FlatAppearance.BorderColor = System.Drawing.Color.Black
+		Me.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+		Me.btnPrint.ForeColor = System.Drawing.Color.White
+		Me.btnPrint.Location = New System.Drawing.Point(377, 131)
 		Me.btnPrint.Name = "btnPrint"
 		Me.btnPrint.Size = New System.Drawing.Size(75, 23)
 		Me.btnPrint.TabIndex = 104
 		Me.btnPrint.Text = "Print"
-		Me.btnPrint.UseVisualStyleBackColor = True
+		Me.btnPrint.UseVisualStyleBackColor = False
 		'
 		'lblCustomerID
 		'
@@ -517,11 +486,95 @@ Partial Class viewEvents
 		Me.txtArrivalTime.Size = New System.Drawing.Size(164, 20)
 		Me.txtArrivalTime.TabIndex = 109
 		'
+		'MenuStrip1
+		'
+		Me.MenuStrip1.BackColor = System.Drawing.Color.Firebrick
+		Me.MenuStrip1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+		Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HomeToolStripMenuItem, Me.PlayersToolStripMenuItem, Me.GroupToolStripMenuItem, Me.EventsToolStripMenuItem, Me.MusicToolStripMenuItem, Me.InstrumentsToolStripMenuItem, Me.UserToolStripMenuItem, Me.LogoutToolStripMenuItem1})
+		Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+		Me.MenuStrip1.Name = "MenuStrip1"
+		Me.MenuStrip1.Size = New System.Drawing.Size(1023, 24)
+		Me.MenuStrip1.TabIndex = 111
+		Me.MenuStrip1.Text = "MenuStrip1"
+		'
+		'HomeToolStripMenuItem
+		'
+		Me.HomeToolStripMenuItem.ForeColor = System.Drawing.Color.White
+		Me.HomeToolStripMenuItem.Name = "HomeToolStripMenuItem"
+		Me.HomeToolStripMenuItem.Size = New System.Drawing.Size(52, 20)
+		Me.HomeToolStripMenuItem.Text = "Home"
+		'
+		'PlayersToolStripMenuItem
+		'
+		Me.PlayersToolStripMenuItem.ForeColor = System.Drawing.Color.White
+		Me.PlayersToolStripMenuItem.Name = "PlayersToolStripMenuItem"
+		Me.PlayersToolStripMenuItem.Size = New System.Drawing.Size(56, 20)
+		Me.PlayersToolStripMenuItem.Text = "Players"
+		'
+		'GroupToolStripMenuItem
+		'
+		Me.GroupToolStripMenuItem.ForeColor = System.Drawing.Color.White
+		Me.GroupToolStripMenuItem.Name = "GroupToolStripMenuItem"
+		Me.GroupToolStripMenuItem.Size = New System.Drawing.Size(52, 20)
+		Me.GroupToolStripMenuItem.Text = "Group"
+		'
+		'EventsToolStripMenuItem
+		'
+		Me.EventsToolStripMenuItem.ForeColor = System.Drawing.Color.White
+		Me.EventsToolStripMenuItem.Name = "EventsToolStripMenuItem"
+		Me.EventsToolStripMenuItem.Size = New System.Drawing.Size(53, 20)
+		Me.EventsToolStripMenuItem.Text = "Events"
+		'
+		'MusicToolStripMenuItem
+		'
+		Me.MusicToolStripMenuItem.BackColor = System.Drawing.Color.Firebrick
+		Me.MusicToolStripMenuItem.ForeColor = System.Drawing.Color.White
+		Me.MusicToolStripMenuItem.Name = "MusicToolStripMenuItem"
+		Me.MusicToolStripMenuItem.Size = New System.Drawing.Size(51, 20)
+		Me.MusicToolStripMenuItem.Text = "Music"
+		'
+		'InstrumentsToolStripMenuItem
+		'
+		Me.InstrumentsToolStripMenuItem.ForeColor = System.Drawing.Color.White
+		Me.InstrumentsToolStripMenuItem.Name = "InstrumentsToolStripMenuItem"
+		Me.InstrumentsToolStripMenuItem.Size = New System.Drawing.Size(82, 20)
+		Me.InstrumentsToolStripMenuItem.Text = "Instruments"
+		'
+		'UserToolStripMenuItem
+		'
+		Me.UserToolStripMenuItem.ForeColor = System.Drawing.Color.White
+		Me.UserToolStripMenuItem.Name = "UserToolStripMenuItem"
+		Me.UserToolStripMenuItem.Size = New System.Drawing.Size(79, 20)
+		Me.UserToolStripMenuItem.Text = "User details"
+		'
+		'LogoutToolStripMenuItem1
+		'
+		Me.LogoutToolStripMenuItem1.ForeColor = System.Drawing.Color.White
+		Me.LogoutToolStripMenuItem1.Name = "LogoutToolStripMenuItem1"
+		Me.LogoutToolStripMenuItem1.Size = New System.Drawing.Size(57, 20)
+		Me.LogoutToolStripMenuItem1.Text = "Logout"
+		'
+		'btnUndo
+		'
+		Me.btnUndo.BackColor = System.Drawing.Color.Firebrick
+		Me.btnUndo.FlatAppearance.BorderColor = System.Drawing.Color.Black
+		Me.btnUndo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+		Me.btnUndo.ForeColor = System.Drawing.Color.White
+		Me.btnUndo.Location = New System.Drawing.Point(469, 74)
+		Me.btnUndo.Name = "btnUndo"
+		Me.btnUndo.Size = New System.Drawing.Size(75, 23)
+		Me.btnUndo.TabIndex = 112
+		Me.btnUndo.Text = "Undo"
+		Me.btnUndo.UseVisualStyleBackColor = False
+		'
 		'viewEvents
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+		Me.BackColor = System.Drawing.Color.White
 		Me.ClientSize = New System.Drawing.Size(1023, 476)
+		Me.Controls.Add(Me.btnUndo)
+		Me.Controls.Add(Me.MenuStrip1)
 		Me.Controls.Add(Me.lblArrivalTime)
 		Me.Controls.Add(Me.txtArrivalTime)
 		Me.Controls.Add(Me.lblPostcode)
@@ -531,7 +584,6 @@ Partial Class viewEvents
 		Me.Controls.Add(Me.btnPrint)
 		Me.Controls.Add(Me.btnSaveResponse)
 		Me.Controls.Add(Me.btnPlayers)
-		Me.Controls.Add(Me.MenuStrip1)
 		Me.Controls.Add(Me.btnShowAll)
 		Me.Controls.Add(Me.btnClear)
 		Me.Controls.Add(Me.btnUpdate)
@@ -596,16 +648,6 @@ Partial Class viewEvents
 	Friend WithEvents btnUpdate As Button
 	Friend WithEvents btnClear As Button
 	Friend WithEvents btnShowAll As Button
-	Friend WithEvents MenuStrip1 As MenuStrip
-	Friend WithEvents HomeToolStripMenuItem As ToolStripMenuItem
-	Friend WithEvents PlayersToolStripMenuItem As ToolStripMenuItem
-	Friend WithEvents GroupToolStripMenuItem As ToolStripMenuItem
-	Friend WithEvents EventsToolStripMenuItem As ToolStripMenuItem
-	Friend WithEvents MusicToolStripMenuItem As ToolStripMenuItem
-	Friend WithEvents InstrumentsToolStripMenuItem As ToolStripMenuItem
-	Friend WithEvents UserToolStripMenuItem As ToolStripMenuItem
-	Friend WithEvents UserDetailsToolStripMenuItem As ToolStripMenuItem
-	Friend WithEvents LogoutToolStripMenuItem As ToolStripMenuItem
 	Friend WithEvents btnPlayers As Button
 	Friend WithEvents btnSaveResponse As Button
 	Friend WithEvents PrintDocument1 As Printing.PrintDocument
@@ -624,4 +666,14 @@ Partial Class viewEvents
 	Friend WithEvents txtPostcode As TextBox
 	Public WithEvents lblArrivalTime As Label
 	Friend WithEvents txtArrivalTime As TextBox
+	Friend WithEvents MenuStrip1 As MenuStrip
+	Friend WithEvents HomeToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents PlayersToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents GroupToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents EventsToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents MusicToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents InstrumentsToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents UserToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents LogoutToolStripMenuItem1 As ToolStripMenuItem
+	Friend WithEvents btnUndo As Button
 End Class

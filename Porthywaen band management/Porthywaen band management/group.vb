@@ -115,26 +115,26 @@ Public Class group
 			Chart1.Series(0).Points.AddXY(dgvTotal.Item(0, i).Value, dgvTotal.Item(2, i).Value)
 		Next
 	End Sub
-	Private Sub HomeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HomeToolStripMenuItem.Click
+	Private Sub HomeToolStripMenuItem_Click(sender As Object, e As EventArgs) 
 		Form1.Show()
 		Me.Hide()
 	End Sub
 
-	Private Sub PlayersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PlayersToolStripMenuItem.Click
+	Private Sub PlayersToolStripMenuItem_Click(sender As Object, e As EventArgs) 
 		players.Show()
 		Me.Hide()
 	End Sub
-	Private Sub EventsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EventsToolStripMenuItem.Click
+	Private Sub EventsToolStripMenuItem_Click(sender As Object, e As EventArgs) 
 		viewEvents.Show()
 		Me.Hide()
 	End Sub
 
-	Private Sub MusicToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MusicToolStripMenuItem.Click
+	Private Sub MusicToolStripMenuItem_Click(sender As Object, e As EventArgs) 
 		viewMusic.Show()
 		Me.Hide()
 	End Sub
 
-	Private Sub InstrumentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InstrumentsToolStripMenuItem.Click
+	Private Sub InstrumentsToolStripMenuItem_Click(sender As Object, e As EventArgs) 
 		viewInstrument.Show()
 		Me.Hide()
 	End Sub

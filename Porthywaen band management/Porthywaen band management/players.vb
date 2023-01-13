@@ -393,6 +393,7 @@ Public Class players
 	Shared undo() As String
 	Shared count As Integer = 0
 	Shared pointer As Integer = 1
+	Shared lengthCount As Integer = 0
 	Private Sub formChanged(sender As Object, e As EventArgs) Handles txtName.Leave, txtPhone.Leave,
 	txtEmail.Leave, cmbInstrument.Leave, cmbLevel.Leave, cmbRole.Leave, chkPhotoPerm.Leave,
 	chkPBB.Leave, chkPSB.Leave, chkPYTB.Leave, chkStarters.Leave, txtContName.Leave, txtContPhone.Leave
@@ -412,15 +413,11 @@ Public Class players
 		Else
 			'saves the data in the form to a dynamic array so changes can be restored when btnUndo clicked
 			Dim changeRecorded As Boolean = False
-			Dim i As Integer
-			If count = 0 Then
-				i = 0
-			End If
 			For i = (count * 14) To undo.Length
 				If changeRecorded = False Then
-					'	If undo.Length - 1 - (count * 13) < 14 Then 'if no empty space, add more elements to the array
-					ReDim Preserve undo(UBound(undo) + 14)
-					'End If
+					If undo.Length - 1 - (count * 13) < 14 Then 'if no empty space, add more elements to the array
+						ReDim Preserve undo(UBound(undo) + 14)
+					End If
 					If undo(i) = Nothing And i > 0 Then 'search for empty place in array that is not the first
 						Try
 							undo(i) = txtName.Text
@@ -439,7 +436,8 @@ Public Class players
 							undo(i + 13) = txtContPhone.Text
 
 							pointer += 14
-							count += 1 'save the number of times data is stored in the array so start location can be found
+							count += 1
+							lengthCount += 1
 							changeRecorded = True
 
 						Catch ex As Exception
@@ -449,7 +447,7 @@ Public Class players
 				End If
 			Next
 		End If
-    End Sub
+	End Sub
 
 	Private Sub undo_click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUndo.Click, btnUndo.DoubleClick
 		Dim startLocation As Integer = pointer - 29
@@ -543,9 +541,13 @@ Public Class players
 				pointer = pointer - 28
 			End If
     End Sub
-	Private Sub LogoutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LogoutToolStripMenuItem.Click
+	Private Sub LogoutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LogoutToolStripMenuItem1.Click
 		If MsgBox("Logout?", MsgBoxStyle.YesNo) = vbYes Then
 			End
 		End If
+	End Sub
+
+	Private Sub UserToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UserToolStripMenuItem.Click
+
 	End Sub
 End Class

@@ -1,4 +1,6 @@
-﻿Structure calendarEvent
+﻿
+Imports System.Text.RegularExpressions
+Structure calendarEvent
 	<VBFixedString(5)> Dim eventID As String
 	<VBFixedString(5)> Dim customerID As String
 	<VBFixedString(100)> Dim address As String
@@ -166,66 +168,106 @@ Public Class viewEvents
 
 		Dim oneEvent As calendarEvent
 		Dim oneCustomer As customer
+		Dim postcodeFormat As String = "/[A-Z]{1,2}[0-9]{1,2}[A-Z]?\s?[0-9][A-Z]{2}/i"
+		Dim postcodeMatch As Match = Regex.Match(txtPostcode.Text, postcodeFormat)
+		Dim emailFormat As String = "^[A-Za-z0-9]+\@[A-Za-z0-9]+\.[A-Za-z0-9]+$"
+		Dim emailMatch As Match = Regex.Match(txtEmail.Text, emailFormat)
 
 		'validation
-		'If Len(txtID.Text) <> 5 Then
-		'MsgBox("Enter a valid ID")
-		'ElseIf 
-		'End If
+		If txtAddress.Text = "" Then
+			MsgBox("Enter an address")
 
-		FileOpen(1, "eventsCalendar.dat", OpenMode.Random,,, Len(oneEvent))
-		Dim totalRecords As Integer = LOF(1) / Len(oneEvent)
-		Dim index As Integer
-		totalRecords = LOF(1) / Len(oneEvent)
-		Dim searchID As Integer = "00001"
-		'if not records in the file, new id must be the first possible id
-		If totalRecords = 0 Then
-			txtID.Text = "00001"
-		End If
+			If txtID.Text = "" Or txtCustomerID.Text = "" Then
+				MsgBox("Enter a valid ID")
 
-		For index = 1 To totalRecords
-			FileGet(1, oneEvent)
+				If dtpDate.Text = "" Then
+					MsgBox("Date is in incorrect format")
 
-			'search for available id
-			If searchID = oneEvent.eventID Then
-				searchID += 1
+					If postcodeMatch.Success = False Then
+						MsgBox("Invalid postcode")
+
+						If txtTime.Text = "" Then
+							MsgBox("Enter a start time")
+
+							If txtArrivalTime.Text = "" Then
+								MsgBox("Enter an arrival time")
+
+								If txtMusic.Text = "" Then
+									MsgBox("Enter the music")
+
+									If txtContName.Text = "" Then
+										MsgBox("Enter the customer's name")
+
+										If txtContPhone.Text = "" Then
+											MsgBox("Enter the customer's phone number")
+
+											If emailMatch.Success = False Then
+												MsgBox("Enter a valid email")
+
+											Else
+												FileOpen(1, "eventsCalendar.dat", OpenMode.Random,,, Len(oneEvent))
+												Dim totalRecords As Integer = LOF(1) / Len(oneEvent)
+												Dim index As Integer
+												totalRecords = LOF(1) / Len(oneEvent)
+												Dim searchID As Integer = "00001"
+												'if not records in the file, new id must be the first possible id
+												If totalRecords = 0 Then
+													txtID.Text = "00001"
+												End If
+
+												For index = 1 To totalRecords
+													FileGet(1, oneEvent)
+
+													'search for available id
+													If searchID = oneEvent.eventID Then
+														searchID += 1
+													End If
+												Next
+												Dim idString As String = searchID.ToString()
+												Dim idLen As Integer = Len(idString)
+												Dim finalID As String = idString
+												For i = 1 To 5 - idLen
+													finalID = "0" & finalID
+												Next
+												txtID.Text = finalID
+
+												oneEvent.eventID = txtID.Text
+												oneEvent.address = txtAddress.Text
+												oneEvent.eventDate = dtpDate.Text
+												oneEvent.startTime = txtTime.Text
+												oneEvent.arrivalTime = txtArrivalTime.Text
+												oneEvent.postcode = txtPostcode.Text
+												oneEvent.groups = groups
+												oneEvent.music = txtMusic.Text
+												oneCustomer.customerID = txtCustomerID.Text
+												oneCustomer.contEmail = txtEmail.Text
+												oneCustomer.contName = txtContName.Text
+												oneCustomer.contPhone = txtContPhone.Text
+
+												FilePut(1, oneEvent, totalRecords + 1)
+												FileClose(1)
+												MsgBox("Event added")
+
+												'display members in dataGridView
+												dgvDay.Rows.Clear()
+
+												For index = 1 To totalRecords
+													FileGet(1, oneEvent)
+													dgvDay.Rows.Add(oneEvent.eventID, oneEvent.address, oneEvent.eventDate,
+																	oneEvent.startTime, oneEvent.groups, oneEvent.music)
+												Next
+												FileClose(1)
+												groupInput.checkboxes()
+											End If
+										End If
+									End If
+								End If
+							End If
+						End If
+					End If
+				End If
 			End If
-		Next
-		Dim idString As String = searchID.ToString()
-		Dim idLen As Integer = Len(idString)
-		Dim finalID As String = idString
-		For i = 1 To 5 - idLen
-			finalID = "0" & finalID
-		Next
-		txtID.Text = finalID
-
-		oneEvent.eventID = txtID.Text
-		oneEvent.address = txtAddress.Text
-		oneEvent.eventDate = dtpDate.Text
-		oneEvent.startTime = txtTime.Text
-		oneEvent.arrivalTime = txtArrivalTime.Text
-		oneEvent.postcode = txtPostcode.Text
-		oneEvent.groups = groups
-		oneEvent.music = txtMusic.Text
-		oneCustomer.customerID = txtCustomerID.Text
-		oneCustomer.contEmail = txtEmail.Text
-		oneCustomer.contName = txtContName.Text
-		oneCustomer.contPhone = txtContPhone.Text
-
-		FilePut(1, oneEvent, totalRecords + 1)
-		FileClose(1)
-		MsgBox("Event added")
-
-		'display members in dataGridView
-		dgvDay.Rows.Clear()
-
-		For index = 1 To totalRecords
-			FileGet(1, oneEvent)
-			dgvDay.Rows.Add(oneEvent.eventID, oneEvent.address, oneEvent.eventDate, oneEvent.startTime,
-							oneEvent.groups, oneEvent.music)
-		Next
-		FileClose(1)
-		groupInput.checkboxes()
+		End If
 	End Sub
 
 	Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
@@ -298,7 +340,6 @@ Public Class viewEvents
 		Dim totalRecords As Integer = LOF(1) / Len(oneEvent)
 		Dim checked As Boolean
 
-
 		For index = 0 To dgvDay.Rows.Count - 1
 			For j = 0 To totalRecords
 				FileGet(1, oneEvent, index)
@@ -355,25 +396,25 @@ Public Class viewEvents
 		Next
 		FileClose(1)
 	End Sub
-	Private Sub HomeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HomeToolStripMenuItem.Click
+	Private Sub HomeToolStripMenuItem_Click(sender As Object, e As EventArgs)
 		Form1.Show()
 		Me.Hide()
 	End Sub
 
-	Private Sub PlayersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PlayersToolStripMenuItem.Click
+	Private Sub PlayersToolStripMenuItem_Click(sender As Object, e As EventArgs)
 		players.Show()
 		Me.Hide()
 	End Sub
 
-	Private Sub GroupToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GroupToolStripMenuItem.Click
+	Private Sub GroupToolStripMenuItem_Click(sender As Object, e As EventArgs)
 		group.Show()
 		Me.Hide()
 	End Sub
-	Private Sub MusicToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MusicToolStripMenuItem.Click
+	Private Sub MusicToolStripMenuItem_Click(sender As Object, e As EventArgs)
 		viewMusic.Show()
 		Me.Hide()
 	End Sub
-	Private Sub InstrumentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InstrumentsToolStripMenuItem.Click
+	Private Sub InstrumentsToolStripMenuItem_Click(sender As Object, e As EventArgs)
 		viewInstrument.Show()
 		Me.Hide()
 	End Sub
@@ -394,9 +435,12 @@ Public Class viewEvents
 		e.Graphics.DrawImage(bm, 0, 0)
 	End Sub
 
-	Private Sub LogoutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LogoutToolStripMenuItem.Click
+	Private Sub LogoutToolStripMenuItem_Click(sender As Object, e As EventArgs)
 		If MsgBox("Logout?", MsgBoxStyle.YesNo) = vbYes Then
 			End
 		End If
+	End Sub
+	Private Sub BtnUndo_Click(sender As Object, e As EventArgs) Handles btnUndo.Click
+
 	End Sub
 End Class

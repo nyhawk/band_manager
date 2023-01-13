@@ -17,3 +17,22 @@
 \\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-post-prototype-nyhawk-29-11\Porthywaen band management\Porthywaen band management\obj\Debug\Porthywaen Band Management.exe
 \\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-post-prototype-nyhawk-29-11\Porthywaen band management\Porthywaen band management\obj\Debug\Porthywaen Band Management.xml
 \\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\cs-nea-post-prototype-nyhawk-29-11\Porthywaen band management\Porthywaen band management\obj\Debug\Porthywaen Band Management.pdb
+\\6S-File1\students$\16nhawkins\Documents\nea-final-main\nea-final-main\Porthywaen band management\Porthywaen band management\bin\Debug\Porthywaen Band Management.exe.config
+\\6S-File1\students$\16nhawkins\Documents\nea-final-main\nea-final-main\Porthywaen band management\Porthywaen band management\bin\Debug\Porthywaen Band Management.exe
+\\6S-File1\students$\16nhawkins\Documents\nea-final-main\nea-final-main\Porthywaen band management\Porthywaen band management\bin\Debug\Porthywaen Band Management.pdb
+\\6S-File1\students$\16nhawkins\Documents\nea-final-main\nea-final-main\Porthywaen band management\Porthywaen band management\bin\Debug\Porthywaen Band Management.xml
+\\6S-File1\students$\16nhawkins\Documents\nea-final-main\nea-final-main\Porthywaen band management\Porthywaen band management\obj\Debug\PorthywaenBandManagement.vbprojAssemblyReference.cache
+\\6S-File1\students$\16nhawkins\Documents\nea-final-main\nea-final-main\Porthywaen band management\Porthywaen band management\obj\Debug\PorthywaenBandManagement.login.resources
+\\6S-File1\students$\16nhawkins\Documents\nea-final-main\nea-final-main\Porthywaen band management\Porthywaen band management\obj\Debug\PorthywaenBandManagement.playerEventsResponse.resources
+\\6S-File1\students$\16nhawkins\Documents\nea-final-main\nea-final-main\Porthywaen band management\Porthywaen band management\obj\Debug\PorthywaenBandManagement.viewEvents.resources
+\\6S-File1\students$\16nhawkins\Documents\nea-final-main\nea-final-main\Porthywaen band management\Porthywaen band management\obj\Debug\PorthywaenBandManagement.Form1.resources
+\\6S-File1\students$\16nhawkins\Documents\nea-final-main\nea-final-main\Porthywaen band management\Porthywaen band management\obj\Debug\PorthywaenBandManagement.group.resources
+\\6S-File1\students$\16nhawkins\Documents\nea-final-main\nea-final-main\Porthywaen band management\Porthywaen band management\obj\Debug\PorthywaenBandManagement.Resources.resources
+\\6S-File1\students$\16nhawkins\Documents\nea-final-main\nea-final-main\Porthywaen band management\Porthywaen band management\obj\Debug\PorthywaenBandManagement.players.resources
+\\6S-File1\students$\16nhawkins\Documents\nea-final-main\nea-final-main\Porthywaen band management\Porthywaen band management\obj\Debug\PorthywaenBandManagement.viewInstrument.resources
+\\6S-File1\students$\16nhawkins\Documents\nea-final-main\nea-final-main\Porthywaen band management\Porthywaen band management\obj\Debug\PorthywaenBandManagement.viewMusic.resources
+\\6S-File1\students$\16nhawkins\Documents\nea-final-main\nea-final-main\Porthywaen band management\Porthywaen band management\obj\Debug\PorthywaenBandManagement.vbproj.GenerateResource.cache
+\\6S-File1\students$\16nhawkins\Documents\nea-final-main\nea-final-main\Porthywaen band management\Porthywaen band management\obj\Debug\PorthywaenBandManagement.vbproj.CoreCompileInputs.cache
+\\6S-File1\students$\16nhawkins\Documents\nea-final-main\nea-final-main\Porthywaen band management\Porthywaen band management\obj\Debug\Porthywaen Band Management.exe
+\\6S-File1\students$\16nhawkins\Documents\nea-final-main\nea-final-main\Porthywaen band management\Porthywaen band management\obj\Debug\Porthywaen Band Management.xml
+\\6S-File1\students$\16nhawkins\Documents\nea-final-main\nea-final-main\Porthywaen band management\Porthywaen band management\obj\Debug\Porthywaen Band Management.pdb
