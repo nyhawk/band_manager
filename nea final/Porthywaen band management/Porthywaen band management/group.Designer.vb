@@ -52,9 +52,9 @@ Partial Class group
 		Me.MusicToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.InstrumentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.UserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-		Me.UserDetailsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-		Me.LogoutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-		Me.CommitteeMembersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+		'Me.UserDetailsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+		'Me.LogoutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+		'Me.CommitteeMembersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		CType(Me.dgvMembers, System.ComponentModel.ISupportInitialize).BeginInit()
 		CType(Me.Chart1, System.ComponentModel.ISupportInitialize).BeginInit()
 		CType(Me.dgvTotal, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,6 +65,7 @@ Partial Class group
 		'
 		Me.dgvMembers.AllowUserToAddRows = False
 		Me.dgvMembers.AllowUserToDeleteRows = False
+		Me.dgvMembers.BackgroundColor = System.Drawing.Color.White
 		Me.dgvMembers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
 		Me.dgvMembers.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colID, Me.colName, Me.colInstrument, Me.colPresent})
 		Me.dgvMembers.Location = New System.Drawing.Point(25, 38)
@@ -110,6 +111,10 @@ Partial Class group
 		'
 		'btnShow
 		'
+		Me.btnShow.BackColor = System.Drawing.Color.Firebrick
+		Me.btnShow.FlatAppearance.BorderColor = System.Drawing.Color.Black
+		Me.btnShow.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+		Me.btnShow.ForeColor = System.Drawing.Color.White
 		Me.btnShow.Location = New System.Drawing.Point(537, 116)
 		Me.btnShow.Name = "btnShow"
 		Me.btnShow.Size = New System.Drawing.Size(75, 45)
@@ -125,6 +130,8 @@ Partial Class group
 		Me.Chart1.Legends.Add(Legend1)
 		Me.Chart1.Location = New System.Drawing.Point(507, 181)
 		Me.Chart1.Name = "Chart1"
+		Me.Chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None
+		Me.Chart1.PaletteCustomColors = New System.Drawing.Color() {System.Drawing.Color.Firebrick}
 		Series1.ChartArea = "ChartArea1"
 		Series1.Legend = "Legend1"
 		Series1.Name = "Series1"
@@ -135,17 +142,22 @@ Partial Class group
 		'
 		'btnAttendance
 		'
+		Me.btnAttendance.BackColor = System.Drawing.Color.Firebrick
+		Me.btnAttendance.FlatAppearance.BorderColor = System.Drawing.Color.Black
+		Me.btnAttendance.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+		Me.btnAttendance.ForeColor = System.Drawing.Color.White
 		Me.btnAttendance.Location = New System.Drawing.Point(699, 116)
 		Me.btnAttendance.Name = "btnAttendance"
 		Me.btnAttendance.Size = New System.Drawing.Size(75, 45)
 		Me.btnAttendance.TabIndex = 10
 		Me.btnAttendance.Text = "Show attendance"
-		Me.btnAttendance.UseVisualStyleBackColor = True
+		Me.btnAttendance.UseVisualStyleBackColor = False
 		'
 		'dgvTotal
 		'
 		Me.dgvTotal.AllowUserToAddRows = False
 		Me.dgvTotal.AllowUserToDeleteRows = False
+		Me.dgvTotal.BackgroundColor = System.Drawing.Color.White
 		Me.dgvTotal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
 		Me.dgvTotal.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colDate, Me.colTotal, Me.colPercentage})
 		Me.dgvTotal.Location = New System.Drawing.Point(25, 211)
@@ -174,12 +186,16 @@ Partial Class group
 		'
 		'btnSave
 		'
+		Me.btnSave.BackColor = System.Drawing.Color.Firebrick
+		Me.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.Black
+		Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+		Me.btnSave.ForeColor = System.Drawing.Color.White
 		Me.btnSave.Location = New System.Drawing.Point(618, 116)
 		Me.btnSave.Name = "btnSave"
 		Me.btnSave.Size = New System.Drawing.Size(75, 45)
 		Me.btnSave.TabIndex = 12
 		Me.btnSave.Text = "Save attendance"
-		Me.btnSave.UseVisualStyleBackColor = True
+		Me.btnSave.UseVisualStyleBackColor = False
 		'
 		'txtWeeks
 		'
@@ -219,79 +235,83 @@ Partial Class group
 		'
 		'MenuStrip1
 		'
-		Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HomeToolStripMenuItem, Me.PlayersToolStripMenuItem, Me.GroupToolStripMenuItem, Me.EventsToolStripMenuItem, Me.MusicToolStripMenuItem, Me.InstrumentsToolStripMenuItem, Me.UserToolStripMenuItem})
+		Me.MenuStrip1.BackColor = System.Drawing.Color.Firebrick
+		Me.MenuStrip1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+		Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HomeToolStripMenuItem, Me.PlayersToolStripMenuItem, Me.GroupToolStripMenuItem, Me.EventsToolStripMenuItem, Me.MusicToolStripMenuItem, Me.InstrumentsToolStripMenuItem, Me.UserToolStripMenuItem, Me.LogoutToolStripMenuItem1})
 		Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
 		Me.MenuStrip1.Name = "MenuStrip1"
 		Me.MenuStrip1.Size = New System.Drawing.Size(843, 24)
-		Me.MenuStrip1.TabIndex = 18
+		Me.MenuStrip1.TabIndex = 75
 		Me.MenuStrip1.Text = "MenuStrip1"
 		'
 		'HomeToolStripMenuItem
 		'
+		Me.HomeToolStripMenuItem.ForeColor = System.Drawing.Color.White
 		Me.HomeToolStripMenuItem.Name = "HomeToolStripMenuItem"
 		Me.HomeToolStripMenuItem.Size = New System.Drawing.Size(52, 20)
 		Me.HomeToolStripMenuItem.Text = "Home"
 		'
 		'PlayersToolStripMenuItem
 		'
+		Me.PlayersToolStripMenuItem.ForeColor = System.Drawing.Color.White
 		Me.PlayersToolStripMenuItem.Name = "PlayersToolStripMenuItem"
 		Me.PlayersToolStripMenuItem.Size = New System.Drawing.Size(56, 20)
 		Me.PlayersToolStripMenuItem.Text = "Players"
 		'
 		'GroupToolStripMenuItem
 		'
-		Me.GroupToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CommitteeMembersToolStripMenuItem})
+		Me.GroupToolStripMenuItem.ForeColor = System.Drawing.Color.White
 		Me.GroupToolStripMenuItem.Name = "GroupToolStripMenuItem"
 		Me.GroupToolStripMenuItem.Size = New System.Drawing.Size(52, 20)
 		Me.GroupToolStripMenuItem.Text = "Group"
 		'
 		'EventsToolStripMenuItem
 		'
+		Me.EventsToolStripMenuItem.ForeColor = System.Drawing.Color.White
 		Me.EventsToolStripMenuItem.Name = "EventsToolStripMenuItem"
 		Me.EventsToolStripMenuItem.Size = New System.Drawing.Size(53, 20)
 		Me.EventsToolStripMenuItem.Text = "Events"
 		'
 		'MusicToolStripMenuItem
 		'
+		Me.MusicToolStripMenuItem.BackColor = System.Drawing.Color.Firebrick
+		Me.MusicToolStripMenuItem.ForeColor = System.Drawing.Color.White
 		Me.MusicToolStripMenuItem.Name = "MusicToolStripMenuItem"
 		Me.MusicToolStripMenuItem.Size = New System.Drawing.Size(51, 20)
 		Me.MusicToolStripMenuItem.Text = "Music"
 		'
 		'InstrumentsToolStripMenuItem
 		'
+		Me.InstrumentsToolStripMenuItem.ForeColor = System.Drawing.Color.White
 		Me.InstrumentsToolStripMenuItem.Name = "InstrumentsToolStripMenuItem"
 		Me.InstrumentsToolStripMenuItem.Size = New System.Drawing.Size(82, 20)
 		Me.InstrumentsToolStripMenuItem.Text = "Instruments"
 		'
 		'UserToolStripMenuItem
 		'
-		Me.UserToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UserDetailsToolStripMenuItem, Me.LogoutToolStripMenuItem})
+		Me.UserToolStripMenuItem.ForeColor = System.Drawing.Color.White
 		Me.UserToolStripMenuItem.Name = "UserToolStripMenuItem"
-		Me.UserToolStripMenuItem.Size = New System.Drawing.Size(42, 20)
-		Me.UserToolStripMenuItem.Text = "User"
+		Me.UserToolStripMenuItem.Size = New System.Drawing.Size(79, 20)
+		Me.UserToolStripMenuItem.Text = "User details"
 		'
-		'UserDetailsToolStripMenuItem
+		'LogoutToolStripMenuItem1
 		'
-		Me.UserDetailsToolStripMenuItem.Name = "UserDetailsToolStripMenuItem"
-		Me.UserDetailsToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
-		Me.UserDetailsToolStripMenuItem.Text = "User details"
-		'
-		'LogoutToolStripMenuItem
-		'
-		Me.LogoutToolStripMenuItem.Name = "LogoutToolStripMenuItem"
-		Me.LogoutToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
-		Me.LogoutToolStripMenuItem.Text = "Logout"
+		Me.LogoutToolStripMenuItem1.ForeColor = System.Drawing.Color.White
+		Me.LogoutToolStripMenuItem1.Name = "LogoutToolStripMenuItem1"
+		Me.LogoutToolStripMenuItem1.Size = New System.Drawing.Size(57, 20)
+		Me.LogoutToolStripMenuItem1.Text = "Logout"
 		'
 		'CommitteeMembersToolStripMenuItem
 		'
-		Me.CommitteeMembersToolStripMenuItem.Name = "CommitteeMembersToolStripMenuItem"
-		Me.CommitteeMembersToolStripMenuItem.Size = New System.Drawing.Size(187, 22)
-		Me.CommitteeMembersToolStripMenuItem.Text = "Committee members"
+		'Me.CommitteeMembersToolStripMenuItem.Name = "CommitteeMembersToolStripMenuItem"
+		'Me.CommitteeMembersToolStripMenuItem.Size = New System.Drawing.Size(187, 22)
+		'Me.CommitteeMembersToolStripMenuItem.Text = "Committee members"
 		'
 		'group
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+		Me.BackColor = System.Drawing.Color.White
 		Me.ClientSize = New System.Drawing.Size(843, 497)
 		Me.Controls.Add(Me.MenuStrip1)
 		Me.Controls.Add(Me.Label1)
@@ -345,7 +365,5 @@ Partial Class group
 	Friend WithEvents MusicToolStripMenuItem As ToolStripMenuItem
 	Friend WithEvents InstrumentsToolStripMenuItem As ToolStripMenuItem
 	Friend WithEvents UserToolStripMenuItem As ToolStripMenuItem
-	Friend WithEvents UserDetailsToolStripMenuItem As ToolStripMenuItem
-	Friend WithEvents LogoutToolStripMenuItem As ToolStripMenuItem
-	Friend WithEvents CommitteeMembersToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents LogoutToolStripMenuItem1 As ToolStripMenuItem
 End Class

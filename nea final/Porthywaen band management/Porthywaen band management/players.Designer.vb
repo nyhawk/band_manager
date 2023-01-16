@@ -22,6 +22,7 @@ Partial Class players
 	'Do not modify it using the code editor.
 	<System.Diagnostics.DebuggerStepThrough()>
 	Private Sub InitializeComponent()
+		Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(players))
 		Me.dgvPlayers = New System.Windows.Forms.DataGridView()
 		Me.colID = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.colName = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -291,9 +292,11 @@ Partial Class players
 		'dtpDOB
 		'
 		Me.dtpDOB.Location = New System.Drawing.Point(476, 118)
+		Me.dtpDOB.MaxDate = New Date(2023, 1, 16, 0, 0, 0, 0)
 		Me.dtpDOB.Name = "dtpDOB"
 		Me.dtpDOB.Size = New System.Drawing.Size(164, 20)
 		Me.dtpDOB.TabIndex = 47
+		Me.dtpDOB.Value = New Date(2023, 1, 16, 0, 0, 0, 0)
 		'
 		'lblID
 		'
@@ -492,6 +495,7 @@ Partial Class players
 		Me.Controls.Add(Me.cmbInstrument)
 		Me.Controls.Add(Me.txtID)
 		Me.Controls.Add(Me.dgvPlayers)
+		Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
 		Me.Name = "players"
 		Me.Text = "players"
 		CType(Me.dgvPlayers, System.ComponentModel.ISupportInitialize).EndInit()

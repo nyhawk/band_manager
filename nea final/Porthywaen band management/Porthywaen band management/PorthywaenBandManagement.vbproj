@@ -105,6 +105,12 @@
     <Compile Include="playerEventsResponse.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="userDetails.Designer.vb">
+      <DependentUpon>userDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="userDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="viewEvents.Designer.vb">
       <DependentUpon>viewEvents.vb</DependentUpon>
     </Compile>
@@ -166,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="playerEventsResponse.resx">
       <DependentUpon>playerEventsResponse.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="userDetails.resx">
+      <DependentUpon>userDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="viewEvents.resx">
       <DependentUpon>viewEvents.vb</DependentUpon>

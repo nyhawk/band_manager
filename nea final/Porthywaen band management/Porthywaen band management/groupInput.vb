@@ -3,9 +3,10 @@ Public Class groupInput
 	'converts checkbox input into a string so can be displayed to user
 	Shared Function groups(psb, pytb, pbb, starters)
 		'validation
-		If psb Then
+		If psb.isboolean Then
+		End If
 
-			Dim writer As New StreamWriter("groupsTemp.csv")
+		Dim writer As New StreamWriter("groupsTemp.csv")
 		If psb = True Then
 			writer.WriteLine("PSB", True)
 		End If

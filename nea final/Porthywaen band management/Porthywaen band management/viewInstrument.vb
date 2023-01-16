@@ -14,6 +14,45 @@ Public Class viewInstrument
 	Shared count As Integer = 0
 	Shared pointer As Integer = 1
 	Shared lengthCount As Integer = 0 'does not decrease so more elements are added to array if undo, input, undo occurs
+	Sub colours(serviceDate, dgv)
+		Dim red = Date.Today.ToString("MM") - 11
+		Dim yellow = Date.Today.ToString("MM") - 9
+		Dim orange = Date.Today.ToString("MM") - 10
+
+		Dim index As Integer
+
+		dgvInstruments.Rows.Clear()
+		FileOpen(1, "instruments.dat", OpenMode.Random,,, Len(oneInstrument))
+
+		Dim totalRecords As Integer = LOF(1) / Len(oneInstrument)
+		For index = 1 To totalRecords
+			FileGet(1, oneInstrument)
+			dgvInstruments.Rows.Add(oneInstrument.serialNumber, oneInstrument.name, oneInstrument.instrument,
+									oneInstrument.holderID, oneInstrument.holderName, oneInstrument.serviceDate)
+			Dim serviceDate = oneInstrument.serviceDate.ToString("dd/MM/yyyy")
+			If dgv.RowCount > 0 Then
+				If serviceDate.Contains(red) Then
+					dgv.Rows(index - 1).Cells(5).Style.BackColor = Color.DarkRed
+					dgv.Rows(index - 1).Cells(5).Style.ForeColor = Color.White
+
+				ElseIf serviceDate.Contains(yellow) Then
+					dgv.Rows(index - 1).Cells(5).Style.BackColor = Color.Gold
+					dgv.Rows(index - 1).Cells(5).Style.ForeColor = Color.Black
+
+				ElseIf serviceDate.Contains(orange) Then
+					dgv.Rows(index - 1).Cells(5).Style.BackColor = Color.Orange
+					dgv.Rows(index - 1).Cells(5).Style.ForeColor = Color.Black
+
+				Else
+					dgv.Rows(index - 1).Cells(5).Style.BackColor = Color.LightGreen
+					dgv.Rows(index - 1).Cells(5).Style.ForeColor = Color.Black
+				End If
+			End If
+    End Sub
+
+	Sub dgvRefresh()
+
+	End Sub
 	Private Sub btnFind_Click(sender As Object, e As EventArgs) Handles btnFind.Click
 		Dim oneInstrument As instruments
 		Dim quantity As Integer = 0
@@ -47,20 +86,13 @@ Public Class viewInstrument
 		Dim oneInstrument As instruments
 		'validation
 
-
-		Dim serviceMonth = oneInstrument.serviceDate.ToString("MM")
-		Dim red = Date.Today.ToString("MM") - 11
-		Dim yellow = Date.Today.ToString("MM") - 9
-		Dim orange = Date.Today.ToString("MM") - 10
-
 		'populate structure
 		oneInstrument.serialNumber = txtSerialNo.Text
 		oneInstrument.name = txtName.Text
 		oneInstrument.instrument = cmbInstrument.Text
 		oneInstrument.holderID = txtID.Text
-		oneInstrument.holderName = txtHolderName.Text
+		'oneInstrument.holderName = txtholdername.Text
 		oneInstrument.serviceDate = dtpServiceDate.Text
-
 
 		FileOpen(1, "instruments.dat", OpenMode.Random,,, Len(oneInstrument))
 		Dim totalRecords As Integer = LOF(1) / Len(oneInstrument)
@@ -115,7 +147,7 @@ Public Class viewInstrument
 		oneInstrument.name = txtName.Text
 		oneInstrument.instrument = cmbInstrument.Text
 		oneInstrument.holderID = txtID.Text
-		oneInstrument.holderName = txtHolderName.Text
+		'oneInstrument.holderName = txtHolderName.Text
 		oneInstrument.serviceDate = dtpServiceDate.Text
 
 		FileOpen(1, "instruments.dat", OpenMode.Random,,, Len(oneInstrument))
@@ -174,7 +206,7 @@ Public Class viewInstrument
 			txtName.Clear()
 			dtpServiceDate.ResetText()
 			txtSerialNo.Clear()
-			txtHolderName.Clear()
+			'txtHolderName.Clear()
 			cmbInstrument.ResetText()
 
 			'display details
@@ -193,7 +225,7 @@ Public Class viewInstrument
 					txtName.Text = String.Format(oneInstrument.name)
 					dtpServiceDate.Value = String.Format(oneInstrument.serviceDate)
 					txtSerialNo.Text = String.Format(oneInstrument.serialNumber)
-					txtHolderName.Text = String.Format(oneInstrument.holderName)
+					'txtHolderName.Text = String.Format(oneInstrument.holderName)
 					cmbInstrument.Text = String.Format(oneInstrument.instrument)
 
 					If txtID.Text = "" Then
@@ -225,7 +257,7 @@ Public Class viewInstrument
 			txtName.Clear()
 			dtpServiceDate.ResetText()
 			txtSerialNo.Clear()
-			txtHolderName.Clear()
+			'txtHolderName.Clear()
 			cmbInstrumentSearch.ResetText()
 
 			'display details
@@ -244,7 +276,7 @@ Public Class viewInstrument
 					txtName.Text = String.Format(oneInstrument.name)
 					dtpServiceDate.Text = String.Format(oneInstrument.serialNumber)
 					txtSerialNo.Text = String.Format(oneInstrument.serialNumber)
-					txtHolderName.Text = String.Format(oneInstrument.holderName)
+					'txtHolderName.Text = String.Format(oneInstrument.holderName)
 					cmbInstrument.Text = String.Format(oneInstrument.instrument)
 
 					If txtID.Text = "" Then
@@ -302,25 +334,10 @@ Public Class viewInstrument
 		For index = 1 To totalRecords
 			FileGet(1, oneInstrument)
 			dgvInstruments.Rows.Add(oneInstrument.serialNumber, oneInstrument.name, oneInstrument.instrument,
-									oneInstrument.holderID, oneInstrument.holderName, oneInstrument.serviceDate)
+									oneInstrument.holderID, oneInstrument.serviceDate)
+
 			Dim serviceDate = oneInstrument.serviceDate.ToString("dd/MM/yyyy")
-
-			If serviceDate.Contains(Red) Then
-				dgvInstruments.Rows(index - 1).Cells(5).Style.BackColor = Color.DarkRed
-				dgvInstruments.Rows(index - 1).Cells(5).Style.ForeColor = Color.White
-
-			ElseIf serviceDate.Contains(Yellow) Then
-				dgvInstruments.Rows(index - 1).Cells(5).Style.BackColor = Color.Gold
-				dgvInstruments.Rows(index - 1).Cells(5).Style.ForeColor = Color.Black
-
-			ElseIf serviceDate.Contains(Orange) Then
-				dgvInstruments.Rows(index - 1).Cells(5).Style.BackColor = Color.Orange
-				dgvInstruments.Rows(index - 1).Cells(5).Style.ForeColor = Color.Black
-
-			Else
-				dgvInstruments.Rows(index - 1).Cells(5).Style.BackColor = Color.LightGreen
-				dgvInstruments.Rows(index - 1).Cells(5).Style.ForeColor = Color.Black
-			End If
+			colours(serviceDate, index, dgvInstruments)
 		Next
 		FileClose(1)
 	End Sub
@@ -391,146 +408,146 @@ Public Class viewInstrument
 		txtName.Clear()
 		dtpServiceDate.ResetText()
 		txtSerialNo.Clear()
-		txtHolderName.Clear()
+		'txtHolderName.Clear()
 		cmbInstrument.ResetText()
 	End Sub
 
-	Private Sub formChanged(sender As Object, e As EventArgs) Handles txtName.Leave, txtPhone.Leave,
-	txtEmail.Leave, cmbInstrument.Leave, cmbLevel.Leave, cmbRole.Leave, chkPhotoPerm.Leave, chkPBB.Leave,
-	chkPSB.Leave, chkPYTB.Leave, chkStarters.Leave, txtContName.Leave, txtContPhone.Leave, dtpDOB.Leave
+	'Private Sub formChanged(sender As Object, e As EventArgs) Handles txtName.Leave, txtPhone.Leave,
+	'txtEmail.Leave, cmbInstrument.Leave, cmbLevel.Leave, cmbRole.Leave, chkPhotoPerm.Leave, chkPBB.Leave,
+	'chkPSB.Leave, chkPYTB.Leave, chkStarters.Leave, txtContName.Leave, txtContPhone.Leave, dtpDOB.Leave
 
-		'if a button has been clicked execute code for the button
-		If ActiveControl.Name = "btnUndo" Then
-			undo_click(sender, e)
-		ElseIf ActiveControl.Name = "btnAdd" Then
-			btnAdd_Click(sender, e)
-		ElseIf ActiveControl.Name = "btnClear" Then
-			btnClear_Click(sender, e)
-		ElseIf ActiveControl.Name = "btnDelete" Then
-			BtnDelete_Click(sender, e)
-		ElseIf ActiveControl.Name = "btnUpdate" Then
-			btnUpdate_Click(sender, e)
+	'	'if a button has been clicked execute code for the button
+	'	If ActiveControl.Name = "btnUndo" Then
+	'		undo_click(sender, e)
+	'	ElseIf ActiveControl.Name = "btnAdd" Then
+	'		btnAdd_Click(sender, e)
+	'	ElseIf ActiveControl.Name = "btnClear" Then
+	'		btnClear_Click(sender, e)
+	'	ElseIf ActiveControl.Name = "btnDelete" Then
+	'		BtnDelete_Click(sender, e)
+	'	ElseIf ActiveControl.Name = "btnUpdate" Then
+	'		btnUpdate_Click(sender, e)
 
-		Else
-			'saves the data in the form to a dynamic array so changes can be restored when btnUndo clicked
-			Dim changeRecorded As Boolean = False
+	'	Else
+	'		'saves the data in the form to a dynamic array so changes can be restored when btnUndo clicked
+	'		Dim changeRecorded As Boolean = False
 
-			For i = pointer To undo.Length
-				If changeRecorded = False Then
-					If undo.Length - 1 - (lengthCount * 13) < 14 Then 'if no empty space, add more elements to the array
-						ReDim Preserve undo(UBound(undo) + 14)
-					End If
-					If undo(i) = Nothing And i > 0 Then 'search for empty place in array that is not the first
-						Try
-							undo(i) = txtName.Text
-							undo(i + 1) = dtpDOB.Text
-							undo(i + 2) = txtEmail.Text
-							undo(i + 3) = txtPhone.Text
-							undo(i + 4) = cmbInstrument.Text
-							undo(i + 5) = cmbLevel.Text
-							undo(i + 6) = chkPhotoPerm.Checked
-							undo(i + 7) = chkPSB.Checked
-							undo(i + 8) = chkPYTB.Checked
-							undo(i + 9) = chkPBB.Checked
-							undo(i + 10) = chkStarters.Checked
-							undo(i + 11) = cmbRole.Text
-							undo(i + 12) = txtContName.Text
-							undo(i + 13) = txtContPhone.Text
+	'		For i = pointer To undo.Length
+	'			If changeRecorded = False Then
+	'				If undo.Length - 1 - (lengthCount * 13) < 14 Then 'if no empty space, add more elements to the array
+	'					ReDim Preserve undo(UBound(undo) + 14)
+	'				End If
+	'				If undo(i) = Nothing And i > 0 Then 'search for empty place in array that is not the first
+	'					Try
+	'						undo(i) = txtName.Text
+	'						undo(i + 1) = dtpDOB.Text
+	'						undo(i + 2) = txtEmail.Text
+	'						undo(i + 3) = txtPhone.Text
+	'						undo(i + 4) = cmbInstrument.Text
+	'						undo(i + 5) = cmbLevel.Text
+	'						undo(i + 6) = chkPhotoPerm.Checked
+	'						undo(i + 7) = chkPSB.Checked
+	'						undo(i + 8) = chkPYTB.Checked
+	'						undo(i + 9) = chkPBB.Checked
+	'						undo(i + 10) = chkStarters.Checked
+	'						undo(i + 11) = cmbRole.Text
+	'						undo(i + 12) = txtContName.Text
+	'						undo(i + 13) = txtContPhone.Text
 
-							pointer += 14
-							count += 1
-							lengthCount += 1
-							changeRecorded = True
+	'						pointer += 14
+	'						count += 1
+	'						lengthCount += 1
+	'						changeRecorded = True
 
-						Catch ex As Exception
-							If MsgBox("Undo management failed", MsgBoxStyle.OkOnly) = vbOK Then
-								For j = 0 To undo.Length - 1
-									undo(j) = Nothing
-								Next
-								count = 0
-								lengthCount = 0
-								pointer = 1
-								formChanged(sender, e)
-								MsgBox("Undo reset")
-							End If
-						End Try
-					End If
-				End If
-			Next
-		End If
-	End Sub
+	'					Catch ex As Exception
+	'						If MsgBox("Undo management failed", MsgBoxStyle.OkOnly) = vbOK Then
+	'							For j = 0 To undo.Length - 1
+	'								undo(j) = Nothing
+	'							Next
+	'							count = 0
+	'							lengthCount = 0
+	'							pointer = 1
+	'							formChanged(sender, e)
+	'							MsgBox("Undo reset")
+	'						End If
+	'					End Try
+	'				End If
+	'			End If
+	'		Next
+	'	End If
+	'End Sub
 
-	Private Sub undo_click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUndo.Click, btnUndo.DoubleClick
-		Dim startLocation As Integer = pointer - 28
-		If count = 1 Then 'if only one change has been saved, the form must have been blank previously
-			txtName.Clear()
-			dtpDOB.ResetText()
-			txtPhone.Clear()
-			cmbInstrument.ResetText()
-			cmbLevel.ResetText()
-			chkPhotoPerm.CheckState = CheckState.Unchecked
-			chkPSB.CheckState = CheckState.Unchecked
-			chkPYTB.CheckState = CheckState.Unchecked
-			chkPBB.CheckState = CheckState.Unchecked
-			chkStarters.CheckState = CheckState.Unchecked
-			cmbRole.ResetText()
-			txtContName.Clear()
-			txtContPhone.Clear()
+	'Private Sub undo_click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUndo.Click, btnUndo.DoubleClick
+	'	Dim startLocation As Integer = pointer - 28
+	'	If count = 1 Then 'if only one change has been saved, the form must have been blank previously
+	'		txtName.Clear()
+	'		dtpDOB.ResetText()
+	'		txtPhone.Clear()
+	'		cmbInstrument.ResetText()
+	'		cmbLevel.ResetText()
+	'		chkPhotoPerm.CheckState = CheckState.Unchecked
+	'		chkPSB.CheckState = CheckState.Unchecked
+	'		chkPYTB.CheckState = CheckState.Unchecked
+	'		chkPBB.CheckState = CheckState.Unchecked
+	'		chkStarters.CheckState = CheckState.Unchecked
+	'		cmbRole.ResetText()
+	'		txtContName.Clear()
+	'		txtContPhone.Clear()
 
-			count = 0
-			pointer = 0
-		ElseIf count = 0 Then
-			MsgBox("No changes made to be undone")
+	'		count = 0
+	'		pointer = 0
+	'	ElseIf count = 0 Then
+	'		MsgBox("No changes made to be undone")
 
-		Else 'if more than 1 change
-			txtName.Text = undo(startLocation)
-			dtpDOB.Text = undo(startLocation + 1)
-			txtEmail.Text = undo(startLocation + 2)
-			txtPhone.Text = undo(startLocation + 3)
-			cmbInstrument.Text = undo(startLocation + 4)
-			cmbLevel.Text = undo(startLocation + 5)
+	'	Else 'if more than 1 change
+	'		txtName.Text = undo(startLocation)
+	'		dtpDOB.Text = undo(startLocation + 1)
+	'		txtEmail.Text = undo(startLocation + 2)
+	'		txtPhone.Text = undo(startLocation + 3)
+	'		cmbInstrument.Text = undo(startLocation + 4)
+	'		cmbLevel.Text = undo(startLocation + 5)
 
-			Try
-				If undo(startLocation + 6) = True Then
-					chkPhotoPerm.CheckState = CheckState.Checked
-				Else
-					chkPhotoPerm.CheckState = CheckState.Unchecked
-				End If
-				If undo(startLocation + 7) = True Then
-					chkPSB.CheckState = CheckState.Checked
-				Else
-					chkPSB.CheckState = CheckState.Unchecked
-				End If
+	'		Try
+	'			If undo(startLocation + 6) = True Then
+	'				chkPhotoPerm.CheckState = CheckState.Checked
+	'			Else
+	'				chkPhotoPerm.CheckState = CheckState.Unchecked
+	'			End If
+	'			If undo(startLocation + 7) = True Then
+	'				chkPSB.CheckState = CheckState.Checked
+	'			Else
+	'				chkPSB.CheckState = CheckState.Unchecked
+	'			End If
 
-				If undo(startLocation + 8) = True Then
-					chkPYTB.CheckState = CheckState.Checked
-				Else
-					chkPYTB.CheckState = CheckState.Unchecked
-				End If
+	'			If undo(startLocation + 8) = True Then
+	'				chkPYTB.CheckState = CheckState.Checked
+	'			Else
+	'				chkPYTB.CheckState = CheckState.Unchecked
+	'			End If
 
-				If undo(startLocation + 9) = True Then
-					chkPBB.CheckState = CheckState.Checked
-				Else
-					chkPBB.CheckState = CheckState.Unchecked
-				End If
+	'			If undo(startLocation + 9) = True Then
+	'				chkPBB.CheckState = CheckState.Checked
+	'			Else
+	'				chkPBB.CheckState = CheckState.Unchecked
+	'			End If
 
-				If undo(startLocation + 10) = True Then
-					chkStarters.CheckState = CheckState.Checked
-				Else
-					chkStarters.CheckState = CheckState.Unchecked
-				End If
+	'			If undo(startLocation + 10) = True Then
+	'				chkStarters.CheckState = CheckState.Checked
+	'			Else
+	'				chkStarters.CheckState = CheckState.Unchecked
+	'			End If
 
-				cmbRole.Text = undo(startLocation + 11)
-				txtContName.Text = undo(startLocation + 12)
-				txtContPhone.Text = undo(startLocation + 13)
+	'			cmbRole.Text = undo(startLocation + 11)
+	'			txtContName.Text = undo(startLocation + 12)
+	'			txtContPhone.Text = undo(startLocation + 13)
 
-				count = count - 1
-				pointer = pointer - 14
-			Catch ex As Exception
-				MsgBox("Previous data cannot be displayed")
-			End Try
-		End If
-	End Sub
+	'			count = count - 1
+	'			pointer = pointer - 14
+	'		Catch ex As Exception
+	'			MsgBox("Previous data cannot be displayed")
+	'		End Try
+	'	End If
+	'End Sub
 	Private Sub HomeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HomeToolStripMenuItem.Click
 		Form1.Show()
 		Me.Hide()

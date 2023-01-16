@@ -31,12 +31,16 @@ Partial Class login
 		'
 		'btnLogin
 		'
+		Me.btnLogin.BackColor = System.Drawing.Color.Firebrick
+		Me.btnLogin.FlatAppearance.BorderColor = System.Drawing.Color.Black
+		Me.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+		Me.btnLogin.ForeColor = System.Drawing.Color.White
 		Me.btnLogin.Location = New System.Drawing.Point(194, 37)
 		Me.btnLogin.Name = "btnLogin"
 		Me.btnLogin.Size = New System.Drawing.Size(75, 23)
 		Me.btnLogin.TabIndex = 0
 		Me.btnLogin.Text = "Login"
-		Me.btnLogin.UseVisualStyleBackColor = True
+		Me.btnLogin.UseVisualStyleBackColor = False
 		'
 		'txtID
 		'
@@ -74,6 +78,7 @@ Partial Class login
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+		Me.BackColor = System.Drawing.Color.White
 		Me.ClientSize = New System.Drawing.Size(317, 172)
 		Me.Controls.Add(Me.lblName)
 		Me.Controls.Add(Me.lblID)

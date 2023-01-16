@@ -36,3 +36,4 @@
 \\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\nea final\Porthywaen band management\Porthywaen band management\obj\Debug\Porthywaen Band Management.exe
 \\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\nea final\Porthywaen band management\Porthywaen band management\obj\Debug\Porthywaen Band Management.xml
 \\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\nea final\Porthywaen band management\Porthywaen band management\obj\Debug\Porthywaen Band Management.pdb
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\nea final\Porthywaen band management\Porthywaen band management\obj\Debug\PorthywaenBandManagement.userDetails.resources

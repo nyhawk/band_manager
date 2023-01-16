@@ -1,4 +1,6 @@
-﻿Structure calendarEvent
+﻿
+Imports System.Text.RegularExpressions
+Structure calendarEvent
 	<VBFixedString(5)> Dim eventID As String
 	<VBFixedString(5)> Dim customerID As String
 	<VBFixedString(100)> Dim address As String
@@ -166,22 +168,52 @@ Public Class viewEvents
 
 		Dim oneEvent As calendarEvent
 		Dim oneCustomer As customer
+		Dim postcodeFormat As String = "/[A-Z]{1,2}[0-9]{1,2}[A-Z]?\s?[0-9][A-Z]{2}/i"
+		Dim postcodeMatch As Match = Regex.Match(txtPostcode.Text, postcodeFormat)
+		Dim emailFormat As String = "^[A-Za-z0-9]+\@[A-Za-z0-9]+\.[A-Za-z0-9]+$"
+		Dim emailMatch As Match = Regex.Match(txtEmail.Text, emailFormat)
 
 		'validation
-		'If Len(txtID.Text) <> 5 Then
-		'MsgBox("Enter a valid ID")
-		'ElseIf 
-		'End If
+		If txtAddress.Text = "" Then
+			MsgBox("Enter an address")
 
-		FileOpen(1, "eventsCalendar.dat", OpenMode.Random,,, Len(oneEvent))
-		Dim totalRecords As Integer = LOF(1) / Len(oneEvent)
-		Dim index As Integer
-		totalRecords = LOF(1) / Len(oneEvent)
-		Dim searchID As Integer = "00001"
-		'if not records in the file, new id must be the first possible id
-		If totalRecords = 0 Then
-			txtID.Text = "00001"
-		End If
+			If txtID.Text = "" Or txtCustomerID.Text = "" Then
+				MsgBox("Enter a valid ID")
+
+				If dtpDate.Text = "" Then
+					MsgBox("Date is in incorrect format")
+
+					If postcodeMatch.Success = False Then
+						MsgBox("Invalid postcode")
+
+						If txtTime.Text = "" Then
+							MsgBox("Enter a start time")
+
+							If txtArrivalTime.Text = "" Then
+								MsgBox("Enter an arrival time")
+
+								If txtMusic.Text = "" Then
+									MsgBox("Enter the music")
+
+									If txtContName.Text = "" Then
+										MsgBox("Enter the customer's name")
+
+										If txtContPhone.Text = "" Then
+											MsgBox("Enter the customer's phone number")
+
+											If emailMatch.Success = False Then
+												MsgBox("Enter a valid email")
+
+											Else
+												FileOpen(1, "eventsCalendar.dat", OpenMode.Random,,, Len(oneEvent))
+												Dim totalRecords As Integer = LOF(1) / Len(oneEvent)
+												Dim index As Integer
+												totalRecords = LOF(1) / Len(oneEvent)
+												Dim searchID As Integer = "00001"
+												'if not records in the file, new id must be the first possible id
+												If totalRecords = 0 Then
+													txtID.Text = "00001"
+												End If
 
 		For index = 1 To totalRecords
 			FileGet(1, oneEvent)
@@ -219,13 +251,23 @@ Public Class viewEvents
 		'display members in dataGridView
 		dgvDay.Rows.Clear()
 
-		For index = 1 To totalRecords
-			FileGet(1, oneEvent)
-			dgvDay.Rows.Add(oneEvent.eventID, oneEvent.address, oneEvent.eventDate, oneEvent.startTime,
-							oneEvent.groups, oneEvent.music)
-		Next
-		FileClose(1)
-		groupInput.checkboxes()
+												For index = 1 To totalRecords
+													FileGet(1, oneEvent)
+													dgvDay.Rows.Add(oneEvent.eventID, oneEvent.address, oneEvent.eventDate,
+																	oneEvent.startTime, oneEvent.groups, oneEvent.music)
+												Next
+												FileClose(1)
+												groupInput.checkboxes()
+											End If
+										End If
+									End If
+								End If
+							End If
+						End If
+					End If
+				End If
+			End If
+		End If
 	End Sub
 
 	Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
@@ -399,4 +441,7 @@ Public Class viewEvents
 			End
 		End If
 	End Sub
+	'Private Sub BtnUndo_Click(sender As Object, e As EventArgs) Handles btnUndo.Click
+
+	'End Sub
 End Class

@@ -23,11 +23,69 @@ Public Class players
 	Shared pointer As Integer = 1
 	Shared lengthCount As Integer = 0 'does not decrease so more elements are added to array if undo, input, undo occurs
 	Private Sub players_closed(sender As Object, e As EventArgs) Handles MyBase.Closed
-		Application.Exit()      'when the form is close the exeution ends
+		If MsgBox("Would you like to logout?", vbYesNo + vbQuestion, "Logout?") = vbYes Then
+			Application.Exit()      'when the form is closed the exeution ends
+		Else
+			Exit Sub
+		End If
 	End Sub
-	Shared Sub playersValidation(id, name, dob, email, phone, role, level, instrument, photoPerm,   )
+	Sub dgvRefresh()
+		Try
+			Dim index As Integer
+			Dim oneMember As memberInfo 'pointer to structure
+
+			dgvPlayers.Rows.Clear()
+			FileOpen(1, "players.dat", OpenMode.Random,,, Len(oneMember))       'open file
+
+			Dim totalRecords As Integer = LOF(1) / Len(oneMember)       'add all detalis in file to dataGridView
+			For index = 1 To totalRecords
+				FileGet(1, oneMember)
+				dgvPlayers.Rows.Add(oneMember.id, oneMember.name, oneMember.instrument, oneMember.phone)
+			Next
+			FileClose(1)
+			groupInput.checkboxes() 'fills in the checkboxes
+		Catch ex As Exception   'if fails, give option to retry, else end sub
+			If MsgBox("Players failed to display", vbRetryCancel + vbExclamation, "Error") = vbRetry Then
+				dgvRefresh()
+			Else
+				Exit Sub
+			End If
+		End Try
+	End Sub
+	Shared Sub playersValidation(id, name, email, phone, role, level, instrument, photoPerm, contName, contPhone)
+		Dim emailFormat As String = "^[A-Za-z0-9]+\@[A-Za-z0-9]+\.[A-Za-z0-9]+$"
+		Dim emailMatch As Match = Regex.Match(email, emailFormat)
+
+		'validation
+		Try
+			If Len(id) = 5 Then
+			Else MsgBox("ID is not in the correct format")
+
+				If name = "" Or email = "" Or instrument = "" Or level = "" Or contName = "" Or role = "" Then
+				Else MsgBox("Enter details in all boxes")
+
+					If emailMatch.Success = True Then
+					Else MsgBox("Email address is in an incorrect format")
+
+						If Len(phone) <> 11 Or Len(contPhone) <> 11 Then
+						Else MsgBox("Enter a valid phone number")
+
+							If photoPerm = True Or photoPerm = False Then
+							Else MsgBox("Photograph permission is in the wrong format")
+							End If
+						End If
+					End If
+				End If
+			End If
+		Catch ex As Exception
+			MsgBox("Validation failed", vbExclamation, "Error")
+			Exit Sub
+		End Try
 	End Sub
 	Private Sub players_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+		'set maximum date that can be entered as today - no extra validation needed as within properties
+		dtpDOB.MaxDate = Today
+
 		'disabling menu for different levels of access
 		If login.role = "player" Then
 			MusicToolStripMenuItem.Enabled = False
@@ -53,88 +111,45 @@ Public Class players
 		End If
 
 		ReDim undo(1)      'set number of elements in dynamic arrays to avoid error
-		Dim index As Integer
-		Dim oneMember As memberInfo 'pointer to structure
-
-		dgvPlayers.Rows.Clear()
-		FileOpen(1, "players.dat", OpenMode.Random,,, Len(oneMember))       'open file
-
-		Dim totalRecords As Integer = LOF(1) / Len(oneMember)       'add all detalis in file to dataGridView
-		For index = 1 To totalRecords
-			FileGet(1, oneMember)
-			dgvPlayers.Rows.Add(oneMember.id, oneMember.name, oneMember.instrument, oneMember.phone)
-		Next
-		FileClose(1)
-		groupInput.checkboxes()
+		dgvRefresh() 'add data to dgv
 	End Sub
-	Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
-		Dim oneMember As memberInfo 'pointer to structure
-		Dim emailFormat As String = "^[A-Za-z0-9]+\@[A-Za-z0-9]+\.[A-Za-z0-9]+$"
-		Dim emailMatch As Match = Regex.Match(txtEmail.Text, emailFormat)
-		Dim dateCheck = dtpDOB.ToString(Format(dtpDOB, "YYYY"))
-		Dim currentYear = Format(Today, "YYYY")
+	Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
+		Try
+			Dim oneMember As memberInfo 'pointer to structure
+			'validation
+			playersValidation(txtID.Text, txtName.Text, txtEmail.Text, txtPhone.Text, cmbRole.Text, cmbLevel.Text,
+						  cmbInstrument.Text, chkPhotoPerm.Checked, txtContName.Text, txtContPhone.Text)
 
-		'validation
-		If Len(txtID.Text) <> 5 Then
-			MsgBox("ID is not in the correct format")
+			'converting checkboxes to a string - groups validated in function
+			Dim groups As String = groupInput.groups(chkPSB.Checked, chkPYTB.Checked, chkPBB.Checked, chkStarters.Checked)
 
-		ElseIf txtName.Text = "" Then
-			MsgBox("Enter your name")
+			oneMember.id = txtID.Text       'storing inputs in structure
+			oneMember.name = txtName.Text
+			oneMember.dob = dtpDOB.Text.ToString
+			oneMember.email = txtEmail.Text
+			oneMember.phone = txtPhone.Text
+			oneMember.instrument = cmbInstrument.Text
+			oneMember.level = cmbLevel.Text
+			oneMember.photoPerm = chkPhotoPerm.Checked
+			oneMember.groups = groups
+			oneMember.contName = txtContName.Text
+			oneMember.contPhone = txtContPhone.Text
 
-		ElseIf txtEmail.Text = "" Then
-			MsgBox("Enter your email address")
+			'storing structure in file
+			FileOpen(1, "players.dat", OpenMode.Random,,, Len(oneMember))
+			FilePut(1, oneMember, currentRecord)
+			FileClose(1)
+			MsgBox("Player details updated")
 
-		ElseIf emailMatch.Success = False Then
-			MsgBox("Email address is in an incorrect format")
+			dgvRefresh() 'refresh the dgv
 
-		ElseIf currentYear < dateCheck > "1900" Then
-			MsgBox("Invalid date of birth")
-
-		ElseIf Len(txtPhone.Text) <> 11 Or Len(txtContPhone.Text) <> 11 Then
-			MsgBox("Enter a valid phone number")
-
-		ElseIf cmbInstrument.Text = "" Then
-			MsgBox("Select an instrument")
-
-		ElseIf cmbLevel.Text = "" Then
-			MsgBox("Select a level")
-
-		ElseIf txtContName.Text = "" Then
-			MsgBox("Enter the contact's name")
-		End If
-
-		'converting checkboxes to a string
-		Dim groups As String = groupInput.groups(chkPSB.Checked, chkPYTB.Checked, chkPBB.Checked, chkStarters.Checked)
-
-		oneMember.id = txtID.Text       'storing inputs in structure
-		oneMember.name = txtName.Text
-		oneMember.dob = dtpDOB.Text.ToString
-		oneMember.email = txtEmail.Text
-		oneMember.phone = txtPhone.Text
-		oneMember.instrument = cmbInstrument.Text
-		oneMember.level = cmbLevel.Text
-		oneMember.photoPerm = chkPhotoPerm.Checked
-		oneMember.groups = groups
-		oneMember.contName = txtContName.Text
-		oneMember.contPhone = txtContPhone.Text
-
-		'storing structure in file
-		FileOpen(1, "players.dat", OpenMode.Random,,, Len(oneMember))
-		FilePut(1, oneMember, currentRecord)
-		FileClose(1)
-		MsgBox("Player details updated")
-
-		Dim index As Integer    'display members in dataGridView
-		dgvPlayers.Rows.Clear()
-		FileOpen(1, "players.dat", OpenMode.Random,,, Len(oneMember))
-
-		Dim totalRecords As Integer = LOF(1) / Len(oneMember)   'adding all records to dataGridView
-		For index = 1 To totalRecords
-			FileGet(1, oneMember)
-			dgvPlayers.Rows.Add(oneMember.id, oneMember.name, oneMember.instrument, oneMember.phone)
-		Next
-		FileClose(1)
-		groupInput.checkboxes() 'filling in checkboxes
+		Catch ex As Exception   'if fails, give option to retry, else end sub
+			If MsgBox("Player update failed", vbRetryCancel + vbExclamation, "Error") = vbRetry Then
+				btnUpdate_Click(sender, e)
+			Else
+				Exit Sub
+			End If
+		End Try
 	End Sub
 	Private Sub dgvPlayers_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvPlayers.CellClick
 		Dim row As DataGridViewRow = dgvPlayers.CurrentRow
@@ -143,7 +158,7 @@ Public Class players
 			Return
 		End If
 
-		currentRecord = row.Index + 1
+		currentRecord = row.Index + 1   'save the record as the row selected
 
 		Try
 			memberID = row.Cells(0).Value.ToString()
@@ -217,145 +232,116 @@ Public Class players
 				End If
 			Next
 			FileClose(1)
-		Catch ex As Exception
-			MessageBox.Show("Member details display failed")
+		Catch ex As Exception   'if fails, give option to retry, else end sub
+			If MsgBox("Member details display failed", vbRetryCancel + vbExclamation, "Error") = vbRetry Then
+				dgvPlayers_CellClick(sender, e)
+			Else
+				Exit Sub
+			End If
 		End Try
-		groupInput.checkboxes()
 	End Sub
 	Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
-		Dim oneMember As memberInfo
-		Dim recordNumber As Integer = txtID.Text
+		Try
+			Dim oneMember As memberInfo 'pointer to structure
+			Dim recordNumber As Integer = txtID.Text
 
-		FileOpen(1, "players.dat", OpenMode.Random,,, Len(oneMember))
-		FileOpen(2, "tempPlayers.dat", OpenMode.Random,,, Len(oneMember))
+			FileOpen(1, "players.dat", OpenMode.Random,,, Len(oneMember))
+			FileOpen(2, "tempPlayers.dat", OpenMode.Random,,, Len(oneMember))
 
-		Do While Not EOF(1)
-			'if place in file isn't the record number of the record to be deleted, add the record to the temp file
-			If Loc(1) <> recordNumber - 1 Then
-				FileGet(1, oneMember)
-				FilePut(2, oneMember)
+			Do While Not EOF(1)
+				'if place in file isn't the record number of the record to be deleted, add the record to the temp file
+				If Loc(1) <> recordNumber - 1 Then
+					FileGet(1, oneMember)
+					FilePut(2, oneMember)
+				Else
+					'if it is the record number of the file to be deleted, skip the record and dno't write it to temp file
+					FileGet(1, oneMember)
+				End If
+			Loop
+			FileClose(1)
+			FileClose(2)
+
+			Kill("players.dat")
+			Rename("tempPlayers.dat", "players.dat")
+			MsgBox("Player deleted")
+
+			dgvRefresh() 'refresh the dgv
+
+		Catch ex As Exception   'if fails, give option to retry, else end sub
+			If MsgBox("Member details display failed", vbRetryCancel + vbExclamation, "Error") = vbRetry Then
+				btnDelete_Click(sender, e)
 			Else
-				'if it is the record number of the file to be deleted, skip the record and dno't write it to temp file
-				FileGet(1, oneMember)
+				Exit Sub
 			End If
-		Loop
-		FileClose(1)
-		FileClose(2)
-
-		Kill("players.dat")
-		Rename("tempPlayers.dat", "players.dat")
-		MsgBox("Player deleted")
-
-		Dim index As Integer    'refresh the dataGridView
-		dgvPlayers.Rows.Clear()
-		FileOpen(1, "players.dat", OpenMode.Random,,, Len(oneMember))
-
-		Dim totalRecords As Integer = LOF(1) / Len(oneMember)
-		For index = 1 To totalRecords
-			FileGet(1, oneMember)
-			dgvPlayers.Rows.Add(oneMember.id, oneMember.name, oneMember.instrument, oneMember.phone)
-		Next
-		FileClose(1)
-		groupInput.checkboxes()
+		End Try
 	End Sub
 	Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
-		'set up pointer to record
-		Dim oneMember As memberInfo
-		Dim emailFormat As String = "^[A-Za-z0-9]+\@[A-Za-z0-9]+\.[A-Za-z0-9]+$"
-		Dim emailMatch As Match = Regex.Match(txtEmail.Text, emailFormat)
-		'Dim dateCheck = dtpDOB.ToString(Format(dtpDOB, "YYYY"))
-		Dim currentYear = Format(Today, "YYYY")
+		Try
+			Dim oneMember As memberInfo 'pointer to structure
+			Dim index As Integer
+			FileOpen(1, "players.dat", OpenMode.Random,,, Len(oneMember))
 
-		Dim index As Integer
-		FileOpen(1, "players.dat", OpenMode.Random,,, Len(oneMember))
-
-		Dim totalRecords As Integer = LOF(1) / Len(oneMember)
-		Dim searchID As Integer = "00001"
-		'if not records in the file, new id must be the first possible id
-		If totalRecords = 0 Then
-			txtID.Text = "00001"
-		End If
-
-		For index = 1 To totalRecords
-			FileGet(1, oneMember)
-
-			'search for available id
-			If searchID = oneMember.id Then
-				searchID += 1
+			'automatic id creation by searching file for last id
+			Dim totalRecords As Integer = LOF(1) / Len(oneMember)
+			Dim searchID As Integer = "00001"
+			'if not records in the file, new id must be the first possible id
+			If totalRecords = 0 Then
+				txtID.Text = "00001"
 			End If
-		Next
-		Dim idString As String = searchID.ToString()
-		Dim idLen As Integer = Len(idString)
-		Dim finalID As String = idString
-		For i = 1 To 5 - idLen
-			finalID = "0" & finalID
-		Next
-		txtID.Text = finalID
+			'search for available id
+			For index = 1 To totalRecords
+				FileGet(1, oneMember)
+				If searchID = oneMember.id Then
+					searchID += 1 'if the id is found, +1 to id
+				End If
+			Next
 
-		'validation
-		If Len(txtID.Text) <> 5 Then
-			MsgBox("ID is not in the correct format")
+			Dim idString As String = searchID.ToString()
+			Dim idLen As Integer = Len(idString)
+			Dim finalID As String
 
-		ElseIf txtName.Text = "" Then
-			MsgBox("Enter your name")
+			'pad out start of id with 0's
+			For i = 1 To 5 - idLen
+				finalID = "0" & finalID
+			Next
+			txtID.Text = finalID
 
-		ElseIf txtEmail.Text = "" Then
-			MsgBox("Enter your email address")
+			'validation
+			playersValidation(txtID.Text, txtName.Text, txtEmail.Text, txtPhone.Text, cmbRole.Text, cmbLevel.Text,
+							  cmbInstrument.Text, chkPhotoPerm.Checked, txtContName.Text, txtContPhone.Text)
 
-		ElseIf emailMatch.Success = False Then
-			MsgBox("Email address is in an incorrect format")
+			'convert groups checked into string so can be displayed in listView
+			Dim groups As String = groupInput.groups(chkPSB.Checked, chkPYTB.Checked, chkPBB.Checked, chkStarters.Checked)
 
-			'ElseIf currentYear < dateCheck > "1900" Then
-			'	MsgBox("Invalid date of birth")
+			'populate structure
+			oneMember.id = txtID.Text
+			oneMember.name = txtName.Text
+			oneMember.dob = dtpDOB.Text
+			oneMember.email = txtEmail.Text
+			oneMember.phone = txtPhone.Text
+			oneMember.instrument = cmbInstrument.Text
+			oneMember.level = cmbLevel.Text
+			oneMember.photoPerm = chkPhotoPerm.Checked
+			oneMember.contName = txtContName.Text
+			oneMember.contPhone = txtContPhone.Text
+			oneMember.groups = groups
 
-		ElseIf Len(txtPhone.Text) <> 11 Or Len(txtContPhone.Text) <> 11 Then
-			MsgBox("Enter a valid phone number")
+			FilePut(1, oneMember, totalRecords + 1) '+1 append to file
+			FileClose(1)
+			MsgBox("Player added")
 
-		ElseIf cmbInstrument.Text = "" Then
-			MsgBox("Select an instrument")
+			dgvRefresh() 'refresh the dgv
 
-		ElseIf cmbLevel.Text = "" Then
-			MsgBox("Select a level")
-		ElseIf txtContName.Text = "" Then
-			MsgBox("Enter the contact's name")
-		End If
-
-		'convert groups checked into string so can be displayed in listView
-		Dim groups As String = groupInput.groups(chkPSB.Checked, chkPYTB.Checked, chkPBB.Checked, chkStarters.Checked)
-
-		'populate structure
-		oneMember.id = txtID.Text
-		oneMember.name = txtName.Text
-		oneMember.dob = dtpDOB.Text
-		oneMember.email = txtEmail.Text
-		oneMember.phone = txtPhone.Text
-		oneMember.instrument = cmbInstrument.Text
-		oneMember.level = cmbLevel.Text
-		oneMember.photoPerm = chkPhotoPerm.Checked
-		oneMember.contName = txtContName.Text
-		oneMember.contPhone = txtContPhone.Text
-		oneMember.groups = groups
-
-		'FileOpen(1, "players.dat", OpenMode.Random,,, Len(oneMember))
-
-		FilePut(1, oneMember, totalRecords + 1) '+1 append to file
-		FileClose(1)
-		MsgBox("Player added")
-
-		'refresh the dataGridView
-		dgvPlayers.Rows.Clear()
-		FileOpen(1, "players.dat", OpenMode.Random,,, Len(oneMember))
-
-		totalRecords = LOF(1) / Len(oneMember)
-		For index = 1 To totalRecords
-			FileGet(1, oneMember)
-			dgvPlayers.Rows.Add(oneMember.id, oneMember.name, oneMember.instrument, oneMember.phone)
-		Next
-		FileClose(1)
-		groupInput.checkboxes()
+		Catch ex As Exception  'if fails, give option to retry, else end sub
+			If MsgBox("New player failed to add to system", vbRetryCancel + vbExclamation, "Error") = vbRetry Then
+				btnAdd_Click(sender, e)
+			Else
+				Exit Sub
+			End If
+		End Try
 	End Sub
 
-	Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+	Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
 		'clear all inputs
 		txtID.Clear()
 		txtName.Clear()
@@ -374,125 +360,111 @@ Public Class players
 		txtContPhone.Clear()
 		groupInput.checkboxes()
 	End Sub
-	'opening forms when menu clicked
-	Private Sub HomeToolStripMenuItem_Click(sender As Object, e As EventArgs)
-		Form1.Show()
-		Me.Hide()
-	End Sub
-	Private Sub GroupToolStripMenuItem_Click(sender As Object, e As EventArgs)
-		group.Show()
-		Me.Hide()
-	End Sub
-
-	Private Sub EventsToolStripMenuItem_Click(sender As Object, e As EventArgs)
-		viewEvents.Show()
-		Me.Hide()
-	End Sub
-
-	Private Sub MusicToolStripMenuItem_Click(sender As Object, e As EventArgs)
-		viewMusic.Show()
-		Me.Hide()
-	End Sub
-
-	Private Sub InstrumentsToolStripMenuItem_Click(sender As Object, e As EventArgs)
-		viewInstrument.Show()
-		Me.Hide()
-	End Sub
-	Private Sub formChanged(sender As Object, e As EventArgs) Handles txtName.Leave, txtPhone.Leave,
+	'if any input is changed, the changes are stored so the can be undone if needed
+	Sub formChanged(sender As Object, e As EventArgs) Handles txtName.Leave, txtPhone.Leave,
 	txtEmail.Leave, cmbInstrument.Leave, cmbLevel.Leave, cmbRole.Leave, chkPhotoPerm.Leave, chkPBB.Leave,
 	chkPSB.Leave, chkPYTB.Leave, chkStarters.Leave, txtContName.Leave, txtContPhone.Leave, dtpDOB.Leave
+		Try
+			'if a button has been clicked execute code for the button
+			If ActiveControl.Name = "btnUndo" Then
+				btnUndo_click(sender, e)
+			ElseIf ActiveControl.Name = "btnAdd" Then
+				btnAdd_Click(sender, e)
+			ElseIf ActiveControl.Name = "btnClear" Then
+				btnClear_Click(sender, e)
+			ElseIf ActiveControl.Name = "btnDelete" Then
+				btnDelete_Click(sender, e)
+			ElseIf ActiveControl.Name = "btnUpdate" Then
+				btnUpdate_Click(sender, e)
 
-		'if a button has been clicked execute code for the button
-		If ActiveControl.Name = "btnUndo" Then
-			undo_click(sender, e)
-		ElseIf ActiveControl.Name = "btnAdd" Then
-			btnAdd_Click(sender, e)
-		ElseIf ActiveControl.Name = "btnClear" Then
-			btnClear_Click(sender, e)
-		ElseIf ActiveControl.Name = "btnDelete" Then
-			btnDelete_Click(sender, e)
-		ElseIf ActiveControl.Name = "btnUpdate" Then
-			btnUpdate_Click(sender, e)
+			Else
+				'saves the data in the form to a dynamic array so changes can be restored when btnUndo clicked
+				Dim changeRecorded As Boolean = False
 
-		Else
-			'saves the data in the form to a dynamic array so changes can be restored when btnUndo clicked
-			Dim changeRecorded As Boolean = False
+				For i = pointer To undo.Length
+					If changeRecorded = False Then 'only store if a change has been made
+						If undo.Length - 1 - (lengthCount * 13) < 14 Then 'if no empty space, add more elements to the array
+							ReDim Preserve undo(UBound(undo) + 14)
+						End If
+						If undo(i) = Nothing And i > 0 Then ' search for empty place in array that is not the first
+							Try 'store form data in array
+								undo(i) = txtName.Text
+								undo(i + 1) = dtpDOB.Text
+								undo(i + 2) = txtEmail.Text
+								undo(i + 3) = txtPhone.Text
+								undo(i + 4) = cmbInstrument.Text
+								undo(i + 5) = cmbLevel.Text
+								undo(i + 6) = chkPhotoPerm.Checked
+								undo(i + 7) = chkPSB.Checked
+								undo(i + 8) = chkPYTB.Checked
+								undo(i + 9) = chkPBB.Checked
+								undo(i + 10) = chkStarters.Checked
+								undo(i + 11) = cmbRole.Text
+								undo(i + 12) = txtContName.Text
+								undo(i + 13) = txtContPhone.Text
 
-			For i = pointer To undo.Length
-				If changeRecorded = False Then 'only store if a change has been made
-					If undo.Length - 1 - (lengthCount * 13) < 14 Then 'if no empty space, add more elements to the array
-						ReDim Preserve undo(UBound(undo) + 14)
+								pointer += 14
+								count += 1
+								lengthCount += 1
+								changeRecorded = True
+
+							Catch ex As Exception  'if fails, give option to reset undo management
+								If MsgBox("Undo management failed", MsgBoxStyle.OkOnly + vbExclamation, "Error") = vbOK Then
+									For j = 0 To undo.Length - 1
+										undo(j) = Nothing
+									Next
+									count = 0
+									lengthCount = 0
+									pointer = 1
+									formChanged(sender, e)
+									MsgBox("Undo reset", vbOKOnly + vbInformation)
+								End If
+							End Try
+						End If
 					End If
-					If undo(i) = Nothing And i > 0 Then 'search for empty place in array that is not the first
-						Try 'store form data in array
-							undo(i) = txtName.Text
-							undo(i + 1) = dtpDOB.Text
-							undo(i + 2) = txtEmail.Text
-							undo(i + 3) = txtPhone.Text
-							undo(i + 4) = cmbInstrument.Text
-							undo(i + 5) = cmbLevel.Text
-							undo(i + 6) = chkPhotoPerm.Checked
-							undo(i + 7) = chkPSB.Checked
-							undo(i + 8) = chkPYTB.Checked
-							undo(i + 9) = chkPBB.Checked
-							undo(i + 10) = chkStarters.Checked
-							undo(i + 11) = cmbRole.Text
-							undo(i + 12) = txtContName.Text
-							undo(i + 13) = txtContPhone.Text
+				Next
+			End If
 
-							pointer += 14
-							count += 1
-							lengthCount += 1
-							changeRecorded = True
-
-						Catch ex As Exception
-							If MsgBox("Undo management failed", MsgBoxStyle.OkOnly) = vbOK Then
-								For j = 0 To undo.Length - 1
-									undo(j) = Nothing
-								Next
-								count = 0
-								lengthCount = 0
-								pointer = 1
-								formChanged(sender, e)
-								MsgBox("Undo reset")
-							End If
-						End Try
-					End If
-				End If
-			Next
-		End If
+		Catch ex As Exception  'if fails, give option to retry, else end sub
+			If MsgBox("Undo management error", vbRetryCancel + vbExclamation, "Error") = vbRetry Then
+				formChanged(sender, e)
+			Else
+				Exit Sub
+			End If
+		End Try
 	End Sub
 
-	Private Sub undo_click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUndo.Click, btnUndo.DoubleClick
-		Dim startLocation As Integer = pointer - 28     'find the last item that was added to array
-		If count = 1 Then 'if only one change has been saved, the form must have been blank previously
-			txtName.Clear()
-			dtpDOB.ResetText()
-			txtPhone.Clear()
-			cmbInstrument.ResetText()
-			cmbLevel.ResetText()
-			chkPhotoPerm.CheckState = CheckState.Unchecked
-			chkPSB.CheckState = CheckState.Unchecked
-			chkPYTB.CheckState = CheckState.Unchecked
-			chkPBB.CheckState = CheckState.Unchecked
-			chkStarters.CheckState = CheckState.Unchecked
-			cmbRole.ResetText()
-			txtContName.Clear()
-			txtContPhone.Clear()
+	Sub btnUndo_click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUndo.Click
+		Try
+			Dim startLocation As Integer = pointer - 28     ' find the last item that was added to array
+			If count = 1 Then 'if only one change has been saved, the form must have been blank previously
+				txtName.Clear()
+				dtpDOB.ResetText()
+				txtPhone.Clear()
+				cmbInstrument.ResetText()
+				cmbLevel.ResetText()
+				chkPhotoPerm.CheckState = CheckState.Unchecked
+				chkPSB.CheckState = CheckState.Unchecked
+				chkPYTB.CheckState = CheckState.Unchecked
+				chkPBB.CheckState = CheckState.Unchecked
+				chkStarters.CheckState = CheckState.Unchecked
+				cmbRole.ResetText()
+				txtContName.Clear()
+				txtContPhone.Clear()
 
-			count = 0
-			pointer = 0
-		ElseIf count = 0 Then
-			MsgBox("No changes made to be undone")
+				count = 0
+				pointer = 0
+			ElseIf count = 0 Then
+				MsgBox("No changes made to be undone")
 
-		Else 'if more than 1 change
-			Try
+			Else 'if more than 1 change
 				txtName.Text = undo(startLocation)
 				dtpDOB.Text = undo(startLocation + 1)
 				txtEmail.Text = undo(startLocation + 2)
 				txtPhone.Text = undo(startLocation + 3)
 				cmbInstrument.Text = undo(startLocation + 4)
 				cmbLevel.Text = undo(startLocation + 5)
+
 				'checking checkboxes
 				If undo(startLocation + 6) = True Then
 					chkPhotoPerm.CheckState = CheckState.Checked
@@ -528,16 +500,48 @@ Public Class players
 				txtContPhone.Text = undo(startLocation + 13)
 
 				count = count - 1
-				pointer = pointer - 14
-			Catch ex As Exception
-				MsgBox("Previous data cannot be displayed")
-			End Try
+				pointer = pointer - 28
+			End If
+
+		Catch ex As Exception  'if fails, give option to retry, else end sub
+			If MsgBox("Undo failed", vbRetryCancel + vbExclamation, "Error") = vbRetry Then
+				btnUndo_click(sender, e)
+			Else
+				Exit Sub
+			End If
+		End Try
+	End Sub
+	Private Sub LogoutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LogoutToolStripMenuItem.Click
+		If MsgBox("Logout?", MsgBoxStyle.YesNo + vbExclamation) = vbYes Then
+			Application.Exit()
 		End If
 	End Sub
-	Private Sub LogoutToolStripMenuItem_Click(sender As Object, e As EventArgs)
-		'if yes selected, close the program
-		If MsgBox("Logout?", MsgBoxStyle.YesNo) = vbYes Then
-			End
-		End If
+	'opening forms when menu clicked
+	Private Sub UserToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UserToolStripMenuItem.Click
+		userDetails.Show()
+		Me.Hide()
+	End Sub
+	Private Sub HomeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HomeToolStripMenuItem.Click
+		Form1.Show()
+		Me.Hide()
+	End Sub
+	Private Sub GroupToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GroupToolStripMenuItem.Click
+		group.Show()
+		Me.Hide()
+	End Sub
+
+	Private Sub EventsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EventsToolStripMenuItem.Click
+		viewEvents.Show()
+		Me.Hide()
+	End Sub
+
+	Private Sub MusicToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MusicToolStripMenuItem.Click
+		viewMusic.Show()
+		Me.Hide()
+	End Sub
+
+	Private Sub InstrumentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InstrumentsToolStripMenuItem.Click
+		viewInstrument.Show()
+		Me.Hide()
 	End Sub
 End Class
