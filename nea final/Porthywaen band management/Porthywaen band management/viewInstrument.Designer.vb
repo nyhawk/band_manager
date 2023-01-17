@@ -24,16 +24,7 @@ Partial Class viewInstrument
 	Private Sub InitializeComponent()
 		Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(viewInstrument))
 		Me.dgvInstruments = New System.Windows.Forms.DataGridView()
-		Me.colSerialNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.colName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.colInstrument = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.colHolderID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.colServiceDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.dgvInstrumentSearch = New System.Windows.Forms.DataGridView()
-		Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.cmbInstrumentSearch = New System.Windows.Forms.ComboBox()
 		Me.btnFind = New System.Windows.Forms.Button()
 		Me.txtQuantity = New System.Windows.Forms.TextBox()
@@ -62,7 +53,18 @@ Partial Class viewInstrument
 		Me.UserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.LogoutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.btnUndo = New System.Windows.Forms.Button()
-		Me.colHolderNameSearch = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.lblHolderName = New System.Windows.Forms.Label()
+		Me.txtHolderName = New System.Windows.Forms.TextBox()
+		Me.colSerialNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.colName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.colInstrument = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.colHolderID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.colHolderName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.colServiceDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		CType(Me.dgvInstruments, System.ComponentModel.ISupportInitialize).BeginInit()
 		CType(Me.dgvInstrumentSearch, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.menu.SuspendLayout()
@@ -74,42 +76,12 @@ Partial Class viewInstrument
 		Me.dgvInstruments.AllowUserToDeleteRows = False
 		Me.dgvInstruments.BackgroundColor = System.Drawing.Color.White
 		Me.dgvInstruments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-		Me.dgvInstruments.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colSerialNo, Me.colName, Me.colInstrument, Me.colHolderID, Me.colServiceDate})
+		Me.dgvInstruments.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colSerialNo, Me.colName, Me.colInstrument, Me.colHolderID, Me.colHolderName, Me.colServiceDate})
 		Me.dgvInstruments.Location = New System.Drawing.Point(12, 23)
 		Me.dgvInstruments.Name = "dgvInstruments"
 		Me.dgvInstruments.ReadOnly = True
 		Me.dgvInstruments.Size = New System.Drawing.Size(643, 201)
 		Me.dgvInstruments.TabIndex = 0
-		'
-		'colSerialNo
-		'
-		Me.colSerialNo.HeaderText = "Serial number"
-		Me.colSerialNo.Name = "colSerialNo"
-		Me.colSerialNo.ReadOnly = True
-		'
-		'colName
-		'
-		Me.colName.HeaderText = "Name"
-		Me.colName.Name = "colName"
-		Me.colName.ReadOnly = True
-		'
-		'colInstrument
-		'
-		Me.colInstrument.HeaderText = "Instrument"
-		Me.colInstrument.Name = "colInstrument"
-		Me.colInstrument.ReadOnly = True
-		'
-		'colHolderID
-		'
-		Me.colHolderID.HeaderText = "Holder ID"
-		Me.colHolderID.Name = "colHolderID"
-		Me.colHolderID.ReadOnly = True
-		'
-		'colServiceDate
-		'
-		Me.colServiceDate.HeaderText = "Service date"
-		Me.colServiceDate.Name = "colServiceDate"
-		Me.colServiceDate.ReadOnly = True
 		'
 		'dgvInstrumentSearch
 		'
@@ -117,36 +89,12 @@ Partial Class viewInstrument
 		Me.dgvInstrumentSearch.AllowUserToDeleteRows = False
 		Me.dgvInstrumentSearch.BackgroundColor = System.Drawing.Color.White
 		Me.dgvInstrumentSearch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-		Me.dgvInstrumentSearch.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.colHolderNameSearch})
+		Me.dgvInstrumentSearch.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4})
 		Me.dgvInstrumentSearch.Location = New System.Drawing.Point(12, 230)
 		Me.dgvInstrumentSearch.Name = "dgvInstrumentSearch"
 		Me.dgvInstrumentSearch.ReadOnly = True
 		Me.dgvInstrumentSearch.Size = New System.Drawing.Size(643, 208)
 		Me.dgvInstrumentSearch.TabIndex = 7
-		'
-		'DataGridViewTextBoxColumn1
-		'
-		Me.DataGridViewTextBoxColumn1.HeaderText = "Serial number"
-		Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-		Me.DataGridViewTextBoxColumn1.ReadOnly = True
-		'
-		'DataGridViewTextBoxColumn2
-		'
-		Me.DataGridViewTextBoxColumn2.HeaderText = "Name"
-		Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-		Me.DataGridViewTextBoxColumn2.ReadOnly = True
-		'
-		'DataGridViewTextBoxColumn3
-		'
-		Me.DataGridViewTextBoxColumn3.HeaderText = "Instrument"
-		Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
-		Me.DataGridViewTextBoxColumn3.ReadOnly = True
-		'
-		'DataGridViewTextBoxColumn4
-		'
-		Me.DataGridViewTextBoxColumn4.HeaderText = "Holder ID"
-		Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
-		Me.DataGridViewTextBoxColumn4.ReadOnly = True
 		'
 		'cmbInstrumentSearch
 		'
@@ -399,11 +347,83 @@ Partial Class viewInstrument
 		Me.btnUndo.Text = "Undo"
 		Me.btnUndo.UseVisualStyleBackColor = False
 		'
-		'colHolderNameSearch
+		'lblHolderName
 		'
-		Me.colHolderNameSearch.HeaderText = "Holder name"
-		Me.colHolderNameSearch.Name = "colHolderNameSearch"
-		Me.colHolderNameSearch.ReadOnly = True
+		Me.lblHolderName.AutoSize = True
+		Me.lblHolderName.Location = New System.Drawing.Point(742, 257)
+		Me.lblHolderName.Name = "lblHolderName"
+		Me.lblHolderName.Size = New System.Drawing.Size(67, 13)
+		Me.lblHolderName.TabIndex = 78
+		Me.lblHolderName.Text = "Holder name"
+		'
+		'txtHolderName
+		'
+		Me.txtHolderName.BackColor = System.Drawing.SystemColors.Control
+		Me.txtHolderName.Location = New System.Drawing.Point(822, 254)
+		Me.txtHolderName.Name = "txtHolderName"
+		Me.txtHolderName.ReadOnly = True
+		Me.txtHolderName.Size = New System.Drawing.Size(164, 20)
+		Me.txtHolderName.TabIndex = 77
+		'
+		'colSerialNo
+		'
+		Me.colSerialNo.HeaderText = "Serial number"
+		Me.colSerialNo.Name = "colSerialNo"
+		Me.colSerialNo.ReadOnly = True
+		'
+		'colName
+		'
+		Me.colName.HeaderText = "Name"
+		Me.colName.Name = "colName"
+		Me.colName.ReadOnly = True
+		'
+		'colInstrument
+		'
+		Me.colInstrument.HeaderText = "Instrument"
+		Me.colInstrument.Name = "colInstrument"
+		Me.colInstrument.ReadOnly = True
+		'
+		'colHolderID
+		'
+		Me.colHolderID.HeaderText = "Holder ID"
+		Me.colHolderID.Name = "colHolderID"
+		Me.colHolderID.ReadOnly = True
+		'
+		'colHolderName
+		'
+		Me.colHolderName.HeaderText = "Holder name"
+		Me.colHolderName.Name = "colHolderName"
+		Me.colHolderName.ReadOnly = True
+		'
+		'colServiceDate
+		'
+		Me.colServiceDate.HeaderText = "Service date"
+		Me.colServiceDate.Name = "colServiceDate"
+		Me.colServiceDate.ReadOnly = True
+		'
+		'DataGridViewTextBoxColumn1
+		'
+		Me.DataGridViewTextBoxColumn1.HeaderText = "Serial number"
+		Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+		Me.DataGridViewTextBoxColumn1.ReadOnly = True
+		'
+		'DataGridViewTextBoxColumn2
+		'
+		Me.DataGridViewTextBoxColumn2.HeaderText = "Name"
+		Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+		Me.DataGridViewTextBoxColumn2.ReadOnly = True
+		'
+		'DataGridViewTextBoxColumn3
+		'
+		Me.DataGridViewTextBoxColumn3.HeaderText = "Instrument"
+		Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+		Me.DataGridViewTextBoxColumn3.ReadOnly = True
+		'
+		'DataGridViewTextBoxColumn4
+		'
+		Me.DataGridViewTextBoxColumn4.HeaderText = "Holder ID"
+		Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
+		Me.DataGridViewTextBoxColumn4.ReadOnly = True
 		'
 		'viewInstrument
 		'
@@ -411,6 +431,8 @@ Partial Class viewInstrument
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
 		Me.BackColor = System.Drawing.Color.White
 		Me.ClientSize = New System.Drawing.Size(1010, 450)
+		Me.Controls.Add(Me.lblHolderName)
+		Me.Controls.Add(Me.txtHolderName)
 		Me.Controls.Add(Me.btnUndo)
 		Me.Controls.Add(Me.menu)
 		Me.Controls.Add(Me.btnUpdate)
@@ -475,14 +497,16 @@ Partial Class viewInstrument
 	Friend WithEvents UserToolStripMenuItem As ToolStripMenuItem
 	Friend WithEvents LogoutToolStripMenuItem As ToolStripMenuItem
 	Friend WithEvents btnUndo As Button
+	Friend WithEvents lblHolderName As Label
+	Friend WithEvents txtHolderName As TextBox
 	Friend WithEvents colSerialNo As DataGridViewTextBoxColumn
 	Friend WithEvents colName As DataGridViewTextBoxColumn
 	Friend WithEvents colInstrument As DataGridViewTextBoxColumn
 	Friend WithEvents colHolderID As DataGridViewTextBoxColumn
+	Friend WithEvents colHolderName As DataGridViewTextBoxColumn
 	Friend WithEvents colServiceDate As DataGridViewTextBoxColumn
 	Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
 	Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
 	Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
 	Friend WithEvents DataGridViewTextBoxColumn4 As DataGridViewTextBoxColumn
-	Friend WithEvents colHolderNameSearch As DataGridViewTextBoxColumn
 End Class

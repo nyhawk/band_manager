@@ -3,7 +3,6 @@
 	<VBFixedString(30)> Dim name As String
 	<VBFixedString(14)> Dim instrument As String
 	<VBFixedString(5)> Dim holderID As String
-	<VBFixedString(50)> Dim holderName As String
 	<VBFixedString(22)> Dim serviceDate As Date
 End Structure
 Public Class viewInstrument
@@ -14,190 +13,188 @@ Public Class viewInstrument
 	Shared count As Integer = 0
 	Shared pointer As Integer = 1
 	Shared lengthCount As Integer = 0 'does not decrease so more elements are added to array if undo, input, undo occurs
-	Sub colours(serviceDate, dgv)
-		Dim red = Date.Today.ToString("MM") - 11
-		Dim yellow = Date.Today.ToString("MM") - 9
-		Dim orange = Date.Today.ToString("MM") - 10
+	Sub colours(dgv)
+		Try
+			Dim red = Date.Today.ToString("MM") - 11
+			Dim yellow = Date.Today.ToString("MM") - 9
+			Dim orange = Date.Today.ToString("MM") - 10
+			Dim serviceDate As String
+			Dim index As Integer
+			Dim oneInstrument As instruments
+			Dim oneMember As memberInfo
 
-		Dim index As Integer
+			dgvInstruments.Rows.Clear()
+			FileOpen(1, "instruments.dat", OpenMode.Random,,, Len(oneInstrument))
 
-		dgvInstruments.Rows.Clear()
-		FileOpen(1, "instruments.dat", OpenMode.Random,,, Len(oneInstrument))
+			Dim totalRecords1 As Integer = LOF(1) / Len(oneInstrument)
+			Dim totalrecords2 As Integer = LOF(2) / Len(onemember)
+			For index = 1 To totalRecords1
+				FileGet(1, oneInstrument)
 
-		Dim totalRecords As Integer = LOF(1) / Len(oneInstrument)
-		For index = 1 To totalRecords
-			FileGet(1, oneInstrument)
-			dgvInstruments.Rows.Add(oneInstrument.serialNumber, oneInstrument.name, oneInstrument.instrument,
-									oneInstrument.holderID, oneInstrument.holderName, oneInstrument.serviceDate)
-			Dim serviceDate = oneInstrument.serviceDate.ToString("dd/MM/yyyy")
-			If dgv.RowCount > 0 Then
-				If serviceDate.Contains(red) Then
-					dgv.Rows(index - 1).Cells(5).Style.BackColor = Color.DarkRed
-					dgv.Rows(index - 1).Cells(5).Style.ForeColor = Color.White
+				For i = 1 To totalrecords2
+					FileGet(2, oneMember)
+					If oneMember.id.Contains(txtID.Text) Then
+						dgvInstruments.Rows.Add(oneInstrument.serialNumber, oneInstrument.name, oneInstrument.instrument,
+										oneInstrument.holderID, oneMember.name, oneInstrument.serviceDate)
+					End If
+				Next
+				serviceDate = oneInstrument.serviceDate.ToString("dd/MM/yyyy")
+				If dgv.RowCount > 0 Then
+					If serviceDate.Contains(red) Then
+						dgv.Rows(index - 1).Cells(5).Style.BackColor = Color.DarkRed
+						dgv.Rows(index - 1).Cells(5).Style.ForeColor = Color.White
 
-				ElseIf serviceDate.Contains(yellow) Then
-					dgv.Rows(index - 1).Cells(5).Style.BackColor = Color.Gold
-					dgv.Rows(index - 1).Cells(5).Style.ForeColor = Color.Black
+					ElseIf serviceDate.Contains(yellow) Then
+						dgv.Rows(index - 1).Cells(5).Style.BackColor = Color.Gold
+						dgv.Rows(index - 1).Cells(5).Style.ForeColor = Color.Black
 
-				ElseIf serviceDate.Contains(orange) Then
-					dgv.Rows(index - 1).Cells(5).Style.BackColor = Color.Orange
-					dgv.Rows(index - 1).Cells(5).Style.ForeColor = Color.Black
+					ElseIf serviceDate.Contains(orange) Then
+						dgv.Rows(index - 1).Cells(5).Style.BackColor = Color.Orange
+						dgv.Rows(index - 1).Cells(5).Style.ForeColor = Color.Black
 
-				Else
-					dgv.Rows(index - 1).Cells(5).Style.BackColor = Color.LightGreen
-					dgv.Rows(index - 1).Cells(5).Style.ForeColor = Color.Black
+					Else
+						dgv.Rows(index - 1).Cells(5).Style.BackColor = Color.LightGreen
+						dgv.Rows(index - 1).Cells(5).Style.ForeColor = Color.Black
+					End If
+				End If
+			Next
+			FileClose(1)
+		Catch ex As Exception  'if fails, give option to retry, else end sub
+			If MsgBox("Display failed", vbRetryCancel + vbExclamation, "Error") = vbRetry Then
+				colours(dgv)
+			Else
+				Exit Sub
+			End If
+		End Try
+	End Sub
+	Sub validation(serialNo, name, instrument, holderID)
+		Try
+			If Len(serialNo) > 0 Or Len(name) > 0 Or Len(instrument) > 0 Then
+			Else MsgBox("Enter data in all applicable fields")
+				If Len(holderID) > 0 Then
+					If Len(holderID) = 5 Then
+					Else MsgBox("ID must be 5 characters long")
+					End If
 				End If
 			End If
-    End Sub
+		Catch ex As Exception  'if fails, give option to retry, else end sub
+			MsgBox("Validation failed", vbOKOnly + vb, "Error") = vbRetry
 
-	Sub dgvRefresh()
+			Exit Sub
 
+		End Try
 	End Sub
 	Private Sub btnFind_Click(sender As Object, e As EventArgs) Handles btnFind.Click
-		Dim oneInstrument As instruments
-		Dim quantity As Integer = 0
-		Dim instrument As String
-		Dim holder As String
-		Dim empty As String = vbNullChar & vbNullChar & vbNullChar & vbNullChar & vbNullChar
+		Try
+			Dim oneInstrument As instruments    'pointer to structure
+			Dim quantity As Integer = 0
+			Dim instrument As String
+			Dim holder As String
+			Dim empty As String = vbNullChar & vbNullChar & vbNullChar & vbNullChar & vbNullChar
 
-		FileOpen(1, "instruments.dat", OpenMode.Random,,, Len(oneInstrument))
+			FileOpen(1, "instruments.dat", OpenMode.Random,,, Len(oneInstrument))
 
-		While Not EOF(1)
-			FileGet(1, oneInstrument)
-			instrument = oneInstrument.instrument
-			holder = oneInstrument.holderID
-			If instrument.Contains(cmbInstrumentSearch.Text) Then
-				If holder.Contains(empty) Then
-					quantity = quantity + 1
-					dgvInstrumentSearch.Rows.Add(oneInstrument.serialNumber, oneInstrument.name, oneInstrument.instrument,
-												 oneInstrument.holderID, oneInstrument.holderName)
+			While Not EOF(1)
+				FileGet(1, oneInstrument)
+				instrument = oneInstrument.instrument
+				holder = oneInstrument.holderID
+
+				If instrument.Contains(cmbInstrumentSearch.Text) Then   'search for the same instrument as selected
+					If holder.Contains(empty) Then  'no id means the instrument is available
+						quantity = quantity + 1
+
+						dgvInstrumentSearch.Rows.Add(oneInstrument.serialNumber, oneInstrument.name, oneInstrument.instrument,
+													 oneInstrument.holderID)
+					End If
 				End If
-			End If
-		End While
+			End While
 
-		txtQuantity.Text = quantity
-		FileClose(1)
-		If quantity = 0 Then
-			MsgBox("No available instruments found")
-		End If
+			txtQuantity.Text = quantity
+			FileClose(1)
+			If quantity = 0 Then
+				MsgBox("No available instruments found")
+			End If
+		Catch ex As Exception  'if fails, give option to retry, else end sub
+			If MsgBox("Search failed", vbRetryCancel + vbExclamation, "Error") = vbRetry Then
+				btnFind_Click(sender, e)
+			Else
+				Exit Sub
+			End If
+		End Try
 	End Sub
 	Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
-		'set up pointer to record
-		Dim oneInstrument As instruments
-		'validation
+		Try
+			'set up pointer to record
+			Dim oneInstrument As instruments
+			Dim oneMember As memberInfo
+			'validation
 
-		'populate structure
-		oneInstrument.serialNumber = txtSerialNo.Text
-		oneInstrument.name = txtName.Text
-		oneInstrument.instrument = cmbInstrument.Text
-		oneInstrument.holderID = txtID.Text
-		'oneInstrument.holderName = txtholdername.Text
-		oneInstrument.serviceDate = dtpServiceDate.Text
+			'populate structure
+			oneInstrument.serialNumber = txtSerialNo.Text
+			oneInstrument.name = txtName.Text
+			oneInstrument.instrument = cmbInstrument.Text
+			oneInstrument.holderID = txtID.Text
+			oneInstrument.serviceDate = dtpServiceDate.Text
 
-		FileOpen(1, "instruments.dat", OpenMode.Random,,, Len(oneInstrument))
-		Dim totalRecords As Integer = LOF(1) / Len(oneInstrument)
-		FilePut(1, oneInstrument, totalRecords + 1) '+1 append to file
-		FileClose(1)
+			FileOpen(1, "instruments.dat", OpenMode.Random,,, Len(oneInstrument))
+			Dim totalRecords As Integer = LOF(1) / Len(oneInstrument)
+			FilePut(1, oneInstrument, totalRecords + 1) '+1 append to file
+			FileClose(1)
 
-		'display members in dataGridView
-		Dim index As Integer
+			colours(dgvInstruments) 'display and format dgv
+			MsgBox("Instrument added successfully")
 
-		dgvInstruments.Rows.Clear()
-		FileOpen(1, "instruments.dat", OpenMode.Random,,, Len(oneInstrument))
-
-		totalRecords = LOF(1) / Len(oneInstrument)
-		For index = 1 To totalRecords
-			FileGet(1, oneInstrument)
-			dgvInstruments.Rows.Add(oneInstrument.serialNumber, oneInstrument.name, oneInstrument.instrument,
-									oneInstrument.holderID, oneInstrument.holderName, oneInstrument.serviceDate)
-			Dim serviceDate = oneInstrument.serviceDate.ToString("dd/MM/yyyy")
-
-			If serviceDate.Contains(red) Then
-				dgvInstruments.Rows(index - 1).Cells(5).Style.BackColor = Color.DarkRed
-				dgvInstruments.Rows(index - 1).Cells(5).Style.ForeColor = Color.White
-
-			ElseIf serviceDate.Contains(yellow) Then
-				dgvInstruments.Rows(index - 1).Cells(5).Style.BackColor = Color.Gold
-				dgvInstruments.Rows(index - 1).Cells(5).Style.ForeColor = Color.Black
-
-			ElseIf serviceDate.Contains(orange) Then
-				dgvInstruments.Rows(index - 1).Cells(5).Style.BackColor = Color.Orange
-				dgvInstruments.Rows(index - 1).Cells(5).Style.ForeColor = Color.Black
-
+		Catch ex As Exception  'if fails, give option to retry, else end sub
+			If MsgBox("new instrument failed to add to system", vbRetryCancel + vbExclamation, "Error") = vbRetry Then
+				btnAdd_Click(sender, e)
 			Else
-				dgvInstruments.Rows(index - 1).Cells(5).Style.BackColor = Color.LightGreen
-				dgvInstruments.Rows(index - 1).Cells(5).Style.ForeColor = Color.Black
+				Exit Sub
 			End If
-		Next
-		FileClose(1)
-		MsgBox("Instrument added successfully")
+		End Try
 	End Sub
 	Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
-		'set up pointer to record
-		Dim oneInstrument As instruments
-		'validation
+		Try
+			'set up pointer to record
+			Dim oneInstrument As instruments
+			'validation
 
-		Dim serviceMonth = oneInstrument.serviceDate.ToString("MM")
-		Dim red = Date.Today.ToString("MM") - 11
-		Dim yellow = Date.Today.ToString("MM") - 9
-		Dim orange = Date.Today.ToString("MM") - 10
+			Dim serviceMonth = oneInstrument.serviceDate.ToString("MM")
+			Dim red = Date.Today.ToString("MM") - 11
+			Dim yellow = Date.Today.ToString("MM") - 9
+			Dim orange = Date.Today.ToString("MM") - 10
 
-		'populate structure
-		oneInstrument.serialNumber = txtSerialNo.Text
-		oneInstrument.name = txtName.Text
-		oneInstrument.instrument = cmbInstrument.Text
-		oneInstrument.holderID = txtID.Text
-		'oneInstrument.holderName = txtHolderName.Text
-		oneInstrument.serviceDate = dtpServiceDate.Text
+			'populate structure
+			oneInstrument.serialNumber = txtSerialNo.Text
+			oneInstrument.name = txtName.Text
+			oneInstrument.instrument = cmbInstrument.Text
+			oneInstrument.holderID = txtID.Text
+			oneInstrument.serviceDate = dtpServiceDate.Text
 
-		FileOpen(1, "instruments.dat", OpenMode.Random,,, Len(oneInstrument))
-		FilePut(1, oneInstrument, currentRecord)
-		FileClose(1)
+			FileOpen(1, "instruments.dat", OpenMode.Random,,, Len(oneInstrument))
+			FilePut(1, oneInstrument, currentRecord)
+			FileClose(1)
 
-		'display members in dataGridView
-		Dim index As Integer
-
-		dgvInstruments.Rows.Clear()
-		FileOpen(1, "instruments.dat", OpenMode.Random,,, Len(oneInstrument))
-
-		Dim totalRecords As Integer = LOF(1) / Len(oneInstrument)
-		For index = 1 To totalRecords
-			FileGet(1, oneInstrument)
-			dgvInstruments.Rows.Add(oneInstrument.serialNumber, oneInstrument.name, oneInstrument.instrument,
-									oneInstrument.holderID, oneInstrument.holderName, oneInstrument.serviceDate)
-			Dim serviceDate = oneInstrument.serviceDate.ToString("dd/MM/yyyy")
-
-			If serviceDate.Contains(red) Then
-				dgvInstruments.Rows(index - 1).Cells(5).Style.BackColor = Color.DarkRed
-				dgvInstruments.Rows(index - 1).Cells(5).Style.ForeColor = Color.White
-
-			ElseIf serviceDate.Contains(yellow) Then
-				dgvInstruments.Rows(index - 1).Cells(5).Style.BackColor = Color.Gold
-				dgvInstruments.Rows(index - 1).Cells(5).Style.ForeColor = Color.Black
-
-			ElseIf serviceDate.Contains(orange) Then
-				dgvInstruments.Rows(index - 1).Cells(5).Style.BackColor = Color.Orange
-				dgvInstruments.Rows(index - 1).Cells(5).Style.ForeColor = Color.Black
-
+			colours(dgvInstruments) 'display and format dgv
+			MsgBox("Instrument updated")
+		Catch ex As Exception  'if fails, give option to retry, else end sub
+			If MsgBox("Update failed", vbRetryCancel + vbExclamation, "Error") = vbRetry Then
+				btnUpdate_Click(sender, e)
 			Else
-				dgvInstruments.Rows(index - 1).Cells(5).Style.BackColor = Color.LightGreen
-				dgvInstruments.Rows(index - 1).Cells(5).Style.ForeColor = Color.Black
+				Exit Sub
 			End If
-		Next
-		FileClose(1)
-		MsgBox("Instrument updated")
+		End Try
 	End Sub
 	Private Sub dgvInstruments_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvInstruments.CellClick
-		Dim readSerialNo As String
-		Dim row As DataGridViewRow = dgvInstruments.CurrentRow
-		currentRecord = row.Index + 1
-
-		'stops memberDetails from being diplayed when column header clicked to sort dgv
-		If e.RowIndex = -1 Then
-			Return
-		End If
-
 		Try
+			Dim readSerialNo As String
+			Dim row As DataGridViewRow = dgvInstruments.CurrentRow
+			currentRecord = row.Index + 1
+
+			'stops instruments from being diplayed when column header clicked to sort dgv
+			If e.RowIndex = -1 Then
+				Return
+			End If
+
 			Dim serialNo = row.Cells(0).Value.ToString()
 
 			'clear all inputs
@@ -206,41 +203,54 @@ Public Class viewInstrument
 			txtName.Clear()
 			dtpServiceDate.ResetText()
 			txtSerialNo.Clear()
-			'txtHolderName.Clear()
+			txtHolderName.Clear()
 			cmbInstrument.ResetText()
 
 			'display details
 			Dim oneInstrument As instruments 'pointer to structure
+			Dim oneMember As memberInfo
 			Dim index As Integer
 			FileOpen(1, "instruments.dat", OpenMode.Random,,, Len(oneInstrument))
+			FileOpen(2, "players.dat", OpenMode.Random,,, Len(oneInstrument))
 
-			Dim totalRecords As Integer = LOF(1) / Len(oneInstrument)
-			For index = 1 To totalRecords
+			Dim totalRecords1 As Integer = LOF(1) / Len(oneInstrument)
+			Dim totalRecords2 As Integer = LOF(1) / Len(oneMember)
+
+			For index = 1 To totalRecords1
 				FileGet(1, oneInstrument)
 				readSerialNo = oneInstrument.serialNumber
 
 				'if read id matches id selected in dgv display structure 
 				If readSerialNo.Contains(serialNo) Then
-					txtID.Text = String.Format(oneInstrument.holderID)
-					txtName.Text = String.Format(oneInstrument.name)
-					dtpServiceDate.Value = String.Format(oneInstrument.serviceDate)
-					txtSerialNo.Text = String.Format(oneInstrument.serialNumber)
-					'txtHolderName.Text = String.Format(oneInstrument.holderName)
-					cmbInstrument.Text = String.Format(oneInstrument.instrument)
+					If oneInstrument.holderID <> "" Then    'if holderID stored, find holderName in players file
+						For i = 1 To totalRecords2
+							If oneInstrument.holderID = oneMember.id Then
+								txtID.Text = String.Format(oneInstrument.holderID)
+								txtName.Text = String.Format(oneInstrument.name)
+								dtpServiceDate.Value = String.Format(oneInstrument.serviceDate)
+								txtSerialNo.Text = String.Format(oneInstrument.serialNumber)
+								txtHolderName.Text = String.Format(oneMember.name)
+								cmbInstrument.Text = String.Format(oneInstrument.instrument)
 
-					If txtID.Text = "" Then
-						MessageBox.Show("Display failed")
+								Exit For
+							End If
+						Next
 					End If
 				End If
 			Next
-		Catch ex As Exception
-			MessageBox.Show("Member details display failed")
+			FileClose(1)
+		Catch ex As Exception  'if fails, give option to retry, else end sub
+			If MsgBox("Display failed", vbRetryCancel + vbExclamation, "Error") = vbRetry Then
+				dgvInstruments_CellClick(sender, e)
+			Else
+				Exit Sub
+			End If
 		End Try
-		FileClose(1)
 	End Sub
 	Private Sub dgvInstrumentSearch_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvInstrumentSearch.CellClick
-		Dim readSerialNo As String
-		Dim row As DataGridViewRow = dgvInstrumentSearch.CurrentRow
+		Try
+			Dim readSerialNo As String
+			Dim row As DataGridViewRow = dgvInstrumentSearch.CurrentRow
 		Dim currentRecord As Integer = row.Index + 1
 
 		'stops memberDetails from being diplayed when column header clicked to sort dgv
@@ -248,7 +258,6 @@ Public Class viewInstrument
 			Return
 		End If
 
-		Try
 			Dim serialNo = row.Cells(0).Value.ToString()
 
 			'clear all inputs
@@ -292,10 +301,6 @@ Public Class viewInstrument
 
 
 	Private Sub ViewInstrument_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-		Dim customCulture As Globalization.CultureInfo = New Globalization.CultureInfo("en-GB")
-		customCulture.DateTimeFormat.Calendar = New Globalization.GregorianCalendar
-		Threading.Thread.CurrentThread.CurrentCulture = customCulture
-
 		If login.role = "player" Then
 			MusicToolStripMenuItem.Enabled = False
 			InstrumentsToolStripMenuItem.Enabled = False
@@ -320,34 +325,11 @@ Public Class viewInstrument
 		End If
 
 		'display members in dataGridView
-		Dim index As Integer
-		Dim oneInstrument As instruments
-
-		Dim Red = Date.Now.AddMonths(-11).ToString("MM/yyyy")
-		Dim Orange = Date.Now.AddMonths(-10).ToString("MM/yyyy")
-		Dim Yellow = Date.Now.AddMonths(-9).ToString("MM/yyyy")
-
-		dgvInstruments.Rows.Clear()
-		FileOpen(1, "instruments.dat", OpenMode.Random,,, Len(oneInstrument))
-
-		Dim totalRecords As Integer = LOF(1) / Len(oneInstrument)
-		For index = 1 To totalRecords
-			FileGet(1, oneInstrument)
-			dgvInstruments.Rows.Add(oneInstrument.serialNumber, oneInstrument.name, oneInstrument.instrument,
-									oneInstrument.holderID, oneInstrument.serviceDate)
-
-			Dim serviceDate = oneInstrument.serviceDate.ToString("dd/MM/yyyy")
-			colours(serviceDate, index, dgvInstruments)
-		Next
-		FileClose(1)
+		colours(dgvInstruments) 'display and format dgv
 	End Sub
 	Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
 		Dim oneinstrument As instruments
 		Dim recordNumber As Integer = txtID.Text
-
-		Dim red = Date.Today.ToString("MM") - 11
-		Dim yellow = Date.Today.ToString("MM") - 9
-		Dim orange = Date.Today.ToString("MM") - 10
 
 		FileOpen(1, "instruments.dat", OpenMode.Random,,, Len(oneinstrument))
 		FileOpen(2, "tempInstruments.dat", OpenMode.Random,,, Len(oneinstrument))
@@ -370,37 +352,7 @@ Public Class viewInstrument
 
 		MsgBox("Record deleted")
 
-		'display members in dataGridView
-		Dim index As Integer
-
-		dgvInstruments.Rows.Clear()
-		FileOpen(1, "instruments.dat", OpenMode.Random,,, Len(oneinstrument))
-
-		Dim totalRecords As Integer = LOF(1) / Len(oneinstrument)
-		For index = 1 To totalRecords
-			FileGet(1, oneinstrument)
-			dgvInstruments.Rows.Add(oneinstrument.serialNumber, oneinstrument.name, oneinstrument.instrument,
-									oneinstrument.holderID, oneinstrument.holderName, oneinstrument.serviceDate)
-			Dim serviceDate = oneinstrument.serviceDate.ToString("dd/MM/yyyy")
-
-			If serviceDate.Contains(red) Then
-				dgvInstruments.Rows(index - 1).Cells(5).Style.BackColor = Color.DarkRed
-				dgvInstruments.Rows(index - 1).Cells(5).Style.ForeColor = Color.White
-
-			ElseIf serviceDate.Contains(yellow) Then
-				dgvInstruments.Rows(index - 1).Cells(5).Style.BackColor = Color.Gold
-				dgvInstruments.Rows(index - 1).Cells(5).Style.ForeColor = Color.Black
-
-			ElseIf serviceDate.Contains(orange) Then
-				dgvInstruments.Rows(index - 1).Cells(5).Style.BackColor = Color.Orange
-				dgvInstruments.Rows(index - 1).Cells(5).Style.ForeColor = Color.Black
-
-			Else
-				dgvInstruments.Rows(index - 1).Cells(5).Style.BackColor = Color.LightGreen
-				dgvInstruments.Rows(index - 1).Cells(5).Style.ForeColor = Color.Black
-			End If
-		Next
-		FileClose(1)
+		colours(dgvInstruments) 'display and format dgv
 	End Sub
 	Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
 		'clear all inputs

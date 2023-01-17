@@ -318,6 +318,7 @@ Partial Class players
 		'
 		'txtID
 		'
+		Me.txtID.BackColor = System.Drawing.SystemColors.Control
 		Me.txtID.Location = New System.Drawing.Point(476, 68)
 		Me.txtID.Name = "txtID"
 		Me.txtID.ReadOnly = True
