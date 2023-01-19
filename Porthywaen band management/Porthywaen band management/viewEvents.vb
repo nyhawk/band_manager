@@ -29,7 +29,8 @@ Public Class viewEvents
 	Shared pointer As Integer = 1
 	Shared lengthCount As Integer = 0 'does not decrease so more elements are added to array if undo, input, undo occurs
 	Private Sub dgvday_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvDay.CellClick
-		Dim row As DataGridViewRow = dgvDay.CurrentRow
+		Try
+			Dim row As DataGridViewRow = dgvDay.CurrentRow
 		currentRecord = row.Index + 1
 
 		'stops memberDetails from being diplayed when column header clicked to sort dgv
@@ -37,18 +38,17 @@ Public Class viewEvents
 			Return
 		End If
 
-		Try
 			eventID = row.Cells(0).Value.ToString()
 
 			'clear all inputs
 			txtID.Clear()
 			txtAddress.Clear()
 			dtpDate.ResetText()
-			txtEmail.Clear()
-			txtTime.Clear()
+			txtCustomerEmail.Clear()
+			txtStartTime.Clear()
 			txtMusic.ResetText()
-			txtContName.Clear()
-			txtContPhone.Clear()
+			txtCustomerName.Clear()
+			txtCustomerPhone.Clear()
 			chkPSB.Checked = False
 			chkPYTB.Checked = False
 			chkPBB.Checked = False
@@ -69,12 +69,12 @@ Public Class viewEvents
 					txtID.Text = String.Format(oneEvent.eventID)
 					txtAddress.Text = String.Format(oneEvent.address)
 					dtpDate.Text = String.Format(oneEvent.eventDate)
-					txtEmail.Text = String.Format(onecustomer.contEmail)
-					txtContPhone.Text = String.Format(onecustomer.contPhone)
-					txtTime.Text = String.Format(oneEvent.startTime)
+					txtCustomerEmail.Text = String.Format(onecustomer.contEmail)
+					txtCustomerPhone.Text = String.Format(onecustomer.contPhone)
+					txtStartTime.Text = String.Format(oneEvent.startTime)
 					txtArrivalTime.Text = String.Format(oneEvent.arrivalTime)
 					txtMusic.Text = String.Format(oneEvent.music)
-					txtContName.Text = String.Format(onecustomer.contName)
+					txtCustomerName.Text = String.Format(onecustomer.contName)
 					txtCustomerID.Text = String.Format(onecustomer.customerID)
 					txtPostcode.Text = String.Format(oneEvent.postcode)
 
@@ -106,164 +106,180 @@ Public Class viewEvents
 			Next
 			FileClose(1)
 		Catch ex As Exception
-			MessageBox.Show("Member details display failed")
+			If MsgBox("Event details display failed", vbRetryCancel + vbExclamation, "Error") = vbRetry Then
+				dgvday_CellClick(sender, e)
+			End If
 		End Try
 		groupInput.checkboxes()
 	End Sub
 
 	Private Sub cdrCalendar_MouseClick(sender As Object, e As MouseEventArgs) Handles cdrCalendar.MouseDown
-		selectedDate = cdrCalendar.SelectionStart
-		dtpDate.Value = selectedDate
-		Dim oneEvent As calendarEvent
-		Dim index As Integer
-		dgvDay.Rows.Clear()
-		FileOpen(1, "eventsCalendar.dat", OpenMode.Random,,, Len(oneEvent))
+		Try
+			selectedDate = cdrCalendar.SelectionStart
+			dtpDate.Value = selectedDate
+			Dim oneEvent As calendarEvent
+			Dim index As Integer
+			dgvDay.Rows.Clear()
+			FileOpen(1, "eventsCalendar.dat", OpenMode.Random,,, Len(oneEvent))
 
-		Dim totalRecords As Integer = LOF(1) / Len(oneEvent)
-		For index = 1 To totalRecords
-			FileGet(1, oneEvent)
+			Dim totalRecords As Integer = LOF(1) / Len(oneEvent)
+			For index = 1 To totalRecords
+				FileGet(1, oneEvent)
 
-			If oneEvent.eventDate = selectedDate Then
-				dgvDay.Rows.Add(oneEvent.eventID, oneEvent.address, oneEvent.eventDate, oneEvent.startTime,
-								oneEvent.groups, oneEvent.music)
+				If oneEvent.eventDate = selectedDate Then
+					dgvDay.Rows.Add(oneEvent.eventID, oneEvent.address, oneEvent.eventDate, oneEvent.startTime,
+									oneEvent.groups, oneEvent.music)
+				End If
+			Next
+			FileClose(1)
+		Catch ex As Exception
+			If MsgBox("Event display failed", vbRetryCancel + vbExclamation, "Error") = vbRetry Then
+				cdrCalendar_MouseClick(sender, e)
 			End If
-		Next
-		FileClose(1)
+		End Try
 	End Sub
 	Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
-		'converting checkboxes to a string
-		Dim groups As String = groupInput.groups(chkPSB.Checked, chkPYTB.Checked, chkPBB.Checked, chkStarters.Checked)
-		Dim oneEvent As calendarEvent 'pointer to structure
-		Dim oneCustomer As customer
+		Try
+			'converting checkboxes to a string
+			Dim groups As String = groupInput.groups(chkPSB.Checked, chkPYTB.Checked, chkPBB.Checked, chkStarters.Checked)
+			Dim oneEvent As calendarEvent 'pointer to structure
+			Dim oneCustomer As customer
 
-		'storing inputs into structure
-		oneEvent.eventID = txtID.Text
-		oneEvent.address = txtAddress.Text
-		oneEvent.eventDate = dtpDate.Text
-		oneEvent.startTime = txtTime.Text
-		oneEvent.arrivalTime = txtArrivalTime.Text
-		oneEvent.postcode = txtPostcode.Text
-		oneEvent.groups = groups
-		oneEvent.music = txtMusic.Text
-		oneCustomer.customerID = txtCustomerID.Text
-		oneCustomer.contEmail = txtEmail.Text
-		oneCustomer.contName = txtContName.Text
-		oneCustomer.contPhone = txtContPhone.Text
+			'storing inputs into structure
+			oneEvent.eventID = txtID.Text
+			oneEvent.address = txtAddress.Text
+			oneEvent.eventDate = dtpDate.Text
+			oneEvent.startTime = txtStartTime.Text
+			oneEvent.arrivalTime = txtArrivalTime.Text
+			oneEvent.postcode = txtPostcode.Text
+			oneEvent.groups = groups
+			oneEvent.music = txtMusic.Text
+			oneCustomer.customerID = txtCustomerID.Text
+			oneCustomer.contEmail = txtCustomerEmail.Text
+			oneCustomer.contName = txtCustomerName.Text
+			oneCustomer.contPhone = txtCustomerPhone.Text
 
-		FileOpen(1, "eventsCalendar.dat", OpenMode.Random,,, Len(oneEvent))
-		FilePut(1, oneEvent, currentRecord)
-		FileClose(1)
-		MsgBox("Event details updated")
+			FileOpen(1, "eventsCalendar.dat", OpenMode.Random,,, Len(oneEvent))
+			FilePut(1, oneEvent, currentRecord)
+			FileClose(1)
+			MsgBox("Event details updated")
 
-		'display members in dataGridView
-		Dim index As Integer
-		dgvDay.Rows.Clear()
-		FileOpen(1, "eventsCalendar.dat", OpenMode.Random,,, Len(oneEvent))
+			'display members in dataGridView
+			Dim index As Integer
+			dgvDay.Rows.Clear()
+			FileOpen(1, "eventsCalendar.dat", OpenMode.Random,,, Len(oneEvent))
 
-		Dim totalRecords As Integer = LOF(1) / Len(oneEvent)
-		For index = 1 To totalRecords
-			FileGet(1, oneEvent)
-			dgvDay.Rows.Add(oneEvent.eventID, oneEvent.address, oneEvent.eventDate, oneEvent.startTime,
-							oneEvent.groups, oneEvent.music)
-		Next
-		FileClose(1)
-		groupInput.checkboxes()
+			Dim totalRecords As Integer = LOF(1) / Len(oneEvent)
+			For index = 1 To totalRecords
+				FileGet(1, oneEvent)
+				dgvDay.Rows.Add(oneEvent.eventID, oneEvent.address, oneEvent.eventDate, oneEvent.startTime,
+								oneEvent.groups, oneEvent.music)
+			Next
+			FileClose(1)
+			groupInput.checkboxes()
+		Catch ex As Exception
+			If MsgBox("Event update failed", vbRetryCancel + vbExclamation, "Error") = vbRetry Then
+				btnUpdate_Click(sender, e)
+			End If
+		End Try
 	End Sub
 	Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
-		Dim groups As String = groupInput.groups(chkPSB.Checked, chkPYTB.Checked, chkPBB.Checked, chkStarters.Checked)
+		Try
+			Dim groups As String = groupInput.groups(chkPSB.Checked, chkPYTB.Checked, chkPBB.Checked, chkStarters.Checked)
 
-		Dim oneEvent As calendarEvent
-		Dim oneCustomer As customer
-		Dim postcodeFormat As String = "/[A-Z]{1,2}[0-9]{1,2}[A-Z]?\s?[0-9][A-Z]{2}/i"
-		Dim postcodeMatch As Match = Regex.Match(txtPostcode.Text, postcodeFormat)
-		Dim emailFormat As String = "^[A-Za-z0-9]+\@[A-Za-z0-9]+\.[A-Za-z0-9]+$"
-		Dim emailMatch As Match = Regex.Match(txtEmail.Text, emailFormat)
+			Dim oneEvent As calendarEvent
+			Dim oneCustomer As customer
+			Dim postcodeFormat As String = "/[A-Z]{1,2}[0-9]{1,2}[A-Z]?\s?[0-9][A-Z]{2}/i"
+			Dim postcodeMatch As Match = Regex.Match(txtPostcode.Text, postcodeFormat)
+			Dim emailFormat As String = "^[A-Za-z0-9]+\@[A-Za-z0-9]+\.[A-Za-z0-9]+$"
+			Dim emailMatch As Match = Regex.Match(txtCustomerEmail.Text, emailFormat)
 
-		'validation
-		If txtAddress.Text = "" Then
-			MsgBox("Enter an address")
+			'validation
+			If txtAddress.Text = "" Then
+				MsgBox("Enter an address")
 
-			If txtID.Text = "" Or txtCustomerID.Text = "" Then
-				MsgBox("Enter a valid ID")
+				If txtID.Text = "" Or txtCustomerID.Text = "" Then
+					MsgBox("Enter a valid ID")
 
-				If dtpDate.Text = "" Then
-					MsgBox("Date is in incorrect format")
+					If dtpDate.Text = "" Then
+						MsgBox("Date is in incorrect format")
 
-					If postcodeMatch.Success = False Then
-						MsgBox("Invalid postcode")
+						If postcodeMatch.Success = False Then
+							MsgBox("Invalid postcode")
 
-						If txtTime.Text = "" Then
-							MsgBox("Enter a start time")
+							If txtStartTime.Text = "" Then
+								MsgBox("Enter a start time")
 
-							If txtArrivalTime.Text = "" Then
-								MsgBox("Enter an arrival time")
+								If txtArrivalTime.Text = "" Then
+									MsgBox("Enter an arrival time")
 
-								If txtMusic.Text = "" Then
-									MsgBox("Enter the music")
+									If txtMusic.Text = "" Then
+										MsgBox("Enter the music")
 
-									If txtContName.Text = "" Then
-										MsgBox("Enter the customer's name")
+										If txtCustomerName.Text = "" Then
+											MsgBox("Enter the customer's name")
 
-										If txtContPhone.Text = "" Then
-											MsgBox("Enter the customer's phone number")
+											If txtCustomerPhone.Text = "" Then
+												MsgBox("Enter the customer's phone number")
 
-											If emailMatch.Success = False Then
-												MsgBox("Enter a valid email")
+												If emailMatch.Success = False Then
+													MsgBox("Enter a valid email")
 
-											Else
-												FileOpen(1, "eventsCalendar.dat", OpenMode.Random,,, Len(oneEvent))
-												Dim totalRecords As Integer = LOF(1) / Len(oneEvent)
-												Dim index As Integer
-												totalRecords = LOF(1) / Len(oneEvent)
-												Dim searchID As Integer = "00001"
-												'if not records in the file, new id must be the first possible id
-												If totalRecords = 0 Then
-													txtID.Text = "00001"
+												Else
+													FileOpen(1, "eventsCalendar.dat", OpenMode.Random,,, Len(oneEvent))
+													Dim totalRecords As Integer = LOF(1) / Len(oneEvent)
+													Dim index As Integer
+													totalRecords = LOF(1) / Len(oneEvent)
+													Dim searchID As Integer = "00001"
+													'if not records in the file, new id must be the first possible id
+													If totalRecords = 0 Then
+														txtID.Text = "00001"
+													End If
+
+													For index = 1 To totalRecords
+														FileGet(1, oneEvent)
+
+														'search for available id
+														If searchID = oneEvent.eventID Then
+															searchID += 1
+														End If
+													Next
+													Dim idString As String = searchID.ToString()
+													Dim idLen As Integer = Len(idString)
+													Dim finalID As String = idString
+													For i = 1 To 5 - idLen
+														finalID = "0" & finalID
+													Next
+													txtID.Text = finalID
+
+													oneEvent.eventID = txtID.Text
+													oneEvent.address = txtAddress.Text
+													oneEvent.eventDate = dtpDate.Text
+													oneEvent.startTime = txtStartTime.Text
+													oneEvent.arrivalTime = txtArrivalTime.Text
+													oneEvent.postcode = txtPostcode.Text
+													oneEvent.groups = groups
+													oneEvent.music = txtMusic.Text
+													oneCustomer.customerID = txtCustomerID.Text
+													oneCustomer.contEmail = txtCustomerEmail.Text
+													oneCustomer.contName = txtCustomerName.Text
+													oneCustomer.contPhone = txtCustomerPhone.Text
+
+													FilePut(1, oneEvent, totalRecords + 1)
+													FileClose(1)
+													MsgBox("Event added")
+
+													'display members in dataGridView
+													dgvDay.Rows.Clear()
+
+													For index = 1 To totalRecords
+														FileGet(1, oneEvent)
+														dgvDay.Rows.Add(oneEvent.eventID, oneEvent.address, oneEvent.eventDate,
+																		oneEvent.startTime, oneEvent.groups, oneEvent.music)
+													Next
+													FileClose(1)
+													groupInput.checkboxes()
 												End If
-
-		For index = 1 To totalRecords
-			FileGet(1, oneEvent)
-
-			'search for available id
-			If searchID = oneEvent.eventID Then
-				searchID += 1
-			End If
-		Next
-		Dim idString As String = searchID.ToString()
-		Dim idLen As Integer = Len(idString)
-		Dim finalID As String = idString
-		For i = 1 To 5 - idLen
-			finalID = "0" & finalID
-		Next
-		txtID.Text = finalID
-
-		oneEvent.eventID = txtID.Text
-		oneEvent.address = txtAddress.Text
-		oneEvent.eventDate = dtpDate.Text
-		oneEvent.startTime = txtTime.Text
-		oneEvent.arrivalTime = txtArrivalTime.Text
-		oneEvent.postcode = txtPostcode.Text
-		oneEvent.groups = groups
-		oneEvent.music = txtMusic.Text
-		oneCustomer.customerID = txtCustomerID.Text
-		oneCustomer.contEmail = txtEmail.Text
-		oneCustomer.contName = txtContName.Text
-		oneCustomer.contPhone = txtContPhone.Text
-
-		FilePut(1, oneEvent, totalRecords + 1)
-		FileClose(1)
-		MsgBox("Event added")
-
-		'display members in dataGridView
-		dgvDay.Rows.Clear()
-
-												For index = 1 To totalRecords
-													FileGet(1, oneEvent)
-													dgvDay.Rows.Add(oneEvent.eventID, oneEvent.address, oneEvent.eventDate,
-																	oneEvent.startTime, oneEvent.groups, oneEvent.music)
-												Next
-												FileClose(1)
-												groupInput.checkboxes()
 											End If
 										End If
 									End If
@@ -273,61 +289,71 @@ Public Class viewEvents
 					End If
 				End If
 			End If
-		End If
+		Catch ex As Exception
+			If MsgBox("Event failed to be added to system", vbRetryCancel + vbExclamation, "Error") = vbRetry Then
+				btnAdd_Click(sender, e)
+			End If
+		End Try
 	End Sub
 
 	Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
-		If txtID.Text = "" Then
-			MsgBox("Event cannot be deleted. No ID stored")
-			Exit Sub
-		End If
-		Dim oneEvent As calendarEvent
-		Dim recordNumber As Integer = txtID.Text
-
-		FileOpen(1, "eventsCalendar.dat", OpenMode.Random,,, Len(oneEvent))
-		FileOpen(2, "tempEvents.dat", OpenMode.Random,,, Len(oneEvent))
-
-		Dim reader As String
-		Do While Not EOF(1)
-			reader = Loc(1) 'testing
-			If Loc(1) <> recordNumber - 1 Then
-				FileGet(1, oneEvent)
-				FilePut(2, oneEvent)
-			Else
-				FileGet(1, oneEvent)
+		Try
+			If txtID.Text = "" Then
+				MsgBox("Event cannot be deleted. No ID stored")
+				Exit Sub
 			End If
-		Loop
-		FileClose(1)
-		FileClose(2)
+			Dim oneEvent As calendarEvent
+			Dim recordNumber As Integer = txtID.Text
 
-		Kill("eventsCalendar.dat")
-		Rename("tempEvents.dat", "eventsCalendar.dat")
+			FileOpen(1, "eventsCalendar.dat", OpenMode.Random,,, Len(oneEvent))
+			FileOpen(2, "tempEvents.dat", OpenMode.Random,,, Len(oneEvent))
 
-		MsgBox("Record deleted")
+			Dim reader As String
+			Do While Not EOF(1)
+				reader = Loc(1) 'testing
+				If Loc(1) <> recordNumber - 1 Then
+					FileGet(1, oneEvent)
+					FilePut(2, oneEvent)
+				Else
+					FileGet(1, oneEvent)
+				End If
+			Loop
+			FileClose(1)
+			FileClose(2)
 
-		'display members in dataGridView
-		Dim index As Integer
-		dgvDay.Rows.Clear()
-		FileOpen(1, "eventsCalendar.dat", OpenMode.Random,,, Len(oneEvent))
+			Kill("eventsCalendar.dat")
+			Rename("tempEvents.dat", "eventsCalendar.dat")
 
-		Dim totalRecords As Integer = LOF(1) / Len(oneEvent)
-		For index = 1 To totalRecords
-			FileGet(1, oneEvent)
-			dgvDay.Rows.Add(oneEvent.eventID, oneEvent.address, oneEvent.eventDate, oneEvent.startTime,
-							oneEvent.groups, oneEvent.music)
-		Next
-		FileClose(1)
-		groupInput.checkboxes()
+			MsgBox("Record deleted")
+
+			'display members in dataGridView
+			Dim index As Integer
+			dgvDay.Rows.Clear()
+			FileOpen(1, "eventsCalendar.dat", OpenMode.Random,,, Len(oneEvent))
+
+			Dim totalRecords As Integer = LOF(1) / Len(oneEvent)
+			For index = 1 To totalRecords
+				FileGet(1, oneEvent)
+				dgvDay.Rows.Add(oneEvent.eventID, oneEvent.address, oneEvent.eventDate, oneEvent.startTime,
+								oneEvent.groups, oneEvent.music)
+			Next
+			FileClose(1)
+			groupInput.checkboxes()
+		Catch ex As Exception
+			If MsgBox("Event failed to be deleted", vbRetryCancel + vbExclamation, "Error") = vbRetry Then
+				btnDelete_Click(sender, e)
+			End If
+		End Try
 	End Sub
 	Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
 		txtID.Clear()
 		txtAddress.Clear()
 		dtpDate.ResetText()
-		txtEmail.Clear()
-		txtTime.Clear()
+		txtCustomerEmail.Clear()
+		txtStartTime.Clear()
 		txtMusic.ResetText()
-		txtContName.Clear()
-		txtContPhone.Clear()
+		txtCustomerName.Clear()
+		txtCustomerPhone.Clear()
 		chkPSB.Checked = False
 		chkPYTB.Checked = False
 		chkPBB.Checked = False
@@ -337,33 +363,39 @@ Public Class viewEvents
 		txtArrivalTime.Clear()
 	End Sub
 	Private Sub btnSaveResponse_Click(sender As Object, e As EventArgs) Handles btnSaveResponse.Click
-		Dim index As Integer
-		Dim oneEvent As calendarEvent 'pointer to structure
-		Dim oneCustomer As customer
-		FileOpen(1, "eventsCalendar.dat", OpenMode.Random,,, Len(oneEvent))
+		Try
+			Dim index As Integer
+			Dim oneEvent As calendarEvent 'pointer to structure
+			Dim oneCustomer As customer
+			FileOpen(1, "eventsCalendar.dat", OpenMode.Random,,, Len(oneEvent))
 
-		Dim responses As String
-		Dim totalRecords As Integer = LOF(1) / Len(oneEvent)
-		Dim checked As Boolean
+			Dim responses As String
+			Dim totalRecords As Integer = LOF(1) / Len(oneEvent)
+			Dim checked As Boolean
 
 
-		For index = 0 To dgvDay.Rows.Count - 1
-			For j = 0 To totalRecords
-				FileGet(1, oneEvent, index)
-				If oneEvent.eventID = dgvDay.Rows(index).Cells(0).Value Then
-					responses = oneEvent.playing
-					If TypeOf dgvDay.Rows(index).Cells(3) Is DataGridViewCheckBoxCell Then
-						'store the mark
-						checked = dgvDay.Rows(index).Cells(5).Value
-						oneEvent.playing = oneEvent.playing & login.userID & ", "
+			For index = 0 To dgvDay.Rows.Count - 1
+				For j = 0 To totalRecords
+					FileGet(1, oneEvent, index)
+					If oneEvent.eventID = dgvDay.Rows(index).Cells(0).Value Then
+						responses = oneEvent.playing
+						If TypeOf dgvDay.Rows(index).Cells(3) Is DataGridViewCheckBoxCell Then
+							'store the mark
+							checked = dgvDay.Rows(index).Cells(5).Value
+							oneEvent.playing = oneEvent.playing & login.userID & ", "
+						End If
+						FilePut(1, oneEvent, totalRecords + 1)
 					End If
-					FilePut(1, oneEvent, totalRecords + 1)
-				End If
 
+				Next
 			Next
-		Next
-		FileClose(1)
-		MessageBox.Show("Changes saved")
+			FileClose(1)
+			MessageBox.Show("Changes saved")
+		Catch ex As Exception
+			If MsgBox("Responses not saved", vbRetryCancel + vbExclamation, "Error") = vbRetry Then
+				dgvday_CellClick(sender, e)
+			End If
+		End Try
 	End Sub
 	Private Sub viewEvents_load(sender As Object, e As EventArgs) Handles MyBase.Load
 		If login.role = "player" Then
@@ -390,18 +422,24 @@ Public Class viewEvents
 		End If
 	End Sub
 	Private Sub btnShowAll_Click(sender As Object, e As EventArgs) Handles btnShowAll.Click, MyBase.Load
-		Dim oneEvent As calendarEvent
-		Dim index As Integer
-		dgvDay.Rows.Clear()
-		FileOpen(1, "eventsCalendar.dat", OpenMode.Random,,, Len(oneEvent))
+		Try
+			Dim oneEvent As calendarEvent
+			Dim index As Integer
+			dgvDay.Rows.Clear()
+			FileOpen(1, "eventsCalendar.dat", OpenMode.Random,,, Len(oneEvent))
 
-		Dim totalRecords As Integer = LOF(1) / Len(oneEvent)
-		For index = 1 To totalRecords
-			FileGet(1, oneEvent)
-			dgvDay.Rows.Add(oneEvent.eventID, oneEvent.address, oneEvent.eventDate, oneEvent.startTime, oneEvent.groups,
-							oneEvent.music)
-		Next
-		FileClose(1)
+			Dim totalRecords As Integer = LOF(1) / Len(oneEvent)
+			For index = 1 To totalRecords
+				FileGet(1, oneEvent)
+				dgvDay.Rows.Add(oneEvent.eventID, oneEvent.address, oneEvent.eventDate, oneEvent.startTime, oneEvent.groups,
+								oneEvent.music)
+			Next
+			FileClose(1)
+		Catch ex As Exception
+			If MsgBox("Event display failed", vbRetryCancel + vbExclamation, "Error") = vbRetry Then
+				dgvday_CellClick(sender, e)
+			End If
+		End Try
 	End Sub
 	Private Sub HomeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HomeToolStripMenuItem.Click
 		home.Show()
@@ -432,14 +470,20 @@ Public Class viewEvents
 	End Sub
 
 	Private Sub btnPrint_Click(sender As Object, e As EventArgs) Handles btnPrint.Click
-		PrintDocument1.DefaultPageSettings.Landscape = True
-		PrintPreviewDialog1.ShowDialog()
+		pdcPrint.DefaultPageSettings.Landscape = True
+		ppdPrint.ShowDialog()
 	End Sub
 
-	Private Sub PrintDocument1_PrintPage(sender As Object, e As Printing.PrintPageEventArgs) Handles PrintDocument1.PrintPage
-		Dim bm As New Bitmap(700, dgvDay.Height)
-		dgvDay.DrawToBitmap(bm, New Rectangle(30, 30, 700, dgvDay.Height))
-		e.Graphics.DrawImage(bm, 0, 0)
+	Private Sub pdcPrint_PrintPage(sender As Object, e As Printing.PrintPageEventArgs) Handles pdcPrint.PrintPage
+		Try
+			Dim bm As New Bitmap(700, dgvDay.Height)
+			dgvDay.DrawToBitmap(bm, New Rectangle(30, 30, 700, dgvDay.Height))
+			e.Graphics.DrawImage(bm, 0, 0)
+		Catch ex As Exception
+			If MsgBox("Print failed", vbRetryCancel + vbExclamation, "Error") = vbRetry Then
+				pdcPrint_PrintPage(sender, e)
+			End If
+		End Try
 	End Sub
 
 	Private Sub LogoutToolStripMenuItem_Click(sender As Object, e As EventArgs)
@@ -449,9 +493,9 @@ Public Class viewEvents
 	End Sub
 
 	Sub formChanged(sender As Object, e As EventArgs) Handles txtID.Leave, txtCustomerID.Leave,
-		txtAddress.Leave, txtPostcode.Leave, dtpDate.Leave, txtTime.Leave, txtArrivalTime.Leave,
-		chkPBB.Leave, chkPSB.Leave, chkPYTB.Leave, chkStarters.Leave, txtMusic.Leave, txtEmail.Leave,
-		txtContPhone.Leave, txtContName.Leave
+		txtAddress.Leave, txtPostcode.Leave, dtpDate.Leave, txtStartTime.Leave, txtArrivalTime.Leave,
+		chkPBB.Leave, chkPSB.Leave, chkPYTB.Leave, chkStarters.Leave, txtMusic.Leave, txtCustomerEmail.Leave,
+		txtCustomerPhone.Leave, txtCustomerName.Leave
 		Try
 			'if a button has been clicked execute code for the button
 			If ActiveControl.Name = "btnUndo" Then
@@ -484,19 +528,20 @@ Public Class viewEvents
 						If undo(i) = Nothing And i > 0 Then ' search for empty place in array that is not the first
 							Try 'store form data in array
 								undo(i) = txtID.Text
-								undo(i + 1) = txt
-								undo(i + 2) = txtEmail.Text
-								undo(i + 3) = txtPhone.Text
-								undo(i + 4) = cmbInstrument.Text
-								undo(i + 5) = cmbLevel.Text
-								undo(i + 6) = chkPhotoPerm.Checked
-								undo(i + 7) = chkPSB.Checked
-								undo(i + 8) = chkPYTB.Checked
-								undo(i + 9) = chkPBB.Checked
-								undo(i + 10) = chkStarters.Checked
-								undo(i + 11) = cmbRole.Text
-								undo(i + 12) = txtContName.Text
-								undo(i + 13) = txtContPhone.Text
+								undo(i + 1) = txtAddress.Text
+								undo(i + 2) = txtPostcode.Text
+								undo(i + 3) = dtpDate.Text
+								undo(i + 4) = txtStartTime.Text
+								undo(i + 5) = txtArrivalTime.Text
+								undo(i + 6) = chkPSB.Checked
+								undo(i + 7) = chkPYTB.Checked
+								undo(i + 8) = chkPBB.Checked
+								undo(i + 9) = chkStarters.Checked
+								undo(i + 10) = txtMusic.Text
+								undo(i + 11) = txtCustomerID.Text
+								undo(i + 12) = txtCustomerName.Text
+								undo(i + 13) = txtCustomerPhone.Text
+								undo(i + 14) = txtCustomerEmail.Text
 
 								pointer += 14
 								count += 1
@@ -533,19 +578,21 @@ Public Class viewEvents
 		Try
 			Dim startLocation As Integer = pointer - 28     ' find the last item that was added to array
 			If count = 1 Then 'if only one change has been saved, the form must have been blank previously
-				txtName.Clear()
-				dtpDOB.ResetText()
-				txtPhone.Clear()
-				cmbInstrument.ResetText()
-				cmbLevel.ResetText()
-				chkPhotoPerm.CheckState = CheckState.Unchecked
-				chkPSB.CheckState = CheckState.Unchecked
-				chkPYTB.CheckState = CheckState.Unchecked
-				chkPBB.CheckState = CheckState.Unchecked
-				chkStarters.CheckState = CheckState.Unchecked
-				cmbRole.ResetText()
-				txtContName.Clear()
-				txtContPhone.Clear()
+				txtID.Clear()
+				txtAddress.Clear()
+				dtpDate.ResetText()
+				txtCustomerEmail.Clear()
+				txtStartTime.Clear()
+				txtMusic.ResetText()
+				txtCustomerName.Clear()
+				txtCustomerPhone.Clear()
+				chkPSB.Checked = False
+				chkPYTB.Checked = False
+				chkPBB.Checked = False
+				chkStarters.Checked = False
+				txtCustomerID.Clear()
+				txtPostcode.Clear()
+				txtArrivalTime.Clear()
 
 				count = 0
 				pointer = 0
@@ -553,46 +600,43 @@ Public Class viewEvents
 				MsgBox("No changes made to be undone")
 
 			Else 'if more than 1 change
-				txtName.Text = undo(startLocation)
-				dtpDOB.Text = undo(startLocation + 1)
-				txtEmail.Text = undo(startLocation + 2)
-				txtPhone.Text = undo(startLocation + 3)
-				cmbInstrument.Text = undo(startLocation + 4)
-				cmbLevel.Text = undo(startLocation + 5)
+				txtID.Text = undo(startLocation)
+				txtAddress.Text = undo(startLocation + 1)
+				txtPostcode.Text = undo(startLocation + 2)
+				dtpDate.Text = undo(startLocation + 3)
+				txtStartTime.Text = undo(startLocation + 4)
+				txtArrivalTime.Text = undo(startLocation + 5)
 
 				'checking checkboxes
 				If undo(startLocation + 6) = True Then
-					chkPhotoPerm.CheckState = CheckState.Checked
-				Else
-					chkPhotoPerm.CheckState = CheckState.Unchecked
-				End If
-				If undo(startLocation + 7) = True Then
 					chkPSB.CheckState = CheckState.Checked
 				Else
 					chkPSB.CheckState = CheckState.Unchecked
 				End If
 
-				If undo(startLocation + 8) = True Then
+				If undo(startLocation + 7) = True Then
 					chkPYTB.CheckState = CheckState.Checked
 				Else
 					chkPYTB.CheckState = CheckState.Unchecked
 				End If
 
-				If undo(startLocation + 9) = True Then
+				If undo(startLocation + 8) = True Then
 					chkPBB.CheckState = CheckState.Checked
 				Else
 					chkPBB.CheckState = CheckState.Unchecked
 				End If
 
-				If undo(startLocation + 10) = True Then
+				If undo(startLocation + 9) = True Then
 					chkStarters.CheckState = CheckState.Checked
 				Else
 					chkStarters.CheckState = CheckState.Unchecked
 				End If
 
-				cmbRole.Text = undo(startLocation + 11)
-				txtContName.Text = undo(startLocation + 12)
-				txtContPhone.Text = undo(startLocation + 13)
+				txtMusic.Text = undo(startLocation + 10)
+				txtCustomerID.Text = undo(startLocation + 11)
+				txtCustomerName.Text = undo(startLocation + 12)
+				txtCustomerPhone.Text = undo(startLocation + 13)
+				txtCustomerEmail.Text = undo(startLocation + 14)
 
 				count = count - 1
 				pointer = pointer - 28

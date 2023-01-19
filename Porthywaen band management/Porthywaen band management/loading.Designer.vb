@@ -26,6 +26,7 @@ Partial Class loading
 		Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(loading))
 		Me.tmrLoading = New System.Windows.Forms.Timer(Me.components)
 		Me.lblTitle = New System.Windows.Forms.Label()
+		Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
 		Me.SuspendLayout()
 		'
 		'tmrLoading
@@ -45,12 +46,20 @@ Partial Class loading
 		Me.lblTitle.TabIndex = 1
 		Me.lblTitle.Text = "Porthywaen Silver Band Management"
 		'
+		'ProgressBar1
+		'
+		Me.ProgressBar1.Location = New System.Drawing.Point(12, 497)
+		Me.ProgressBar1.Name = "ProgressBar1"
+		Me.ProgressBar1.Size = New System.Drawing.Size(100, 23)
+		Me.ProgressBar1.TabIndex = 2
+		'
 		'loading
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
 		Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
 		Me.ClientSize = New System.Drawing.Size(961, 532)
+		Me.Controls.Add(Me.ProgressBar1)
 		Me.Controls.Add(Me.lblTitle)
 		Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
 		Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -62,4 +71,5 @@ Partial Class loading
 
 	Friend WithEvents tmrLoading As Timer
 	Friend WithEvents lblTitle As Label
+	Friend WithEvents ProgressBar1 As ProgressBar
 End Class

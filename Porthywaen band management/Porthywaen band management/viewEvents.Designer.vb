@@ -35,18 +35,18 @@ Partial Class viewEvents
 		Me.lblMusic = New System.Windows.Forms.Label()
 		Me.txtMusic = New System.Windows.Forms.TextBox()
 		Me.lblContPhone = New System.Windows.Forms.Label()
-		Me.txtContPhone = New System.Windows.Forms.TextBox()
+		Me.txtCustomerPhone = New System.Windows.Forms.TextBox()
 		Me.lblContName = New System.Windows.Forms.Label()
-		Me.txtContName = New System.Windows.Forms.TextBox()
+		Me.txtCustomerName = New System.Windows.Forms.TextBox()
 		Me.chkStarters = New System.Windows.Forms.CheckBox()
 		Me.chkPBB = New System.Windows.Forms.CheckBox()
 		Me.chkPYTB = New System.Windows.Forms.CheckBox()
 		Me.chkPSB = New System.Windows.Forms.CheckBox()
 		Me.lblDate = New System.Windows.Forms.Label()
 		Me.lblTime = New System.Windows.Forms.Label()
-		Me.txtTime = New System.Windows.Forms.TextBox()
+		Me.txtStartTime = New System.Windows.Forms.TextBox()
 		Me.lblEmail = New System.Windows.Forms.Label()
-		Me.txtEmail = New System.Windows.Forms.TextBox()
+		Me.txtCustomerEmail = New System.Windows.Forms.TextBox()
 		Me.lblName = New System.Windows.Forms.Label()
 		Me.txtAddress = New System.Windows.Forms.TextBox()
 		Me.dtpDate = New System.Windows.Forms.DateTimePicker()
@@ -59,8 +59,8 @@ Partial Class viewEvents
 		Me.btnShowAll = New System.Windows.Forms.Button()
 		Me.btnPlayers = New System.Windows.Forms.Button()
 		Me.btnSaveResponse = New System.Windows.Forms.Button()
-		Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
-		Me.PrintPreviewDialog1 = New System.Windows.Forms.PrintPreviewDialog()
+		Me.pdcPrint = New System.Drawing.Printing.PrintDocument()
+		Me.ppdPrint = New System.Windows.Forms.PrintPreviewDialog()
 		Me.btnPrint = New System.Windows.Forms.Button()
 		Me.lblCustomerID = New System.Windows.Forms.Label()
 		Me.txtCustomerID = New System.Windows.Forms.TextBox()
@@ -68,7 +68,7 @@ Partial Class viewEvents
 		Me.txtPostcode = New System.Windows.Forms.TextBox()
 		Me.lblArrivalTime = New System.Windows.Forms.Label()
 		Me.txtArrivalTime = New System.Windows.Forms.TextBox()
-		Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+		Me.msMenuBar = New System.Windows.Forms.MenuStrip()
 		Me.HomeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.PlayersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.GroupToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -79,7 +79,7 @@ Partial Class viewEvents
 		Me.LogoutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.btnUndo = New System.Windows.Forms.Button()
 		CType(Me.dgvDay, System.ComponentModel.ISupportInitialize).BeginInit()
-		Me.MenuStrip1.SuspendLayout()
+		Me.msMenuBar.SuspendLayout()
 		Me.SuspendLayout()
 		'
 		'cdrCalendar
@@ -174,12 +174,12 @@ Partial Class viewEvents
 		Me.lblContPhone.TabIndex = 93
 		Me.lblContPhone.Text = "Phone"
 		'
-		'txtContPhone
+		'txtCustomerPhone
 		'
-		Me.txtContPhone.Location = New System.Drawing.Point(789, 387)
-		Me.txtContPhone.Name = "txtContPhone"
-		Me.txtContPhone.Size = New System.Drawing.Size(164, 20)
-		Me.txtContPhone.TabIndex = 92
+		Me.txtCustomerPhone.Location = New System.Drawing.Point(789, 387)
+		Me.txtCustomerPhone.Name = "txtCustomerPhone"
+		Me.txtCustomerPhone.Size = New System.Drawing.Size(164, 20)
+		Me.txtCustomerPhone.TabIndex = 92
 		'
 		'lblContName
 		'
@@ -190,12 +190,12 @@ Partial Class viewEvents
 		Me.lblContName.TabIndex = 91
 		Me.lblContName.Text = "Name"
 		'
-		'txtContName
+		'txtCustomerName
 		'
-		Me.txtContName.Location = New System.Drawing.Point(789, 361)
-		Me.txtContName.Name = "txtContName"
-		Me.txtContName.Size = New System.Drawing.Size(164, 20)
-		Me.txtContName.TabIndex = 90
+		Me.txtCustomerName.Location = New System.Drawing.Point(789, 361)
+		Me.txtCustomerName.Name = "txtCustomerName"
+		Me.txtCustomerName.Size = New System.Drawing.Size(164, 20)
+		Me.txtCustomerName.TabIndex = 90
 		'
 		'chkStarters
 		'
@@ -255,12 +255,12 @@ Partial Class viewEvents
 		Me.lblTime.TabIndex = 81
 		Me.lblTime.Text = "Start time"
 		'
-		'txtTime
+		'txtStartTime
 		'
-		Me.txtTime.Location = New System.Drawing.Point(788, 167)
-		Me.txtTime.Name = "txtTime"
-		Me.txtTime.Size = New System.Drawing.Size(164, 20)
-		Me.txtTime.TabIndex = 80
+		Me.txtStartTime.Location = New System.Drawing.Point(788, 167)
+		Me.txtStartTime.Name = "txtStartTime"
+		Me.txtStartTime.Size = New System.Drawing.Size(164, 20)
+		Me.txtStartTime.TabIndex = 80
 		'
 		'lblEmail
 		'
@@ -271,12 +271,12 @@ Partial Class viewEvents
 		Me.lblEmail.TabIndex = 79
 		Me.lblEmail.Text = "Email"
 		'
-		'txtEmail
+		'txtCustomerEmail
 		'
-		Me.txtEmail.Location = New System.Drawing.Point(789, 413)
-		Me.txtEmail.Name = "txtEmail"
-		Me.txtEmail.Size = New System.Drawing.Size(164, 20)
-		Me.txtEmail.TabIndex = 78
+		Me.txtCustomerEmail.Location = New System.Drawing.Point(789, 413)
+		Me.txtCustomerEmail.Name = "txtCustomerEmail"
+		Me.txtCustomerEmail.Size = New System.Drawing.Size(164, 20)
+		Me.txtCustomerEmail.TabIndex = 78
 		'
 		'lblName
 		'
@@ -410,19 +410,19 @@ Partial Class viewEvents
 		Me.btnSaveResponse.Text = "Save event responses"
 		Me.btnSaveResponse.UseVisualStyleBackColor = True
 		'
-		'PrintDocument1
+		'pdcPrint
 		'
 		'
-		'PrintPreviewDialog1
+		'ppdPrint
 		'
-		Me.PrintPreviewDialog1.AutoScrollMargin = New System.Drawing.Size(0, 0)
-		Me.PrintPreviewDialog1.AutoScrollMinSize = New System.Drawing.Size(0, 0)
-		Me.PrintPreviewDialog1.ClientSize = New System.Drawing.Size(400, 300)
-		Me.PrintPreviewDialog1.Document = Me.PrintDocument1
-		Me.PrintPreviewDialog1.Enabled = True
-		Me.PrintPreviewDialog1.Icon = CType(resources.GetObject("PrintPreviewDialog1.Icon"), System.Drawing.Icon)
-		Me.PrintPreviewDialog1.Name = "PrintPreviewDialog1"
-		Me.PrintPreviewDialog1.Visible = False
+		Me.ppdPrint.AutoScrollMargin = New System.Drawing.Size(0, 0)
+		Me.ppdPrint.AutoScrollMinSize = New System.Drawing.Size(0, 0)
+		Me.ppdPrint.ClientSize = New System.Drawing.Size(400, 300)
+		Me.ppdPrint.Document = Me.pdcPrint
+		Me.ppdPrint.Enabled = True
+		Me.ppdPrint.Icon = CType(resources.GetObject("ppdPrint.Icon"), System.Drawing.Icon)
+		Me.ppdPrint.Name = "PrintPreviewDialog1"
+		Me.ppdPrint.Visible = False
 		'
 		'btnPrint
 		'
@@ -486,15 +486,15 @@ Partial Class viewEvents
 		Me.txtArrivalTime.Size = New System.Drawing.Size(164, 20)
 		Me.txtArrivalTime.TabIndex = 109
 		'
-		'MenuStrip1
+		'msMenuBar
 		'
-		Me.MenuStrip1.BackColor = System.Drawing.Color.Firebrick
-		Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HomeToolStripMenuItem, Me.PlayersToolStripMenuItem, Me.GroupToolStripMenuItem, Me.EventsToolStripMenuItem, Me.MusicToolStripMenuItem, Me.InstrumentsToolStripMenuItem, Me.UserToolStripMenuItem, Me.LogoutToolStripMenuItem})
-		Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
-		Me.MenuStrip1.Name = "MenuStrip1"
-		Me.MenuStrip1.Size = New System.Drawing.Size(1023, 24)
-		Me.MenuStrip1.TabIndex = 111
-		Me.MenuStrip1.Text = "MenuStrip1"
+		Me.msMenuBar.BackColor = System.Drawing.Color.Firebrick
+		Me.msMenuBar.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HomeToolStripMenuItem, Me.PlayersToolStripMenuItem, Me.GroupToolStripMenuItem, Me.EventsToolStripMenuItem, Me.MusicToolStripMenuItem, Me.InstrumentsToolStripMenuItem, Me.UserToolStripMenuItem, Me.LogoutToolStripMenuItem})
+		Me.msMenuBar.Location = New System.Drawing.Point(0, 0)
+		Me.msMenuBar.Name = "msMenuBar"
+		Me.msMenuBar.Size = New System.Drawing.Size(1023, 24)
+		Me.msMenuBar.TabIndex = 111
+		Me.msMenuBar.Text = "MenuStrip1"
 		'
 		'HomeToolStripMenuItem
 		'
@@ -572,7 +572,7 @@ Partial Class viewEvents
 		Me.BackColor = System.Drawing.Color.White
 		Me.ClientSize = New System.Drawing.Size(1023, 476)
 		Me.Controls.Add(Me.btnUndo)
-		Me.Controls.Add(Me.MenuStrip1)
+		Me.Controls.Add(Me.msMenuBar)
 		Me.Controls.Add(Me.lblArrivalTime)
 		Me.Controls.Add(Me.txtArrivalTime)
 		Me.Controls.Add(Me.lblPostcode)
@@ -590,18 +590,18 @@ Partial Class viewEvents
 		Me.Controls.Add(Me.lblMusic)
 		Me.Controls.Add(Me.txtMusic)
 		Me.Controls.Add(Me.lblContPhone)
-		Me.Controls.Add(Me.txtContPhone)
+		Me.Controls.Add(Me.txtCustomerPhone)
 		Me.Controls.Add(Me.lblContName)
-		Me.Controls.Add(Me.txtContName)
+		Me.Controls.Add(Me.txtCustomerName)
 		Me.Controls.Add(Me.chkStarters)
 		Me.Controls.Add(Me.chkPBB)
 		Me.Controls.Add(Me.chkPYTB)
 		Me.Controls.Add(Me.chkPSB)
 		Me.Controls.Add(Me.lblDate)
 		Me.Controls.Add(Me.lblTime)
-		Me.Controls.Add(Me.txtTime)
+		Me.Controls.Add(Me.txtStartTime)
 		Me.Controls.Add(Me.lblEmail)
-		Me.Controls.Add(Me.txtEmail)
+		Me.Controls.Add(Me.txtCustomerEmail)
 		Me.Controls.Add(Me.lblName)
 		Me.Controls.Add(Me.txtAddress)
 		Me.Controls.Add(Me.dtpDate)
@@ -613,8 +613,8 @@ Partial Class viewEvents
 		Me.Name = "viewEvents"
 		Me.Text = "events"
 		CType(Me.dgvDay, System.ComponentModel.ISupportInitialize).EndInit()
-		Me.MenuStrip1.ResumeLayout(False)
-		Me.MenuStrip1.PerformLayout()
+		Me.msMenuBar.ResumeLayout(False)
+		Me.msMenuBar.PerformLayout()
 		Me.ResumeLayout(False)
 		Me.PerformLayout()
 
@@ -625,18 +625,18 @@ Partial Class viewEvents
 	Friend WithEvents lblMusic As Label
 	Friend WithEvents txtMusic As TextBox
 	Friend WithEvents lblContPhone As Label
-	Friend WithEvents txtContPhone As TextBox
+	Friend WithEvents txtCustomerPhone As TextBox
 	Friend WithEvents lblContName As Label
-	Friend WithEvents txtContName As TextBox
+	Friend WithEvents txtCustomerName As TextBox
 	Friend WithEvents chkStarters As CheckBox
 	Friend WithEvents chkPBB As CheckBox
 	Friend WithEvents chkPYTB As CheckBox
 	Friend WithEvents chkPSB As CheckBox
 	Friend WithEvents lblDate As Label
 	Friend WithEvents lblTime As Label
-	Friend WithEvents txtTime As TextBox
+	Friend WithEvents txtStartTime As TextBox
 	Friend WithEvents lblEmail As Label
-	Friend WithEvents txtEmail As TextBox
+	Friend WithEvents txtCustomerEmail As TextBox
 	Friend WithEvents lblName As Label
 	Friend WithEvents txtAddress As TextBox
 	Friend WithEvents dtpDate As DateTimePicker
@@ -649,8 +649,8 @@ Partial Class viewEvents
 	Friend WithEvents btnShowAll As Button
 	Friend WithEvents btnPlayers As Button
 	Friend WithEvents btnSaveResponse As Button
-	Friend WithEvents PrintDocument1 As Printing.PrintDocument
-	Friend WithEvents PrintPreviewDialog1 As PrintPreviewDialog
+	Friend WithEvents pdcPrint As Printing.PrintDocument
+	Friend WithEvents ppdPrint As PrintPreviewDialog
 	Friend WithEvents btnPrint As Button
 	Friend WithEvents colID As DataGridViewTextBoxColumn
 	Friend WithEvents colAddress As DataGridViewTextBoxColumn
@@ -665,7 +665,7 @@ Partial Class viewEvents
 	Friend WithEvents txtPostcode As TextBox
 	Public WithEvents lblArrivalTime As Label
 	Friend WithEvents txtArrivalTime As TextBox
-	Friend WithEvents MenuStrip1 As MenuStrip
+	Friend WithEvents msMenuBar As MenuStrip
 	Friend WithEvents HomeToolStripMenuItem As ToolStripMenuItem
 	Friend WithEvents PlayersToolStripMenuItem As ToolStripMenuItem
 	Friend WithEvents GroupToolStripMenuItem As ToolStripMenuItem

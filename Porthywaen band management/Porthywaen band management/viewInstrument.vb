@@ -26,6 +26,7 @@ Public Class viewInstrument
 
 			dgvInstruments.Rows.Clear()
 			FileOpen(1, "instruments.dat", OpenMode.Random,,, Len(oneInstrument))
+			FileOpen(2, "players.dat", OpenMode.Random,,, Len(oneMember))
 
 			Dim totalRecordsInstrument As Integer = LOF(1) / Len(oneInstrument)
 			Dim totalRecordsMember As Integer = LOF(2) / Len(oneMember)
@@ -34,14 +35,23 @@ Public Class viewInstrument
 			For index = 1 To totalRecordsInstrument
 				FileGet(1, oneInstrument)
 
-				For i = 1 To totalRecordsMember 'find holderName
-					FileGet(2, oneMember)
-					If oneMember.id.Contains(txtHolderID.Text) Then
-						dgvInstruments.Rows.Add(oneInstrument.serialNumber, oneInstrument.name, oneInstrument.instrument,
-										oneInstrument.holderID, oneMember.name, oneInstrument.serviceDate)
-					End If
-				Next
+				If oneInstrument.holderID = "" Or oneInstrument.holderID = vbNullChar Then
+					dgvInstruments.Rows.Add(oneInstrument.serialNumber, oneInstrument.name, oneInstrument.instrument,
+										oneInstrument.holderID, "", oneInstrument.serviceDate)
+				Else
+					Try
+						For i = 1 To totalRecordsMember 'find holderName
+							FileGet(2, oneMember)
+							If oneMember.id.Contains(txtHolderID.Text) Then
+								dgvInstruments.Rows.Add(oneInstrument.serialNumber, oneInstrument.name, oneInstrument.instrument,
+												oneInstrument.holderID, oneMember.name, oneInstrument.serviceDate)
 
+							End If
+						Next
+					Catch ex As Exception
+						MsgBox("Holder ID does not match any member IDs", vbExclamation, "Error")
+					End Try
+				End If
 				'format service dates
 				serviceDate = oneInstrument.serviceDate.ToString("dd/MM/yyyy")
 				If dgv.RowCount > 0 Then
@@ -66,6 +76,8 @@ Public Class viewInstrument
 			FileClose(1)
 		Catch ex As Exception  'if fails, give option to retry, else end sub
 			If MsgBox("Display failed", vbRetryCancel + vbExclamation, "Error") = vbRetry Then
+				FileClose(1)
+				FileClose(2)
 				colours(dgv)
 			Else
 				Exit Sub

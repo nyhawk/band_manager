@@ -49,7 +49,7 @@ Partial Class viewInstrument
 		Me.cmbInstrument = New System.Windows.Forms.ComboBox()
 		Me.txtSerialNo = New System.Windows.Forms.TextBox()
 		Me.btnUpdate = New System.Windows.Forms.Button()
-		Me.menu = New System.Windows.Forms.MenuStrip()
+		Me.msMenuBar = New System.Windows.Forms.MenuStrip()
 		Me.HomeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.PlayersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.GroupToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -67,7 +67,7 @@ Partial Class viewInstrument
 		Me.colIdSearch = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		CType(Me.dgvInstruments, System.ComponentModel.ISupportInitialize).BeginInit()
 		CType(Me.dgvInstrumentSearch, System.ComponentModel.ISupportInitialize).BeginInit()
-		Me.menu.SuspendLayout()
+		Me.msMenuBar.SuspendLayout()
 		Me.SuspendLayout()
 		'
 		'dgvInstruments
@@ -307,13 +307,13 @@ Partial Class viewInstrument
 		'
 		'menu
 		'
-		Me.menu.BackColor = System.Drawing.Color.Firebrick
-		Me.menu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HomeToolStripMenuItem, Me.PlayersToolStripMenuItem, Me.GroupToolStripMenuItem, Me.EventsToolStripMenuItem, Me.MusicToolStripMenuItem, Me.InstrumentsToolStripMenuItem, Me.UserToolStripMenuItem, Me.LogoutToolStripMenuItem})
-		Me.menu.Location = New System.Drawing.Point(0, 0)
-		Me.menu.Name = "menu"
-		Me.menu.Size = New System.Drawing.Size(1010, 24)
-		Me.menu.TabIndex = 67
-		Me.menu.Text = "Menu"
+		Me.msMenuBar.BackColor = System.Drawing.Color.Firebrick
+		Me.msMenuBar.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HomeToolStripMenuItem, Me.PlayersToolStripMenuItem, Me.GroupToolStripMenuItem, Me.EventsToolStripMenuItem, Me.MusicToolStripMenuItem, Me.InstrumentsToolStripMenuItem, Me.UserToolStripMenuItem, Me.LogoutToolStripMenuItem})
+		Me.msMenuBar.Location = New System.Drawing.Point(0, 0)
+		Me.msMenuBar.Name = "msMenuBar"
+		Me.msMenuBar.Size = New System.Drawing.Size(1010, 24)
+		Me.msMenuBar.TabIndex = 67
+		Me.msMenuBar.Text = "Menu"
 		'
 		'HomeToolStripMenuItem
 		'
@@ -435,7 +435,7 @@ Partial Class viewInstrument
 		Me.Controls.Add(Me.lblHolderName)
 		Me.Controls.Add(Me.txtHolderName)
 		Me.Controls.Add(Me.btnUndo)
-		Me.Controls.Add(Me.menu)
+		Me.Controls.Add(Me.msMenuBar)
 		Me.Controls.Add(Me.btnUpdate)
 		Me.Controls.Add(Me.btnDelete)
 		Me.Controls.Add(Me.btnClear)
@@ -461,8 +461,8 @@ Partial Class viewInstrument
 		Me.Text = "viewInstrument"
 		CType(Me.dgvInstruments, System.ComponentModel.ISupportInitialize).EndInit()
 		CType(Me.dgvInstrumentSearch, System.ComponentModel.ISupportInitialize).EndInit()
-		Me.menu.ResumeLayout(False)
-		Me.menu.PerformLayout()
+		Me.msMenuBar.ResumeLayout(False)
+		Me.msMenuBar.PerformLayout()
 		Me.ResumeLayout(False)
 		Me.PerformLayout()
 
@@ -488,7 +488,7 @@ Partial Class viewInstrument
 	Friend WithEvents cmbInstrument As ComboBox
 	Friend WithEvents txtSerialNo As TextBox
 	Friend WithEvents btnUpdate As Button
-	Friend WithEvents menu As MenuStrip
+	Friend WithEvents msMenuBar As MenuStrip
 	Friend WithEvents HomeToolStripMenuItem As ToolStripMenuItem
 	Friend WithEvents PlayersToolStripMenuItem As ToolStripMenuItem
 	Friend WithEvents GroupToolStripMenuItem As ToolStripMenuItem
