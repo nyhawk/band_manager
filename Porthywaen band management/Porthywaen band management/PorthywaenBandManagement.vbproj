@@ -62,6 +62,12 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>psbManagement.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -89,7 +95,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="display.vb" />
+    <Compile Include="loading.Designer.vb">
+      <DependentUpon>loading.vb</DependentUpon>
+    </Compile>
+    <Compile Include="loading.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="login.Designer.vb">
       <DependentUpon>login.vb</DependentUpon>
     </Compile>
@@ -102,18 +113,23 @@
     <Compile Include="playerEventsResponse.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="undo.vb" />
+    <Compile Include="userDetails.Designer.vb">
+      <DependentUpon>userDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="userDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="viewEvents.Designer.vb">
       <DependentUpon>viewEvents.vb</DependentUpon>
     </Compile>
     <Compile Include="viewEvents.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.vb">
+    <Compile Include="home.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="home.Designer.vb">
+      <DependentUpon>home.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="group.Designer.vb">
@@ -159,17 +175,24 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="loading.resx">
+      <DependentUpon>loading.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="login.resx">
       <DependentUpon>login.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="playerEventsResponse.resx">
       <DependentUpon>playerEventsResponse.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="userDetails.resx">
+      <DependentUpon>userDetails.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="viewEvents.resx">
       <DependentUpon>viewEvents.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <EmbeddedResource Include="home.resx">
+      <DependentUpon>home.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="group.resx">
@@ -192,6 +215,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -214,6 +238,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="psbManagement.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

@@ -25,6 +25,7 @@ Partial Class group
 		Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
 		Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
 		Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+		Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(group))
 		Me.dgvMembers = New System.Windows.Forms.DataGridView()
 		Me.colID = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.colName = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -52,7 +53,7 @@ Partial Class group
 		Me.MusicToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.InstrumentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.UserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-		Me.LogoutToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+		Me.LogoutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		CType(Me.dgvMembers, System.ComponentModel.ISupportInitialize).BeginInit()
 		CType(Me.Chart1, System.ComponentModel.ISupportInitialize).BeginInit()
 		CType(Me.dgvTotal, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -94,6 +95,7 @@ Partial Class group
 		'dtpMarkDate
 		'
 		Me.dtpMarkDate.Location = New System.Drawing.Point(537, 38)
+		Me.dtpMarkDate.MinDate = New Date(1934, 1, 1, 0, 0, 0, 0)
 		Me.dtpMarkDate.Name = "dtpMarkDate"
 		Me.dtpMarkDate.Size = New System.Drawing.Size(121, 20)
 		Me.dtpMarkDate.TabIndex = 6
@@ -101,7 +103,7 @@ Partial Class group
 		'cmbGroup
 		'
 		Me.cmbGroup.FormattingEnabled = True
-		Me.cmbGroup.Items.AddRange(New Object() {"PSB", "PYTB", "PBB", "Starters", "Dep"})
+		Me.cmbGroup.Items.AddRange(New Object() {"PSB", "PYTB", "PBB", "Starters", "Dep", "Committee"})
 		Me.cmbGroup.Location = New System.Drawing.Point(715, 38)
 		Me.cmbGroup.Name = "cmbGroup"
 		Me.cmbGroup.Size = New System.Drawing.Size(75, 21)
@@ -118,7 +120,7 @@ Partial Class group
 		Me.btnShow.Size = New System.Drawing.Size(75, 45)
 		Me.btnShow.TabIndex = 8
 		Me.btnShow.Text = "Show group"
-		Me.btnShow.UseVisualStyleBackColor = False
+		Me.btnShow.UseVisualStyleBackColor = True
 		'
 		'Chart1
 		'
@@ -235,7 +237,7 @@ Partial Class group
 		'
 		Me.MenuStrip1.BackColor = System.Drawing.Color.Firebrick
 		Me.MenuStrip1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-		Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HomeToolStripMenuItem, Me.PlayersToolStripMenuItem, Me.GroupToolStripMenuItem, Me.EventsToolStripMenuItem, Me.MusicToolStripMenuItem, Me.InstrumentsToolStripMenuItem, Me.UserToolStripMenuItem, Me.LogoutToolStripMenuItem1})
+		Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HomeToolStripMenuItem, Me.PlayersToolStripMenuItem, Me.GroupToolStripMenuItem, Me.EventsToolStripMenuItem, Me.MusicToolStripMenuItem, Me.InstrumentsToolStripMenuItem, Me.UserToolStripMenuItem, Me.LogoutToolStripMenuItem})
 		Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
 		Me.MenuStrip1.Name = "MenuStrip1"
 		Me.MenuStrip1.Size = New System.Drawing.Size(843, 24)
@@ -292,12 +294,12 @@ Partial Class group
 		Me.UserToolStripMenuItem.Size = New System.Drawing.Size(79, 20)
 		Me.UserToolStripMenuItem.Text = "User details"
 		'
-		'LogoutToolStripMenuItem1
+		'LogoutToolStripMenuItem
 		'
-		Me.LogoutToolStripMenuItem1.ForeColor = System.Drawing.Color.White
-		Me.LogoutToolStripMenuItem1.Name = "LogoutToolStripMenuItem1"
-		Me.LogoutToolStripMenuItem1.Size = New System.Drawing.Size(57, 20)
-		Me.LogoutToolStripMenuItem1.Text = "Logout"
+		Me.LogoutToolStripMenuItem.ForeColor = System.Drawing.Color.White
+		Me.LogoutToolStripMenuItem.Name = "LogoutToolStripMenuItem"
+		Me.LogoutToolStripMenuItem.Size = New System.Drawing.Size(57, 20)
+		Me.LogoutToolStripMenuItem.Text = "Logout"
 		'
 		'group
 		'
@@ -318,8 +320,9 @@ Partial Class group
 		Me.Controls.Add(Me.cmbGroup)
 		Me.Controls.Add(Me.dtpMarkDate)
 		Me.Controls.Add(Me.dgvMembers)
+		Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
 		Me.Name = "group"
-		Me.Text = "group"
+		Me.Text = "Group"
 		CType(Me.dgvMembers, System.ComponentModel.ISupportInitialize).EndInit()
 		CType(Me.Chart1, System.ComponentModel.ISupportInitialize).EndInit()
 		CType(Me.dgvTotal, System.ComponentModel.ISupportInitialize).EndInit()
@@ -358,4 +361,5 @@ Partial Class group
 	Friend WithEvents InstrumentsToolStripMenuItem As ToolStripMenuItem
 	Friend WithEvents UserToolStripMenuItem As ToolStripMenuItem
 	Friend WithEvents LogoutToolStripMenuItem1 As ToolStripMenuItem
+	Friend WithEvents LogoutToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -1,4 +1,4 @@
-﻿Structure playerAttendance
+﻿Structure playerAttendance  'declaring structure which stores data for each recrord read/added
 	<VBFixedString(5)> Dim id As String
 	<VBFixedString(50)> Dim name As String
 	<VBFixedString(22)> Dim markDate As Date
@@ -6,8 +6,7 @@
 End Structure
 Public Class group
 	Public Shared memberID As Integer
-
-	Private Sub btnShow_Click(sender As Object, e As EventArgs) Handles btnShow.Click
+	Sub btnShow_Click(sender As Object, e As EventArgs) Handles btnShow.Click
 		Dim index As Integer
 		Dim oneMember As memberInfo 'pointer to structure
 
@@ -15,10 +14,9 @@ Public Class group
 		FileOpen(1, "players.dat", OpenMode.Random,,, Len(oneMember))
 
 		Dim totalRecords As Integer = LOF(1) / Len(oneMember)
-		For index = 1 To totalRecords
+		For index = 1 To totalRecords   'get each records and display in dgv
 			FileGet(1, oneMember)
 
-			'Dim groups As String = oneMember.groups
 			If oneMember.groups.Contains(cmbGroup.Text) Then      'only displays members in selected group
 				dgvMembers.Rows.Add(oneMember.id, oneMember.name, oneMember.instrument)
 			End If
@@ -40,9 +38,7 @@ Public Class group
 	Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
 		Dim index As Integer
 		Dim oneMark As playerAttendance 'pointer to structure
-		'Dim currentRecord As Integer
-		'Dim row As DataGridViewRow = dgvMembers.CurrentRow
-		'currentRecord = row.Index + 1
+
 		FileOpen(1, "attendance.dat", OpenMode.Random,,, Len(oneMark))
 
 		Dim totalRecords As Integer = LOF(1) / Len(oneMark)
@@ -52,7 +48,7 @@ Public Class group
 			oneMark.name = dgvMembers.Rows(index).Cells(1).Value & ","
 			oneMark.markDate = dtpMarkDate.Text & ","
 
-			If TypeOf dgvMembers.Rows(index).Cells(3) Is DataGridViewCheckBoxCell Then
+			If TypeOf dgvMembers.Rows(index).Cells(3) Is DataGridViewCheckBoxCell Then  'validation
 				'store the mark
 				Dim Checked As Boolean = dgvMembers.Rows(index).Cells(3).Value
 				oneMark.mark = Checked
@@ -115,27 +111,31 @@ Public Class group
 			Chart1.Series(0).Points.AddXY(dgvTotal.Item(0, i).Value, dgvTotal.Item(2, i).Value)
 		Next
 	End Sub
-	Private Sub HomeToolStripMenuItem_Click(sender As Object, e As EventArgs) 
-		Form1.Show()
+	Private Sub HomeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HomeToolStripMenuItem.Click
+		home.Show()
 		Me.Hide()
 	End Sub
 
-	Private Sub PlayersToolStripMenuItem_Click(sender As Object, e As EventArgs) 
+	Private Sub PlayersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PlayersToolStripMenuItem.Click
 		players.Show()
 		Me.Hide()
 	End Sub
-	Private Sub EventsToolStripMenuItem_Click(sender As Object, e As EventArgs) 
+	Private Sub EventsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EventsToolStripMenuItem.Click
 		viewEvents.Show()
 		Me.Hide()
 	End Sub
 
-	Private Sub MusicToolStripMenuItem_Click(sender As Object, e As EventArgs) 
+	Private Sub MusicToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MusicToolStripMenuItem.Click
 		viewMusic.Show()
 		Me.Hide()
 	End Sub
 
-	Private Sub InstrumentsToolStripMenuItem_Click(sender As Object, e As EventArgs) 
+	Private Sub InstrumentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InstrumentsToolStripMenuItem.Click
 		viewInstrument.Show()
 		Me.Hide()
+	End Sub
+
+	Private Sub group_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+		dtpMarkDate.MaxDate = Date.Today    'validation
 	End Sub
 End Class

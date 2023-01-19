@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.PorthywaenBandManagement.viewEvents
+            Me.MainForm = Global.PorthywaenBandManagement.loading
         End Sub
     End Class
 End Namespace

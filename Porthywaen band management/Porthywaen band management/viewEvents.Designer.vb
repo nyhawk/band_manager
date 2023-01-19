@@ -76,7 +76,7 @@ Partial Class viewEvents
 		Me.MusicToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.InstrumentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.UserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-		Me.LogoutToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+		Me.LogoutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.btnUndo = New System.Windows.Forms.Button()
 		CType(Me.dgvDay, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.MenuStrip1.SuspendLayout()
@@ -325,7 +325,7 @@ Partial Class viewEvents
 		Me.btnDelete.FlatAppearance.BorderColor = System.Drawing.Color.Black
 		Me.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.btnDelete.ForeColor = System.Drawing.Color.White
-		Me.btnDelete.Location = New System.Drawing.Point(377, 102)
+		Me.btnDelete.Location = New System.Drawing.Point(539, 45)
 		Me.btnDelete.Name = "btnDelete"
 		Me.btnDelete.Size = New System.Drawing.Size(75, 23)
 		Me.btnDelete.TabIndex = 97
@@ -343,7 +343,7 @@ Partial Class viewEvents
 		Me.btnAdd.Size = New System.Drawing.Size(75, 23)
 		Me.btnAdd.TabIndex = 96
 		Me.btnAdd.Text = "Add"
-		Me.btnAdd.UseVisualStyleBackColor = False
+		Me.btnAdd.UseVisualStyleBackColor = True
 		'
 		'btnUpdate
 		'
@@ -351,12 +351,12 @@ Partial Class viewEvents
 		Me.btnUpdate.FlatAppearance.BorderColor = System.Drawing.Color.Black
 		Me.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.btnUpdate.ForeColor = System.Drawing.Color.White
-		Me.btnUpdate.Location = New System.Drawing.Point(377, 73)
+		Me.btnUpdate.Location = New System.Drawing.Point(458, 45)
 		Me.btnUpdate.Name = "btnUpdate"
 		Me.btnUpdate.Size = New System.Drawing.Size(75, 23)
 		Me.btnUpdate.TabIndex = 98
 		Me.btnUpdate.Text = "Update"
-		Me.btnUpdate.UseVisualStyleBackColor = False
+		Me.btnUpdate.UseVisualStyleBackColor = True
 		'
 		'btnClear
 		'
@@ -364,7 +364,7 @@ Partial Class viewEvents
 		Me.btnClear.FlatAppearance.BorderColor = System.Drawing.Color.Black
 		Me.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.btnClear.ForeColor = System.Drawing.Color.White
-		Me.btnClear.Location = New System.Drawing.Point(469, 45)
+		Me.btnClear.Location = New System.Drawing.Point(539, 74)
 		Me.btnClear.Name = "btnClear"
 		Me.btnClear.Size = New System.Drawing.Size(75, 23)
 		Me.btnClear.TabIndex = 99
@@ -377,9 +377,9 @@ Partial Class viewEvents
 		Me.btnShowAll.FlatAppearance.BorderColor = System.Drawing.Color.Black
 		Me.btnShowAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.btnShowAll.ForeColor = System.Drawing.Color.White
-		Me.btnShowAll.Location = New System.Drawing.Point(287, 45)
+		Me.btnShowAll.Location = New System.Drawing.Point(257, 54)
 		Me.btnShowAll.Name = "btnShowAll"
-		Me.btnShowAll.Size = New System.Drawing.Size(75, 48)
+		Me.btnShowAll.Size = New System.Drawing.Size(75, 51)
 		Me.btnShowAll.TabIndex = 100
 		Me.btnShowAll.Text = "Show all events"
 		Me.btnShowAll.UseVisualStyleBackColor = False
@@ -390,12 +390,12 @@ Partial Class viewEvents
 		Me.btnPlayers.FlatAppearance.BorderColor = System.Drawing.Color.Black
 		Me.btnPlayers.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.btnPlayers.ForeColor = System.Drawing.Color.White
-		Me.btnPlayers.Location = New System.Drawing.Point(287, 107)
+		Me.btnPlayers.Location = New System.Drawing.Point(257, 111)
 		Me.btnPlayers.Name = "btnPlayers"
-		Me.btnPlayers.Size = New System.Drawing.Size(75, 48)
+		Me.btnPlayers.Size = New System.Drawing.Size(75, 53)
 		Me.btnPlayers.TabIndex = 102
 		Me.btnPlayers.Text = "Manage players"
-		Me.btnPlayers.UseVisualStyleBackColor = False
+		Me.btnPlayers.UseVisualStyleBackColor = True
 		'
 		'btnSaveResponse
 		'
@@ -403,12 +403,12 @@ Partial Class viewEvents
 		Me.btnSaveResponse.FlatAppearance.BorderColor = System.Drawing.Color.Black
 		Me.btnSaveResponse.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.btnSaveResponse.ForeColor = System.Drawing.Color.White
-		Me.btnSaveResponse.Location = New System.Drawing.Point(469, 107)
+		Me.btnSaveResponse.Location = New System.Drawing.Point(430, 103)
 		Me.btnSaveResponse.Name = "btnSaveResponse"
-		Me.btnSaveResponse.Size = New System.Drawing.Size(75, 48)
+		Me.btnSaveResponse.Size = New System.Drawing.Size(140, 28)
 		Me.btnSaveResponse.TabIndex = 103
 		Me.btnSaveResponse.Text = "Save event responses"
-		Me.btnSaveResponse.UseVisualStyleBackColor = False
+		Me.btnSaveResponse.UseVisualStyleBackColor = True
 		'
 		'PrintDocument1
 		'
@@ -430,12 +430,12 @@ Partial Class viewEvents
 		Me.btnPrint.FlatAppearance.BorderColor = System.Drawing.Color.Black
 		Me.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.btnPrint.ForeColor = System.Drawing.Color.White
-		Me.btnPrint.Location = New System.Drawing.Point(377, 131)
+		Me.btnPrint.Location = New System.Drawing.Point(377, 74)
 		Me.btnPrint.Name = "btnPrint"
 		Me.btnPrint.Size = New System.Drawing.Size(75, 23)
 		Me.btnPrint.TabIndex = 104
 		Me.btnPrint.Text = "Print"
-		Me.btnPrint.UseVisualStyleBackColor = False
+		Me.btnPrint.UseVisualStyleBackColor = True
 		'
 		'lblCustomerID
 		'
@@ -489,8 +489,7 @@ Partial Class viewEvents
 		'MenuStrip1
 		'
 		Me.MenuStrip1.BackColor = System.Drawing.Color.Firebrick
-		Me.MenuStrip1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-		Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HomeToolStripMenuItem, Me.PlayersToolStripMenuItem, Me.GroupToolStripMenuItem, Me.EventsToolStripMenuItem, Me.MusicToolStripMenuItem, Me.InstrumentsToolStripMenuItem, Me.UserToolStripMenuItem, Me.LogoutToolStripMenuItem1})
+		Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HomeToolStripMenuItem, Me.PlayersToolStripMenuItem, Me.GroupToolStripMenuItem, Me.EventsToolStripMenuItem, Me.MusicToolStripMenuItem, Me.InstrumentsToolStripMenuItem, Me.UserToolStripMenuItem, Me.LogoutToolStripMenuItem})
 		Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
 		Me.MenuStrip1.Name = "MenuStrip1"
 		Me.MenuStrip1.Size = New System.Drawing.Size(1023, 24)
@@ -527,7 +526,6 @@ Partial Class viewEvents
 		'
 		'MusicToolStripMenuItem
 		'
-		Me.MusicToolStripMenuItem.BackColor = System.Drawing.Color.Firebrick
 		Me.MusicToolStripMenuItem.ForeColor = System.Drawing.Color.White
 		Me.MusicToolStripMenuItem.Name = "MusicToolStripMenuItem"
 		Me.MusicToolStripMenuItem.Size = New System.Drawing.Size(51, 20)
@@ -547,12 +545,12 @@ Partial Class viewEvents
 		Me.UserToolStripMenuItem.Size = New System.Drawing.Size(79, 20)
 		Me.UserToolStripMenuItem.Text = "User details"
 		'
-		'LogoutToolStripMenuItem1
+		'LogoutToolStripMenuItem
 		'
-		Me.LogoutToolStripMenuItem1.ForeColor = System.Drawing.Color.White
-		Me.LogoutToolStripMenuItem1.Name = "LogoutToolStripMenuItem1"
-		Me.LogoutToolStripMenuItem1.Size = New System.Drawing.Size(57, 20)
-		Me.LogoutToolStripMenuItem1.Text = "Logout"
+		Me.LogoutToolStripMenuItem.ForeColor = System.Drawing.Color.White
+		Me.LogoutToolStripMenuItem.Name = "LogoutToolStripMenuItem"
+		Me.LogoutToolStripMenuItem.Size = New System.Drawing.Size(57, 20)
+		Me.LogoutToolStripMenuItem.Text = "Logout"
 		'
 		'btnUndo
 		'
@@ -560,7 +558,7 @@ Partial Class viewEvents
 		Me.btnUndo.FlatAppearance.BorderColor = System.Drawing.Color.Black
 		Me.btnUndo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
 		Me.btnUndo.ForeColor = System.Drawing.Color.White
-		Me.btnUndo.Location = New System.Drawing.Point(469, 74)
+		Me.btnUndo.Location = New System.Drawing.Point(458, 74)
 		Me.btnUndo.Name = "btnUndo"
 		Me.btnUndo.Size = New System.Drawing.Size(75, 23)
 		Me.btnUndo.TabIndex = 112
@@ -611,6 +609,7 @@ Partial Class viewEvents
 		Me.Controls.Add(Me.txtID)
 		Me.Controls.Add(Me.dgvDay)
 		Me.Controls.Add(Me.cdrCalendar)
+		Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
 		Me.Name = "viewEvents"
 		Me.Text = "events"
 		CType(Me.dgvDay, System.ComponentModel.ISupportInitialize).EndInit()
@@ -674,6 +673,6 @@ Partial Class viewEvents
 	Friend WithEvents MusicToolStripMenuItem As ToolStripMenuItem
 	Friend WithEvents InstrumentsToolStripMenuItem As ToolStripMenuItem
 	Friend WithEvents UserToolStripMenuItem As ToolStripMenuItem
-	Friend WithEvents LogoutToolStripMenuItem1 As ToolStripMenuItem
+	Friend WithEvents LogoutToolStripMenuItem As ToolStripMenuItem
 	Friend WithEvents btnUndo As Button
 End Class

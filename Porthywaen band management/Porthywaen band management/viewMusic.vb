@@ -224,7 +224,7 @@ Public Class viewMusic
 		txtWriter.ResetText()
 	End Sub
 	Private Sub HomeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HomeToolStripMenuItem.Click
-		Form1.Show()
+		home.Show()
 		Me.Hide()
 	End Sub
 

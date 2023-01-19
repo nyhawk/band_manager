@@ -46,7 +46,7 @@
 		If found = False Then
 			MsgBox("Incorrect ID")
 		Else
-			Form1.Show()
+			home.Show()
 			Me.Hide()
 		End If
 

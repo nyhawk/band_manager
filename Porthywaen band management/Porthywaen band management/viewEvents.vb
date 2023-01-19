@@ -22,6 +22,12 @@ Public Class viewEvents
 	Public Shared selectedDate As Date
 	Public Shared currentRecord As Integer = 0
 	Public Shared eventID As Integer
+
+	'declaring global variables to handle undo and redo
+	Shared undo() As String
+	Shared count As Integer = 0
+	Shared pointer As Integer = 1
+	Shared lengthCount As Integer = 0 'does not decrease so more elements are added to array if undo, input, undo occurs
 	Private Sub dgvday_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvDay.CellClick
 		Dim row As DataGridViewRow = dgvDay.CurrentRow
 		currentRecord = row.Index + 1
@@ -215,41 +221,41 @@ Public Class viewEvents
 													txtID.Text = "00001"
 												End If
 
-												For index = 1 To totalRecords
-													FileGet(1, oneEvent)
+		For index = 1 To totalRecords
+			FileGet(1, oneEvent)
 
-													'search for available id
-													If searchID = oneEvent.eventID Then
-														searchID += 1
-													End If
-												Next
-												Dim idString As String = searchID.ToString()
-												Dim idLen As Integer = Len(idString)
-												Dim finalID As String = idString
-												For i = 1 To 5 - idLen
-													finalID = "0" & finalID
-												Next
-												txtID.Text = finalID
+			'search for available id
+			If searchID = oneEvent.eventID Then
+				searchID += 1
+			End If
+		Next
+		Dim idString As String = searchID.ToString()
+		Dim idLen As Integer = Len(idString)
+		Dim finalID As String = idString
+		For i = 1 To 5 - idLen
+			finalID = "0" & finalID
+		Next
+		txtID.Text = finalID
 
-												oneEvent.eventID = txtID.Text
-												oneEvent.address = txtAddress.Text
-												oneEvent.eventDate = dtpDate.Text
-												oneEvent.startTime = txtTime.Text
-												oneEvent.arrivalTime = txtArrivalTime.Text
-												oneEvent.postcode = txtPostcode.Text
-												oneEvent.groups = groups
-												oneEvent.music = txtMusic.Text
-												oneCustomer.customerID = txtCustomerID.Text
-												oneCustomer.contEmail = txtEmail.Text
-												oneCustomer.contName = txtContName.Text
-												oneCustomer.contPhone = txtContPhone.Text
+		oneEvent.eventID = txtID.Text
+		oneEvent.address = txtAddress.Text
+		oneEvent.eventDate = dtpDate.Text
+		oneEvent.startTime = txtTime.Text
+		oneEvent.arrivalTime = txtArrivalTime.Text
+		oneEvent.postcode = txtPostcode.Text
+		oneEvent.groups = groups
+		oneEvent.music = txtMusic.Text
+		oneCustomer.customerID = txtCustomerID.Text
+		oneCustomer.contEmail = txtEmail.Text
+		oneCustomer.contName = txtContName.Text
+		oneCustomer.contPhone = txtContPhone.Text
 
-												FilePut(1, oneEvent, totalRecords + 1)
-												FileClose(1)
-												MsgBox("Event added")
+		FilePut(1, oneEvent, totalRecords + 1)
+		FileClose(1)
+		MsgBox("Event added")
 
-												'display members in dataGridView
-												dgvDay.Rows.Clear()
+		'display members in dataGridView
+		dgvDay.Rows.Clear()
 
 												For index = 1 To totalRecords
 													FileGet(1, oneEvent)
@@ -340,6 +346,7 @@ Public Class viewEvents
 		Dim totalRecords As Integer = LOF(1) / Len(oneEvent)
 		Dim checked As Boolean
 
+
 		For index = 0 To dgvDay.Rows.Count - 1
 			For j = 0 To totalRecords
 				FileGet(1, oneEvent, index)
@@ -396,25 +403,25 @@ Public Class viewEvents
 		Next
 		FileClose(1)
 	End Sub
-	Private Sub HomeToolStripMenuItem_Click(sender As Object, e As EventArgs)
-		Form1.Show()
+	Private Sub HomeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HomeToolStripMenuItem.Click
+		home.Show()
 		Me.Hide()
 	End Sub
 
-	Private Sub PlayersToolStripMenuItem_Click(sender As Object, e As EventArgs)
+	Private Sub PlayersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PlayersToolStripMenuItem.Click
 		players.Show()
 		Me.Hide()
 	End Sub
 
-	Private Sub GroupToolStripMenuItem_Click(sender As Object, e As EventArgs)
+	Private Sub GroupToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GroupToolStripMenuItem.Click
 		group.Show()
 		Me.Hide()
 	End Sub
-	Private Sub MusicToolStripMenuItem_Click(sender As Object, e As EventArgs)
+	Private Sub MusicToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MusicToolStripMenuItem.Click
 		viewMusic.Show()
 		Me.Hide()
 	End Sub
-	Private Sub InstrumentsToolStripMenuItem_Click(sender As Object, e As EventArgs)
+	Private Sub InstrumentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InstrumentsToolStripMenuItem.Click
 		viewInstrument.Show()
 		Me.Hide()
 	End Sub
@@ -440,7 +447,163 @@ Public Class viewEvents
 			End
 		End If
 	End Sub
-	Private Sub BtnUndo_Click(sender As Object, e As EventArgs) Handles btnUndo.Click
 
+	Sub formChanged(sender As Object, e As EventArgs) Handles txtID.Leave, txtCustomerID.Leave,
+		txtAddress.Leave, txtPostcode.Leave, dtpDate.Leave, txtTime.Leave, txtArrivalTime.Leave,
+		chkPBB.Leave, chkPSB.Leave, chkPYTB.Leave, chkStarters.Leave, txtMusic.Leave, txtEmail.Leave,
+		txtContPhone.Leave, txtContName.Leave
+		Try
+			'if a button has been clicked execute code for the button
+			If ActiveControl.Name = "btnUndo" Then
+				btnUndo_click(sender, e)
+			ElseIf ActiveControl.Name = "btnAdd" Then
+				btnAdd_Click(sender, e)
+			ElseIf ActiveControl.Name = "btnClear" Then
+				btnClear_Click(sender, e)
+			ElseIf ActiveControl.Name = "btnDelete" Then
+				btnDelete_Click(sender, e)
+			ElseIf ActiveControl.Name = "btnUpdate" Then
+				btnUpdate_Click(sender, e)
+			ElseIf ActiveControl.Name = "btnShowAll" Then
+				btnShowAll_Click(sender, e)
+			ElseIf ActiveControl.Name = "btnPlayers" Then
+				btnPlayers_Click(sender, e)
+			ElseIf ActiveControl.Name = "btnPrint" Then
+				btnPrint_Click(sender, e)
+			ElseIf ActiveControl.Name = "btnSaveResponse" Then
+				btnSaveResponse_Click(sender, e)
+			Else
+				'saves the data in the form to a dynamic array so changes can be restored when btnUndo clicked
+				Dim changeRecorded As Boolean = False
+
+				For i = pointer To undo.Length
+					If changeRecorded = False Then 'only store if a change has been made
+						If undo.Length - 1 - (lengthCount * 13) < 14 Then 'if no empty space, add more elements to the array
+							ReDim Preserve undo(UBound(undo) + 14)
+						End If
+						If undo(i) = Nothing And i > 0 Then ' search for empty place in array that is not the first
+							Try 'store form data in array
+								undo(i) = txtID.Text
+								undo(i + 1) = txt
+								undo(i + 2) = txtEmail.Text
+								undo(i + 3) = txtPhone.Text
+								undo(i + 4) = cmbInstrument.Text
+								undo(i + 5) = cmbLevel.Text
+								undo(i + 6) = chkPhotoPerm.Checked
+								undo(i + 7) = chkPSB.Checked
+								undo(i + 8) = chkPYTB.Checked
+								undo(i + 9) = chkPBB.Checked
+								undo(i + 10) = chkStarters.Checked
+								undo(i + 11) = cmbRole.Text
+								undo(i + 12) = txtContName.Text
+								undo(i + 13) = txtContPhone.Text
+
+								pointer += 14
+								count += 1
+								lengthCount += 1
+								changeRecorded = True
+
+							Catch ex As Exception  'if fails, give option to reset undo management
+								If MsgBox("Undo management failed", MsgBoxStyle.OkOnly + vbExclamation, "Error") = vbOK Then
+									For j = 0 To undo.Length - 1
+										undo(j) = Nothing
+									Next
+									count = 0
+									lengthCount = 0
+									pointer = 1
+									formChanged(sender, e)
+									MsgBox("Undo reset", vbOKOnly + vbInformation)
+								End If
+							End Try
+						End If
+					End If
+				Next
+			End If
+
+		Catch ex As Exception  'if fails, give option to retry, else end sub
+			If MsgBox("Undo management error", vbRetryCancel + vbExclamation, "Error") = vbRetry Then
+				formChanged(sender, e)
+			Else
+				Exit Sub
+			End If
+		End Try
+	End Sub
+
+	Sub btnUndo_click(ByVal sender As Object, ByVal e As EventArgs) Handles btnUndo.Click
+		Try
+			Dim startLocation As Integer = pointer - 28     ' find the last item that was added to array
+			If count = 1 Then 'if only one change has been saved, the form must have been blank previously
+				txtName.Clear()
+				dtpDOB.ResetText()
+				txtPhone.Clear()
+				cmbInstrument.ResetText()
+				cmbLevel.ResetText()
+				chkPhotoPerm.CheckState = CheckState.Unchecked
+				chkPSB.CheckState = CheckState.Unchecked
+				chkPYTB.CheckState = CheckState.Unchecked
+				chkPBB.CheckState = CheckState.Unchecked
+				chkStarters.CheckState = CheckState.Unchecked
+				cmbRole.ResetText()
+				txtContName.Clear()
+				txtContPhone.Clear()
+
+				count = 0
+				pointer = 0
+			ElseIf count = 0 Then
+				MsgBox("No changes made to be undone")
+
+			Else 'if more than 1 change
+				txtName.Text = undo(startLocation)
+				dtpDOB.Text = undo(startLocation + 1)
+				txtEmail.Text = undo(startLocation + 2)
+				txtPhone.Text = undo(startLocation + 3)
+				cmbInstrument.Text = undo(startLocation + 4)
+				cmbLevel.Text = undo(startLocation + 5)
+
+				'checking checkboxes
+				If undo(startLocation + 6) = True Then
+					chkPhotoPerm.CheckState = CheckState.Checked
+				Else
+					chkPhotoPerm.CheckState = CheckState.Unchecked
+				End If
+				If undo(startLocation + 7) = True Then
+					chkPSB.CheckState = CheckState.Checked
+				Else
+					chkPSB.CheckState = CheckState.Unchecked
+				End If
+
+				If undo(startLocation + 8) = True Then
+					chkPYTB.CheckState = CheckState.Checked
+				Else
+					chkPYTB.CheckState = CheckState.Unchecked
+				End If
+
+				If undo(startLocation + 9) = True Then
+					chkPBB.CheckState = CheckState.Checked
+				Else
+					chkPBB.CheckState = CheckState.Unchecked
+				End If
+
+				If undo(startLocation + 10) = True Then
+					chkStarters.CheckState = CheckState.Checked
+				Else
+					chkStarters.CheckState = CheckState.Unchecked
+				End If
+
+				cmbRole.Text = undo(startLocation + 11)
+				txtContName.Text = undo(startLocation + 12)
+				txtContPhone.Text = undo(startLocation + 13)
+
+				count = count - 1
+				pointer = pointer - 28
+			End If
+
+		Catch ex As Exception  'if fails, give option to retry, else end sub
+			If MsgBox("Undo failed", vbRetryCancel + vbExclamation, "Error") = vbRetry Then
+				btnUndo_click(sender, e)
+			Else
+				Exit Sub
+			End If
+		End Try
 	End Sub
 End Class

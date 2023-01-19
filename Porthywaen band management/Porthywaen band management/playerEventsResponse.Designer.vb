@@ -31,11 +31,12 @@ Partial Class playerEventsResponse
 		'
 		'lstPlayers
 		'
+		Me.lstPlayers.BackColor = System.Drawing.Color.White
 		Me.lstPlayers.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colID, Me.colName, Me.colInstrument})
 		Me.lstPlayers.HideSelection = False
-		Me.lstPlayers.Location = New System.Drawing.Point(128, 36)
+		Me.lstPlayers.Location = New System.Drawing.Point(12, 12)
 		Me.lstPlayers.Name = "lstPlayers"
-		Me.lstPlayers.Size = New System.Drawing.Size(499, 255)
+		Me.lstPlayers.Size = New System.Drawing.Size(499, 426)
 		Me.lstPlayers.TabIndex = 0
 		Me.lstPlayers.UseCompatibleStateImageBehavior = False
 		Me.lstPlayers.View = System.Windows.Forms.View.Details
@@ -56,20 +57,26 @@ Partial Class playerEventsResponse
 		'
 		'btnBack
 		'
-		Me.btnBack.Location = New System.Drawing.Point(515, 343)
+		Me.btnBack.BackColor = System.Drawing.Color.Firebrick
+		Me.btnBack.FlatAppearance.BorderColor = System.Drawing.Color.Black
+		Me.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+		Me.btnBack.ForeColor = System.Drawing.Color.White
+		Me.btnBack.Location = New System.Drawing.Point(517, 381)
 		Me.btnBack.Name = "btnBack"
 		Me.btnBack.Size = New System.Drawing.Size(75, 23)
 		Me.btnBack.TabIndex = 1
 		Me.btnBack.Text = "Back"
-		Me.btnBack.UseVisualStyleBackColor = True
+		Me.btnBack.UseVisualStyleBackColor = False
 		'
 		'playerEventsResponse
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-		Me.ClientSize = New System.Drawing.Size(800, 450)
+		Me.BackColor = System.Drawing.Color.White
+		Me.ClientSize = New System.Drawing.Size(609, 450)
 		Me.Controls.Add(Me.btnBack)
 		Me.Controls.Add(Me.lstPlayers)
+		Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
 		Me.Name = "playerEventsResponse"
 		Me.Text = "playerEventsResponse"
 		Me.ResumeLayout(False)

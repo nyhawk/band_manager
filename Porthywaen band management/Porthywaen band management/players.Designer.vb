@@ -22,6 +22,7 @@ Partial Class players
 	'Do not modify it using the code editor.
 	<System.Diagnostics.DebuggerStepThrough()>
 	Private Sub InitializeComponent()
+		Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(players))
 		Me.dgvPlayers = New System.Windows.Forms.DataGridView()
 		Me.colID = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.colName = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -54,6 +55,9 @@ Partial Class players
 		Me.btnDelete = New System.Windows.Forms.Button()
 		Me.lblContact = New System.Windows.Forms.Label()
 		Me.btnUpdate = New System.Windows.Forms.Button()
+		Me.btnUndo = New System.Windows.Forms.Button()
+		Me.lblRole = New System.Windows.Forms.Label()
+		Me.cmbRole = New System.Windows.Forms.ComboBox()
 		Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
 		Me.HomeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.PlayersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -62,10 +66,7 @@ Partial Class players
 		Me.MusicToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.InstrumentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		Me.UserToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-		Me.LogoutToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-		Me.btnUndo = New System.Windows.Forms.Button()
-		Me.lblRole = New System.Windows.Forms.Label()
-		Me.cmbRole = New System.Windows.Forms.ComboBox()
+		Me.LogoutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
 		CType(Me.dgvPlayers, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.MenuStrip1.SuspendLayout()
 		Me.SuspendLayout()
@@ -291,9 +292,11 @@ Partial Class players
 		'dtpDOB
 		'
 		Me.dtpDOB.Location = New System.Drawing.Point(476, 118)
+		Me.dtpDOB.MaxDate = New Date(2023, 1, 16, 0, 0, 0, 0)
 		Me.dtpDOB.Name = "dtpDOB"
 		Me.dtpDOB.Size = New System.Drawing.Size(164, 20)
 		Me.dtpDOB.TabIndex = 47
+		Me.dtpDOB.Value = New Date(2023, 1, 16, 0, 0, 0, 0)
 		'
 		'lblID
 		'
@@ -315,6 +318,7 @@ Partial Class players
 		'
 		'txtID
 		'
+		Me.txtID.BackColor = System.Drawing.SystemColors.Control
 		Me.txtID.Location = New System.Drawing.Point(476, 68)
 		Me.txtID.Name = "txtID"
 		Me.txtID.ReadOnly = True
@@ -356,15 +360,45 @@ Partial Class players
 		Me.btnUpdate.Text = "Update"
 		Me.btnUpdate.UseVisualStyleBackColor = False
 		'
+		'btnUndo
+		'
+		Me.btnUndo.BackColor = System.Drawing.Color.Firebrick
+		Me.btnUndo.FlatAppearance.BorderColor = System.Drawing.Color.Black
+		Me.btnUndo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+		Me.btnUndo.ForeColor = System.Drawing.Color.White
+		Me.btnUndo.Location = New System.Drawing.Point(806, 202)
+		Me.btnUndo.Name = "btnUndo"
+		Me.btnUndo.Size = New System.Drawing.Size(75, 23)
+		Me.btnUndo.TabIndex = 75
+		Me.btnUndo.Text = "Undo"
+		Me.btnUndo.UseVisualStyleBackColor = False
+		'
+		'lblRole
+		'
+		Me.lblRole.AutoSize = True
+		Me.lblRole.Location = New System.Drawing.Point(396, 310)
+		Me.lblRole.Name = "lblRole"
+		Me.lblRole.Size = New System.Drawing.Size(29, 13)
+		Me.lblRole.TabIndex = 78
+		Me.lblRole.Text = "Role"
+		'
+		'cmbRole
+		'
+		Me.cmbRole.FormattingEnabled = True
+		Me.cmbRole.Items.AddRange(New Object() {"Player", "Dep", "Committee member", "Librarian", "Instruments", "Events", "Treasurer", "Conductor"})
+		Me.cmbRole.Location = New System.Drawing.Point(476, 307)
+		Me.cmbRole.Name = "cmbRole"
+		Me.cmbRole.Size = New System.Drawing.Size(164, 21)
+		Me.cmbRole.TabIndex = 77
+		'
 		'MenuStrip1
 		'
 		Me.MenuStrip1.BackColor = System.Drawing.Color.Firebrick
-		Me.MenuStrip1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-		Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HomeToolStripMenuItem, Me.PlayersToolStripMenuItem, Me.GroupToolStripMenuItem, Me.EventsToolStripMenuItem, Me.MusicToolStripMenuItem, Me.InstrumentsToolStripMenuItem, Me.UserToolStripMenuItem, Me.LogoutToolStripMenuItem1})
+		Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HomeToolStripMenuItem, Me.PlayersToolStripMenuItem, Me.GroupToolStripMenuItem, Me.EventsToolStripMenuItem, Me.MusicToolStripMenuItem, Me.InstrumentsToolStripMenuItem, Me.UserToolStripMenuItem, Me.LogoutToolStripMenuItem})
 		Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
 		Me.MenuStrip1.Name = "MenuStrip1"
 		Me.MenuStrip1.Size = New System.Drawing.Size(927, 24)
-		Me.MenuStrip1.TabIndex = 74
+		Me.MenuStrip1.TabIndex = 79
 		Me.MenuStrip1.Text = "MenuStrip1"
 		'
 		'HomeToolStripMenuItem
@@ -397,7 +431,6 @@ Partial Class players
 		'
 		'MusicToolStripMenuItem
 		'
-		Me.MusicToolStripMenuItem.BackColor = System.Drawing.Color.Firebrick
 		Me.MusicToolStripMenuItem.ForeColor = System.Drawing.Color.White
 		Me.MusicToolStripMenuItem.Name = "MusicToolStripMenuItem"
 		Me.MusicToolStripMenuItem.Size = New System.Drawing.Size(51, 20)
@@ -417,43 +450,12 @@ Partial Class players
 		Me.UserToolStripMenuItem.Size = New System.Drawing.Size(79, 20)
 		Me.UserToolStripMenuItem.Text = "User details"
 		'
-		'LogoutToolStripMenuItem1
+		'LogoutToolStripMenuItem
 		'
-		Me.LogoutToolStripMenuItem1.ForeColor = System.Drawing.Color.White
-		Me.LogoutToolStripMenuItem1.Name = "LogoutToolStripMenuItem1"
-		Me.LogoutToolStripMenuItem1.Size = New System.Drawing.Size(57, 20)
-		Me.LogoutToolStripMenuItem1.Text = "Logout"
-		'
-		'btnUndo
-		'
-		Me.btnUndo.BackColor = System.Drawing.Color.Firebrick
-		Me.btnUndo.FlatAppearance.BorderColor = System.Drawing.Color.Black
-		Me.btnUndo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-		Me.btnUndo.ForeColor = System.Drawing.Color.White
-		Me.btnUndo.Location = New System.Drawing.Point(806, 202)
-		Me.btnUndo.Name = "btnUndo"
-		Me.btnUndo.Size = New System.Drawing.Size(75, 23)
-		Me.btnUndo.TabIndex = 75
-		Me.btnUndo.Text = "Undo"
-		Me.btnUndo.UseVisualStyleBackColor = False
-		'
-		'lblRole
-		'
-		Me.lblRole.AutoSize = True
-		Me.lblRole.Location = New System.Drawing.Point(396, 310)
-		Me.lblRole.Name = "lblRole"
-		Me.lblRole.Size = New System.Drawing.Size(29, 13)
-		Me.lblRole.TabIndex = 78
-		Me.lblRole.Text = "Role"
-		'
-		'cmbRole
-		'
-		Me.cmbRole.FormattingEnabled = True
-		Me.cmbRole.Items.AddRange(New Object() {"Player", "Dep", "Committee member", "Librarian", "Instruments", "Events", "Treasurer", "Conductor"})
-		Me.cmbRole.Location = New System.Drawing.Point(476, 307)
-		Me.cmbRole.Name = "cmbRole"
-		Me.cmbRole.Size = New System.Drawing.Size(164, 21)
-		Me.cmbRole.TabIndex = 77
+		Me.LogoutToolStripMenuItem.ForeColor = System.Drawing.Color.White
+		Me.LogoutToolStripMenuItem.Name = "LogoutToolStripMenuItem"
+		Me.LogoutToolStripMenuItem.Size = New System.Drawing.Size(57, 20)
+		Me.LogoutToolStripMenuItem.Text = "Logout"
 		'
 		'players
 		'
@@ -461,10 +463,10 @@ Partial Class players
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
 		Me.BackColor = System.Drawing.Color.White
 		Me.ClientSize = New System.Drawing.Size(927, 390)
+		Me.Controls.Add(Me.MenuStrip1)
 		Me.Controls.Add(Me.lblRole)
 		Me.Controls.Add(Me.cmbRole)
 		Me.Controls.Add(Me.btnUndo)
-		Me.Controls.Add(Me.MenuStrip1)
 		Me.Controls.Add(Me.btnUpdate)
 		Me.Controls.Add(Me.lblContact)
 		Me.Controls.Add(Me.btnDelete)
@@ -494,10 +496,9 @@ Partial Class players
 		Me.Controls.Add(Me.cmbInstrument)
 		Me.Controls.Add(Me.txtID)
 		Me.Controls.Add(Me.dgvPlayers)
-		Me.MainMenuStrip = Me.MenuStrip1
+		Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
 		Me.Name = "players"
-		Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide
-		Me.Text = "players"
+		Me.Text = "Players details"
 		CType(Me.dgvPlayers, System.ComponentModel.ISupportInitialize).EndInit()
 		Me.MenuStrip1.ResumeLayout(False)
 		Me.MenuStrip1.PerformLayout()
@@ -537,6 +538,9 @@ Partial Class players
 	Friend WithEvents btnDelete As Button
 	Friend WithEvents lblContact As Label
 	Friend WithEvents btnUpdate As Button
+	Friend WithEvents btnUndo As Button
+	Friend WithEvents lblRole As Label
+	Friend WithEvents cmbRole As ComboBox
 	Friend WithEvents MenuStrip1 As MenuStrip
 	Friend WithEvents HomeToolStripMenuItem As ToolStripMenuItem
 	Friend WithEvents PlayersToolStripMenuItem As ToolStripMenuItem
@@ -545,8 +549,5 @@ Partial Class players
 	Friend WithEvents MusicToolStripMenuItem As ToolStripMenuItem
 	Friend WithEvents InstrumentsToolStripMenuItem As ToolStripMenuItem
 	Friend WithEvents UserToolStripMenuItem As ToolStripMenuItem
-	Friend WithEvents btnUndo As Button
-	Friend WithEvents lblRole As Label
-	Friend WithEvents cmbRole As ComboBox
-	Friend WithEvents LogoutToolStripMenuItem1 As ToolStripMenuItem
+	Friend WithEvents LogoutToolStripMenuItem As ToolStripMenuItem
 End Class
