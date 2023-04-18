@@ -1,0 +1,11 @@
+To add a new event, input the data and click 'Add event' to save the event. The event will be shown in the table.
+To update an event, select the event in the table, which displays the events details, which can be edited. To save the changes, click 'Update event'.
+To delete an event, select the event in the table and click 'Delete event'
+To clear the input fields, click 'Clear'
+
+To view any events on a specific date, select the date in the calendar on the left of the screen. If any events are saved in the system on the selected date, they will be shown in the table.
+To view all event bookings again in the table, click 'Show all events'.
+
+Saving and viewing availibility
+To mark your availibility for an event, tick the checkboxes for the events in the table that you are able to attend, and click 'Save availibility' to store your responses.
+You can view the players available for an event by selecting the event in the table and clicking 'View available players'.

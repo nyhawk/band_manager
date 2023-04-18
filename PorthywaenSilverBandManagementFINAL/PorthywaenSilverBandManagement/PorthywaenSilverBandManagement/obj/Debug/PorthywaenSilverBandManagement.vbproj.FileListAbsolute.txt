@@ -1,0 +1,44 @@
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\finalNEA-nyhawk-patch-5\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\bin\Debug\Porthywaen Silver Band Management.exe.config
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\finalNEA-nyhawk-patch-5\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\bin\Debug\Porthywaen Silver Band Management.exe
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\finalNEA-nyhawk-patch-5\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\bin\Debug\Porthywaen Silver Band Management.pdb
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\finalNEA-nyhawk-patch-5\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\bin\Debug\Porthywaen Silver Band Management.xml
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\finalNEA-nyhawk-patch-5\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\PorthywaenSilverBandManagement.vbproj.AssemblyReference.cache
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\finalNEA-nyhawk-patch-5\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\PorthywaenSilverBandManagement.frmChangePassword.resources
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\finalNEA-nyhawk-patch-5\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\PorthywaenSilverBandManagement.frmLoading.resources
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\finalNEA-nyhawk-patch-5\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\PorthywaenSilverBandManagement.frmLogin.resources
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\finalNEA-nyhawk-patch-5\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\PorthywaenSilverBandManagement.frmPlayerEventsResponse.resources
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\finalNEA-nyhawk-patch-5\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\PorthywaenSilverBandManagement.frmUserDetails.resources
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\finalNEA-nyhawk-patch-5\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\PorthywaenSilverBandManagement.frmEvents.resources
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\finalNEA-nyhawk-patch-5\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\PorthywaenSilverBandManagement.frmHome.resources
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\finalNEA-nyhawk-patch-5\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\PorthywaenSilverBandManagement.frmGroup.resources
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\finalNEA-nyhawk-patch-5\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\PorthywaenSilverBandManagement.Resources.resources
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\finalNEA-nyhawk-patch-5\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\PorthywaenSilverBandManagement.frmPlayers.resources
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\finalNEA-nyhawk-patch-5\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\PorthywaenSilverBandManagement.frmInstrument.resources
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\finalNEA-nyhawk-patch-5\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\PorthywaenSilverBandManagement.frmMusic.resources
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\finalNEA-nyhawk-patch-5\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\PorthywaenSilverBandManagement.vbproj.GenerateResource.cache
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\finalNEA-nyhawk-patch-5\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\PorthywaenSilverBandManagement.vbproj.CoreCompileInputs.cache
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\finalNEA-nyhawk-patch-5\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\Porthywaen Silver Band Management.exe
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\finalNEA-nyhawk-patch-5\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\Porthywaen Silver Band Management.xml
+\\mdl-server-1\RedirectedFolders\Nia.Hawkins\My Documents\finalNEA-nyhawk-patch-5\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\Porthywaen Silver Band Management.pdb
+\\6S-File1\students$\16nhawkins\Documents\PorthywaenSilverBandManagementFINAL\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\bin\Debug\Porthywaen Silver Band Management.exe.config
+\\6S-File1\students$\16nhawkins\Documents\PorthywaenSilverBandManagementFINAL\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\bin\Debug\Porthywaen Silver Band Management.exe
+\\6S-File1\students$\16nhawkins\Documents\PorthywaenSilverBandManagementFINAL\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\bin\Debug\Porthywaen Silver Band Management.pdb
+\\6S-File1\students$\16nhawkins\Documents\PorthywaenSilverBandManagementFINAL\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\bin\Debug\Porthywaen Silver Band Management.xml
+\\6S-File1\students$\16nhawkins\Documents\PorthywaenSilverBandManagementFINAL\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\PorthywaenSilverBandManagement.vbprojAssemblyReference.cache
+\\6S-File1\students$\16nhawkins\Documents\PorthywaenSilverBandManagementFINAL\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\PorthywaenSilverBandManagement.frmChangePassword.resources
+\\6S-File1\students$\16nhawkins\Documents\PorthywaenSilverBandManagementFINAL\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\PorthywaenSilverBandManagement.frmLoading.resources
+\\6S-File1\students$\16nhawkins\Documents\PorthywaenSilverBandManagementFINAL\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\PorthywaenSilverBandManagement.frmLogin.resources
+\\6S-File1\students$\16nhawkins\Documents\PorthywaenSilverBandManagementFINAL\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\PorthywaenSilverBandManagement.frmPlayerEventsResponse.resources
+\\6S-File1\students$\16nhawkins\Documents\PorthywaenSilverBandManagementFINAL\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\PorthywaenSilverBandManagement.frmUserDetails.resources
+\\6S-File1\students$\16nhawkins\Documents\PorthywaenSilverBandManagementFINAL\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\PorthywaenSilverBandManagement.frmEvents.resources
+\\6S-File1\students$\16nhawkins\Documents\PorthywaenSilverBandManagementFINAL\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\PorthywaenSilverBandManagement.frmHome.resources
+\\6S-File1\students$\16nhawkins\Documents\PorthywaenSilverBandManagementFINAL\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\PorthywaenSilverBandManagement.frmGroup.resources
+\\6S-File1\students$\16nhawkins\Documents\PorthywaenSilverBandManagementFINAL\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\PorthywaenSilverBandManagement.Resources.resources
+\\6S-File1\students$\16nhawkins\Documents\PorthywaenSilverBandManagementFINAL\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\PorthywaenSilverBandManagement.frmPlayers.resources
+\\6S-File1\students$\16nhawkins\Documents\PorthywaenSilverBandManagementFINAL\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\PorthywaenSilverBandManagement.frmInstrument.resources
+\\6S-File1\students$\16nhawkins\Documents\PorthywaenSilverBandManagementFINAL\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\PorthywaenSilverBandManagement.frmMusic.resources
+\\6S-File1\students$\16nhawkins\Documents\PorthywaenSilverBandManagementFINAL\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\PorthywaenSilverBandManagement.vbproj.GenerateResource.cache
+\\6S-File1\students$\16nhawkins\Documents\PorthywaenSilverBandManagementFINAL\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\PorthywaenSilverBandManagement.vbproj.CoreCompileInputs.cache
+\\6S-File1\students$\16nhawkins\Documents\PorthywaenSilverBandManagementFINAL\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\Porthywaen Silver Band Management.exe
+\\6S-File1\students$\16nhawkins\Documents\PorthywaenSilverBandManagementFINAL\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\Porthywaen Silver Band Management.xml
+\\6S-File1\students$\16nhawkins\Documents\PorthywaenSilverBandManagementFINAL\PorthywaenSilverBandManagement\PorthywaenSilverBandManagement\obj\Debug\Porthywaen Silver Band Management.pdb
